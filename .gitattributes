@@ -5,13 +5,14 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 *.html linguist-vendored
-*.less linguist-vendored   # <– tambahin ini
-vendor/* linguist-vendored
-node_modules/* linguist-vendored
-public/storage/* linguist-vendored
-public/assets/* linguist-vendored
+*.less linguist-vendored   # semua .less di-ignore
 
-# Paksa Blade dihitung sebagai Blade, bukan PHP
+/vendor/* linguist-vendored
+/node_modules/* linguist-vendored
+/public/storage/* linguist-vendored
+/public/assets/* linguist-vendored
+
+# Blade dihitung sebagai Blade
 *.blade.php linguist-language=Blade
 
 # Exclude changelog dari export
