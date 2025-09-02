@@ -5,7 +5,7 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 *.html linguist-vendored
-*.less linguist-vendored   # <– tambahin ini
+*.less linguist-vendored
 vendor/* linguist-vendored
 node_modules/* linguist-vendored
 public/storage/* linguist-vendored
