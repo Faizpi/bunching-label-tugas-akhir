@@ -4,9 +4,11 @@
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
+*.html linguist-vendored
 vendor/* linguist-vendored
 node_modules/* linguist-vendored
 public/storage/* linguist-vendored
+public/assets/* linguist-vendored
 
 # Force Blade file dihitung sebagai Blade, bukan HTML
 *.blade.php linguist-language=Blade
