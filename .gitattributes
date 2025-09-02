@@ -1,6 +1,9 @@
 * text=auto
 
 # Jangan hitung asset / library
+*.css linguist-vendored
+*.scss linguist-vendored
+*.js linguist-vendored
 *.html linguist-vendored
 *.less linguist-vendored   # semua .less di-ignore
 
