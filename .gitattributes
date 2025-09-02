@@ -1,22 +1,17 @@
 * text=auto
 
-# Jangan hitung file vendor, node_modules, storage
-vendor/* linguist-vendored
-node_modules/* linguist-vendored
-public/storage/* linguist-vendored
-
-# Jangan hitung file frontend bawaan (CSS, JS, LESS, SCSS, HTML)
+# Tandai assets biar gak ikut statistik
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
-*.less linguist-vendored
 *.html linguist-vendored
+vendor/* linguist-vendored
+node_modules/* linguist-vendored
+public/storage/* linguist-vendored
+public/assets/* linguist-vendored
 
-# Paksa Blade dihitung sebagai Blade, bukan HTML
+# Paksa Blade dihitung sebagai Blade, bukan PHP
 *.blade.php linguist-language=Blade
-
-# Biarkan PHP asli tetap dihitung
-*.php linguist-language=PHP
 
 # Exclude changelog dari export
 CHANGELOG.md export-ignore
