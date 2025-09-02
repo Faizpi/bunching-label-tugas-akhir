@@ -12,48 +12,56 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="size">Type/Size</label>
-                            <input type="text" name="size" class="form-control" id="size" value="AVSS 2.0 SQ 37/0.260" readonly>
+                            <select name="size" class="form-control" id="size" required>
+                                <option value="">-- Pilih Type/Size --</option>
+                                <option value="AV 800 SQ Outer" {{ $label->size == "AV 800 SQ Outer" ? "selected":"" }}>AV 800 SQ Outer</option>
+                                <option value="AV 1000 SQ Outer" {{ $label->size == "AV 1000 SQ Outer" ? "selected":"" }}>AV 1000 SQ Outer</option>
+                                <option value="AV 1500 SQ Outer" {{ $label->size == "AV 1500 SQ Outer" ? "selected":"" }}>AV 1500 SQ Outer</option>
+                                <option value="EB 500 SQ Outer" {{ $label->size == "EB 500 SQ Outer" ? "selected":"" }}>EB 500 SQ Outer</option>
+                                <option value="EB 900 SQ Outer" {{ $label->size == "EB 900 SQ Outer" ? "selected":"" }}>EB 900 SQ Outer</option>
+                                <option value="EB 1500 SQ Outer" {{ $label->size == "EB 1500 SQ Outer" ? "selected":"" }}>EB 1500 SQ Outer</option>
+                                <option value="EB 2000 SQ Outer" {{ $label->size == "EB 2000 SQ Outer" ? "selected":"" }}>EB 2000 SQ Outer</option>
+                                <option value="EB 3000 SQ Outer" {{ $label->size == "EB 3000 SQ Outer" ? "selected":"" }}>EB 3000 SQ Outer</option>
+                                <option value="EB 4000 SQ Outer" {{ $label->size == "EB 4000 SQ Outer" ? "selected":"" }}>EB 4000 SQ Outer</option>
+                                <option value="HDEB 900 SQ Outer" {{ $label->size == "HDEB 900 SQ Outer" ? "selected":"" }}>HDEB 900 SQ Outer</option>
+                                <option value="HDEB 1500 SQ Outer" {{ $label->size == "HDEB 1500 SQ Outer" ? "selected":"" }}>HDEB 1500 SQ Outer</option>
+                                <option value="HDEB 2000 SQ Outer" {{ $label->size == "HDEB 2000 SQ Outer" ? "selected":"" }}>HDEB 2000 SQ Outer</option>
+                                <option value="HDEB 3000 SQ Outer" {{ $label->size == "HDEB 3000 SQ Outer" ? "selected":"" }}>HDEB 3000 SQ Outer</option>
+                                <option value="HDEB 4000 SQ Outer" {{ $label->size == "HDEB 4000 SQ Outer" ? "selected":"" }}>HDEB 4000 SQ Outer</option>
+                            </select>
                         </div>
                         <div id="label_length" class="form-group">
                             <label for="length">Length (meter)</label>
-                            <input type="number" name="length" class="form-control" value="{{$label->length}}" id="length" placeholder="Length" required>
+                            <input type="number" name="length" class="form-control" id="length" value="{{ $label->length }}" placeholder="Length" required>
                         </div>
-                        <div class="form-group">
+                        <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
-                            <input type="number" name="weight" class="form-control" value="{{$label->weight}}" id="weight" placeholder="Weight" required>
+                            <input type="number" name="weight" class="form-control" id="weight" value="{{ $label->weight }}" placeholder="Weight" required>
                         </div>
                         <div id="label_date" class="form-group">
                             <label for="date">Date</label>
                             <select id="date" name="shift_date" class="form-control" required>
-                            </select>
-                        </div>
-                        <div id="label_shift" class="form-group">
-                            <label for="shift">Shift</label>
-                            <select name="shift" id="shift" class="form-control" required>
-                                <option value="1" {{$label->shift == 1 ? "selected":""}}>1</option>
-                                <option value="2" {{$label->shift == 2 ? "selected":""}}>2</option>
-                                <option value="3" {{$label->shift == 3 ? "selected":""}}>3</option>
+                                <option value="{{ $label->shift_date }}">{{ $label->shift_date }}</option>
                             </select>
                         </div>
                         <div id="label_lot_not" class="form-group">
                             <label for="lot_not">Lot No</label>
-                            <input type="text" name="lot_not" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
+                            <input type="number" name="lot_not" value="{{ $label->lot_not }}" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
+                        </div>
+                        <div id="label_shift" class="form-group">
+                            <label for="shift">Shift</label>
+                            <select name="shift" id="shift" class="form-control" required>
+                                <option value="1" {{ $label->shift == 1 ? "selected":"" }}>1</option>
+                                <option value="2" {{ $label->shift == 2 ? "selected":"" }}>2</option>
+                                <option value="3" {{ $label->shift == 3 ? "selected":"" }}>3</option>
+                            </select>
                         </div>
                         <div id="label_machine_no" class="form-group">
                             <label for="machine_no">Machine No</label>
                             <select name="machine_number" id="machine_no" class="form-control" required>
-                                <option value="221" {{$label->machine_number == 221 ? "selected":""}}>221</option>
-                                <option value="222" {{$label->machine_number == 222 ? "selected":""}}>222</option>
-                                <option value="223" {{$label->machine_number == 223 ? "selected":""}}>223</option>
-                                <option value="224" {{$label->machine_number == 224 ? "selected":""}}>224</option>
-                                <option value="225" {{$label->machine_number == 225 ? "selected":""}}>225</option>
-                                <option value="226" {{$label->machine_number == 226 ? "selected":""}}>226</option>
-                                <option value="227" {{$label->machine_number == 227 ? "selected":""}}>227</option>
-                                <option value="228" {{$label->machine_number == 228 ? "selected":""}}>228</option>
-                                <option value="229" {{$label->machine_number == 229 ? "selected":""}}>229</option>
-                                <option value="230" {{$label->machine_number == 230 ? "selected":""}}>230</option>
-                                <option value="231" {{$label->machine_number == 231 ? "selected":""}}>231</option>
-                                <option value="217" {{$label->machine_number == 217 ? "selected":""}}>217</option>
+                                <option value="118" {{ $label->machine_number == 118 ? "selected":"" }}>118</option>
+                                <option value="119" {{ $label->machine_number == 119 ? "selected":"" }}>119</option>
+                                <option value="120" {{ $label->machine_number == 120 ? "selected":"" }}>120</option>
                             </select>
                         </div>
                     </div>
@@ -69,7 +77,7 @@
                             <div class="radio">
                                 <label>
                                     <input name="pitch" value="20.25" type="radio"
-                                        {{$label->pitch == 20.25 ? "checked":""}} required
+                                        {{ $label->pitch == 20.25 ? "checked":"" }} required
                                         style="accent-color:#0284c7 !important;">
                                     20.25
                                 </label>
@@ -77,7 +85,7 @@
                             <div class="radio">
                                 <label>
                                     <input name="pitch" value="22.50" type="radio"
-                                        {{$label->pitch == 22.50 ? "checked":""}}
+                                        {{ $label->pitch == 22.50 ? "checked":"" }}
                                         style="accent-color:#0284c7 !important;">
                                     22.50
                                 </label>
@@ -88,7 +96,7 @@
                             <div class="radio">
                                 <label>
                                     <input name="direction" value="S" type="radio"
-                                        {{$label->direction == "S" ? "checked":""}} required
+                                        {{ $label->direction == "S" ? "checked":"" }} required
                                         style="accent-color:#0284c7 !important;">
                                     S
                                 </label>
@@ -96,7 +104,7 @@
                             <div class="radio">
                                 <label>
                                     <input name="direction" value="Z" type="radio"
-                                        {{$label->direction == "Z" ? "checked":""}}
+                                        {{ $label->direction == "Z" ? "checked":"" }}
                                         style="accent-color:#0284c7 !important;">
                                     Z
                                 </label>
@@ -107,7 +115,7 @@
                             <div class="radio">
                                 <label>
                                     <input name="visual" value="OK" type="radio"
-                                        {{$label->visual == "OK" ? "checked":""}} required
+                                        {{ $label->visual == "OK" ? "checked":"" }} required
                                         style="accent-color:#0284c7 !important;">
                                     OK
                                 </label>
@@ -115,7 +123,7 @@
                             <div class="radio">
                                 <label>
                                     <input name="visual" value="NG" type="radio"
-                                        {{$label->visual == "NG" ? "checked":""}}
+                                        {{ $label->visual == "NG" ? "checked":"" }}
                                         style="accent-color:#0284c7 !important;">
                                     NG
                                 </label>
@@ -123,17 +131,18 @@
                         </div>
                         <div id="label_remark" class="form-group">
                             <label for="remark">Remark</label>
-                            <input type="text" name="remark" value="{{$label->remark}}"
+                            <input type="text" name="remark" value="{{ $label->remark }}"
                                 class="form-control" id="remark" placeholder="Remark" required>
                         </div>
                         <div id="label_bobin_no" class="form-group">
                             <label for="bobin_no">No Bobin</label>
-                            <input type="text" name="bobin_no" value="{{$label->bobin_no}}"
+                            <input type="text" name="bobin_no" value="{{ $label->bobin_no }}"
                                 class="form-control" id="bobin_no" placeholder="No Bobin" required>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col-sm-12 col-md-8 col-md-offset-2">

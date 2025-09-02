@@ -11,7 +11,7 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="size">Type/Size</label>
-                            <select name="size" class="form-control" id="size" readonly>
+                            <select name="size" class="form-control" id="size" required>
                                 <option value="">-- Pilih Type/Size --</option>
                                 <option value="AV 800 SQ Outer">AV 800 SQ Outer</option>
                                 <option value="AV 1000 SQ Outer">AV 1000 SQ Outer</option>
