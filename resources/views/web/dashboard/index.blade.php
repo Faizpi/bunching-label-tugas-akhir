@@ -106,13 +106,13 @@
                             <div class="radio">
                                 <label>
                                     <input name="visual" value="OK" type="radio" checked required
-                                        style="accent-color:#0284c7 !important;"> OK
+                                        style="accent-color:green !important;"> OK
                                 </label>
                             </div>
                             <div class="radio">
                                 <label>
                                     <input name="visual" value="NG" type="radio"
-                                        style="accent-color:#0284c7 !important;"> NG
+                                        style="accent-color:red !important;"> NG
                                 </label>
                             </div>
                         </div>
