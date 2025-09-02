@@ -2,8 +2,6 @@
 
 # Jangan hitung asset / library
 *.html linguist-vendored
-*.py linguist-vendored
-*.js linguist-vendored
 *.less linguist-vendored   # semua .less di-ignore
 
 /vendor/* linguist-vendored
