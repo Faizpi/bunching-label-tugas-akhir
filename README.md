@@ -1,63 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Bunching Label – Laravel 7.2
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi **Sistem Informasi Pencetakan & Manajemen Label** yang dibangun menggunakan **Laravel 7.2**.  
+Didesain untuk membantu operator dalam membuat, mengedit, mencetak, dan mengelola data label produksi secara efisien.  
 
 ---
 
-## 🚀 About Laravel
+## 🚀 Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax.  
-It makes development enjoyable and productive by simplifying common tasks such as:
-
-- [Fast, simple routing](https://laravel.com/docs/routing)
-- [Powerful dependency injection container](https://laravel.com/docs/container)
-- Multiple back-ends for [session](https://laravel.com/docs/session) & [cache](https://laravel.com/docs/cache)
-- [Intuitive Eloquent ORM](https://laravel.com/docs/eloquent)
-- Database-agnostic [schema migrations](https://laravel.com/docs/migrations)
-- [Robust job processing](https://laravel.com/docs/queues)
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting)
-
-Laravel is accessible, powerful, and ready for large, robust applications.
+- ✨ Autentikasi **Admin & Operator**  
+- 🏷️ Generate & Print **Label Produksi** (Lot Number otomatis dengan increment)  
+- 📅 Filter & Export Data Label (Excel / PDF)  
+- 🔄 CRUD Data Label (tambah, edit, hapus)  
+- 📊 Dashboard monitoring data label  
+- 🖨️ Tampilan **print-friendly** untuk label  
 
 ---
 
-## 📚 Learning Laravel
+## 🛠️ Teknologi yang Digunakan
 
-- [Laravel Documentation](https://laravel.com/docs) → extensive and thorough  
-- [Laracasts](https://laracasts.com) → 1500+ video tutorials on Laravel, PHP, testing, JS, and more  
-
----
-
-## ❤️ Sponsors
-
-We extend our thanks to the following sponsors for supporting Laravel development:  
-
-**Vehikl**, **Tighten Co.**, **Kirschbaum Development Group**, **64 Robots**, **Cubet Techno Labs**,  
-**Cyber-Duck**, **British Software Development**, **Webdock**, **DevSquad**, and many more.  
-
-👉 Want to become a sponsor? Visit [Laravel Patreon](https://patreon.com/taylorotwell).
+- **Framework**: Laravel 7.2  
+- **Database**: MySQL/MariaDB  
+- **Template Engine**: Blade  
+- **Front-End**: Bootstrap  
+- **Export**: [Maatwebsite Excel](https://github.com/Maatwebsite/Laravel-Excel), [DomPDF](https://github.com/barryvdh/laravel-dompdf)  
 
 ---
 
-## 🤝 Contributing
+## 📂 Struktur Folder Penting
 
-Please read the [Contribution Guide](https://laravel.com/docs/contributions)  
-and review our [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+app/
+ ├── Http/Controllers/Web/IndexController.php   # Controller utama
+ ├── Label.php                                  # Model Label
+ └── Increment.php                              # Model Increment
+
+resources/views/web/dashboard/                  # Halaman Dashboard & Form
+resources/views/export/                         # Template Export PDF & Excel
+```
 
 ---
 
-## 🔐 Security
+## ⚡ Instalasi & Setup
 
-If you discover a security vulnerability, please email **Taylor Otwell** at [taylor@laravel.com](mailto:taylor@laravel.com).  
-All security issues will be promptly addressed.
+1. Clone repository
+   ```bash
+   git clone https://github.com/username/bunching-label.git
+   cd bunching-label
+   ```
+2. Install dependency
+   ```bash
+   composer install
+   npm install && npm run dev
+   ```
+3. Copy file `.env.example` menjadi `.env`
+   ```bash
+   cp .env.example .env
+   ```
+4. Generate key
+   ```bash
+   php artisan key:generate
+   ```
+5. Setting database di `.env`, lalu migrate
+   ```bash
+   php artisan migrate
+   ```
+6. Jalankan server lokal
+   ```bash
+   php artisan serve
+   ```
 
 ---
 
-## 📄 License
+## 📸 Screenshot
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+*(Opsional – tambahkan screenshot Dashboard / Label Print di sini)*
+
+---
+
+## 🤝 Kontribusi
+
+Pull request selalu terbuka.  
+Silakan buat issue terlebih dahulu untuk fitur baru atau bug fix.  
+
+---
+
+## 📄 Lisensi
+
+Proyek ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).  
