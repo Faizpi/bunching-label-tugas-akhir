@@ -73,7 +73,7 @@ resources/views/export/                         # Template Export PDF & Excel
 
 ## 📸 Screenshot
 
-*(Opsional – tambahkan screenshot Dashboard / Label Print di sini)*
+![Halaman Login](image_login.png)
 
 ---
 
