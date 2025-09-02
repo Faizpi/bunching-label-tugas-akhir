@@ -103,13 +103,4 @@ class UserController extends Controller
     public function bulkImport(User $user) {
         return view('web.user.import');
     }
-
-    public function import(Request $req) {
-        $path = \Storage::disk('candidate')->put('', $req->file('excel'));
-        $path  = \Storage::disk('candidate')->path($path);
-
-        $collection = \Excel::import(new \App\Imports\UsersImport, $path);
-
-        return redirect()->route('web.user.index');
-    }
 }
