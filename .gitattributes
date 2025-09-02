@@ -1,5 +1,15 @@
 * text=auto
+
+# Vendored assets (biar gak masuk statistik bahasa)
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
+vendor/* linguist-vendored
+node_modules/* linguist-vendored
+public/storage/* linguist-vendored
+
+# Force Blade file dihitung sebagai Blade, bukan HTML
+*.blade.php linguist-language=Blade
+
+# Exclude changelog dari export
 CHANGELOG.md export-ignore
