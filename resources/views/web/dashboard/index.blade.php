@@ -1,6 +1,7 @@
 @extends('web.layout.main')
 @section('content')
 <!-- Info boxes -->
+<!-- Info boxes -->
 <div class="row" style="padding:40px 30px;">
     <form id="form_print" method="post" action="{{route('web.dashboard.print')}}" target="_blank">
         {{csrf_field()}}
@@ -9,51 +10,141 @@
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
+
                         <div class="form-group">
-                            <div class="form-group">
-<div class="form-group">
-    <label for="type">Tipe</label>
-    <select id="type" class="form-control" required>
-        <option value="">-- Pilih Tipe --</option>
-        <option value="AV">AV</option>
-        <option value="EB">EB</option>
-        <option value="HDEB">HDEB</option>
-    </select>
-</div>
+                            <label for="type">Tipe</label>
+                            <select id="type" class="form-control" required>
+                                <option value="">-- Pilih Tipe --</option>
+                                <option value="AV">AV</option>
+                                <option value="EB">EB</option>
+                                <option value="HDEB">HDEB</option>
+                            </select>
+                        </div>
 
-<div class="form-group">
-    <label for="size">Size</label>
-    <select id="size" class="form-control" required>
-        <option value="">-- Pilih Size --</option>
-    </select>
-</div>
+                        <div class="form-group">
+                            <label for="size">Size</label>
+                            <select id="size" class="form-control" required>
+                                <option value="">-- Pilih Size --</option>
+                            </select>
+                        </div>
 
-<div class="form-group">
-    <label for="extra">Extra / No Extra</label>
-    <select id="extra" class="form-control" required>
-        <option value="">-- Pilih --</option>
-        <option value="Extra">Extra</option>
-        <option value="No Extra">No Extra</option>
-    </select>
-</div>
+                        <div class="form-group">
+                            <label for="extra">Extra / No Extra</label>
+                            <select id="extra" class="form-control" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="Extra">Extra</option>
+                                <option value="No Extra">No Extra</option>
+                            </select>
+                        </div>
 
-{{-- hidden input gabungan semua --}}
-<input type="hidden" name="type_size" id="type_size">
+                        {{-- hidden input gabungan semua --}}
+                        <input type="hidden" name="type_size" id="type_size">
 
-<div id="label_length" class="form-group">
-    <label for="length">Length (meter)</label>
-    <input type="number" name="length" class="form-control" id="length" readonly required>
+                        <div id="label_length" class="form-group">
+                            <label for="length">Length (meter)</label>
+                            <input type="number" name="length" class="form-control" id="length" readonly required>
+                        </div>
+
+                        <div id="label_weight" class="form-group">
+                            <label for="weight">Weight (Kg)</label>
+                            <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
+                        </div>
+
+                        <div id="label_date" class="form-group">
+                            <label for="date">Date</label>
+                            <select id="date" name="shift_date" class="form-control" required></select>
+                        </div>
+
+                        <div id="label_lot_not" class="form-group">
+                            <label for="lot_not">Lot No</label>
+                            <input type="number" name="lot_not" value="" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom kanan -->
+            <div class="col-sm-4">
+                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+                    <div class="panel-body">
+                        <div id="label_shift" class="form-group">
+                            <label for="shift">Shift</label>
+                            <select name="shift" id="shift" class="form-control" required>
+                                <option value="">-- Pilih Shift --</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        <div id="label_machine_no" class="form-group">
+                            <label for="machine_no">Machine No</label>
+                            <select name="machine_number" id="machine_no" class="form-control" required>
+                                <option value="">-- Pilih Machine --</option>
+                                <option value="118">118</option>
+                                <option value="119">119</option>
+                                <option value="120">120</option>
+                            </select>
+                        </div>
+
+                        <div id="label_pitch" class="form-group">
+                            <label for="pitch">Pitch</label>
+                            <input type="number" step="0.01" name="pitch" id="pitch" 
+                                class="form-control" placeholder="Masukkan pitch (contoh: 20.25)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visual">Visual</label><br>
+                            <label style="display:inline-block; margin-right:15px;">
+                                <input name="visual" value="OK" type="radio" checked required 
+                                    style="accent-color:green !important;"> OK
+                            </label>
+                            <label style="display:inline-block;">
+                                <input name="visual" value="NG" type="radio" 
+                                    style="accent-color:red !important;"> NG
+                            </label>
+                        </div>
+
+                        <div id="label_bobin_no" class="form-group">
+                            <label for="bobin_no">QC Test</label>
+                            <input type="text" name="bobin_no" value="" class="form-control" id="bobin_no" placeholder="QC Test">
+                        </div>
+
+                        <div id="label_remark" class="form-group">
+                            <label for="remark">Remark</label>
+                            <input type="text" name="remark" class="form-control" id="remark" placeholder="Remark">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol submit -->
+        <div class="row" style="margin-top:20px;">
+            <div class="col-sm-6 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary btn-block"
+                    style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;">
+                    Print
+                </button>
+            </div>
+        </div>
+    </form>
 </div>
+@endsection
+
+@push('styles')
+<link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
+<link rel="stylesheet" href="{{asset('bundle/bootstrap-datetimepicker/css/bdt.css')}}">
+@endpush
 
 @push('scripts')
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
         const sizeOptions = {
-            "AV": ["800 SQ Outer", "1000 SQ Outer", "1500 SQ Outer"],
-            "EB": ["500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"],
-            "HDEB": ["900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"]
+        "AV": ["800 SQ Outer", "1000 SQ Outer", "1500 SQ Outer"],
+        "EB": ["500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"],
+        "HDEB": ["900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"]
         };
-
         const stdLength = {
             "AV 800 SQ Outer": 2000,
             "AV 1000 SQ Outer": 1800,
@@ -145,112 +236,9 @@
             updateTypeSize();
         });
     });
-</script>
+    </script>
 @endpush
-</div>
-                        <div id="label_weight" class="form-group">
-                            <label for="weight">Weight (Kg)</label>
-                            <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
-                        </div>
-                        <div id="label_date" class="form-group">
-                            <label for="date">Date</label>
-                            <select id="date" name="shift_date" class="form-control" required></select>
-                        </div>
-                        <div id="label_lot_not" class="form-group">
-                            <label for="lot_not">Lot No</label>
-                            <input type="number" name="lot_not" value="" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
-                        </div>
-                        <div id="label_shift" class="form-group">
-                            <label for="shift">Shift</label>
-                            <select name="shift" id="shift" class="form-control" required>
-                                <option value="">-- Pilih Shift --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-                        <div id="label_machine_no" class="form-group">
-                            <label for="machine_no">Machine No</label>
-                            <select name="machine_number" id="machine_no" class="form-control" required>
-                                <option value="">-- Pilih Machine --</option>
-                                <option value="118">118</option>
-                                <option value="119">119</option>
-                                <option value="120">120</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Kolom kanan -->
-            <div class="col-sm-4">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                    <div class="panel-body">
-                        <div id="label_pitch" class="form-group">
-                            <label for="pitch">Pitch</label>
-                            <div class="radio">
-                                <label>
-                                    <input name="pitch" value="20.25" type="radio" checked required
-                                        style="accent-color:#0284c7 !important;"> 20.25
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input name="pitch" value="22.50" type="radio"
-                                        style="accent-color:#0284c7 !important;"> 22.50
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="visual">Visual</label>
-                            <div class="radio">
-                                <label>
-                                    <input name="visual" value="OK" type="radio" checked required
-                                        style="accent-color:green !important;"> OK
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input name="visual" value="NG" type="radio"
-                                        style="accent-color:red !important;"> NG
-                                </label>
-                            </div>
-                        </div>
-                        <div id="label_bobin_no" class="form-group">
-                            <label for="bobin_no">QC Test</label>
-                            <input type="text" name="bobin_no" value="" class="form-control" id="bobin_no" placeholder="QC Test">
-                        </div>
-                        <div id="label_remark" class="form-group">
-                            <label for="remark">Remark</label>
-                            <input type="text" name="remark" class="form-control" id="remark" placeholder="Remark">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
-                    <button type="submit"
-                        class="btn btn-primary btn-block"
-                        style="background:#0284c7 !important;
-                        border:none !important;
-                        color:#fff !important;
-                        font-weight:600;
-                        border-radius:8px;
-                        ">
-                        Print
-                    </button>
-                </div>
-            </div>
-    </form>
-</div>
-
-@endsection
-
-@push('styles')
-<link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
-<link rel="stylesheet" href="{{asset('bundle/bootstrap-datetimepicker/css/bdt.css')}}">
-@endpush
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
