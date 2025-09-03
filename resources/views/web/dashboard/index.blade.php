@@ -1,7 +1,7 @@
 @extends('web.layout.main')
 @section('content')
 <!-- Info boxes -->
-<div class="row" style="margin-top: 3rem">
+<div class="row" style="padding:40px 30px;">
     <form id="form_print" method="post" action="{{route('web.dashboard.print')}}" target="_blank">
         {{csrf_field()}}
         <div class="row">
@@ -144,9 +144,6 @@
             </div>
     </form>
 </div>
-
-
-
 
 @endsection
 

@@ -1,7 +1,7 @@
 @extends('web.layout.main')
 @section('content')
 
-<div class="row" style="margin-top: 3rem; padding: 3rem;">
+<div class="row" style="padding:40px 30px;">
     <div class="col-sm-12">
         <div class="box"
             style="background:#ffffff;
