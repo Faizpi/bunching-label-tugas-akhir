@@ -10,9 +10,9 @@ return [
     |--------------------------------------------------------------------------
     */
     (object) [
-        'title' => 'Label', // Menu input/cetak label
+        'title' => 'Input Label', // Menu input/cetak label
         'route' => 'web.dashboard.index',
-        'icon' => 'fa fa-dashboard',
+        'icon' => 'fa fa-pencil',
         'identifier' => (object) [
             'route' => 'web.dashboard.index',
         ],
