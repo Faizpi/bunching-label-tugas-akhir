@@ -16,7 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'nsk', 'password', 'role'
+        'name',
+        'nsk',
+        'password',
+        'role'
     ];
 
     /**
@@ -25,7 +28,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -37,20 +41,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin() {
-    return $this->role === 0;
-}
+    public function isAdmin()
+    {
+        return $this->role === 0;
+    }
 
-public function isOperator() {
-    return $this->role === 1;
-}
+    public function isOperator()
+    {
+        return $this->role === 1;
+    }
 
-public function isUser() {
-    return $this->role === 2; // kalau ada role user biasa
-}
+    public function isUser()
+    {
+        return $this->role === 2; // kalau ada role user biasa
+    }
 
 
-    public function votes() {
+    public function votes()
+    {
         return $this->hasMany(\App\Label::class, 'operator_id');
     }
 }

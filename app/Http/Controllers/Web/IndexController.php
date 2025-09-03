@@ -64,17 +64,17 @@ class IndexController extends Controller
     }
 
     public function dataLabel(Request $request)
-{
-    $labels = Label::with('operator')
-        ->when($request->search, function($q) use ($request) {
-            return $q->where('lot_number', 'like', "%{$request->search}%");
-        })
-        ->paginate(10);
-    return view('web.label.index', compact('labels'));
-}
+    {
+        $labels = Label::with('operator')
+            ->when($request->search, function ($q) use ($request) {
+                return $q->where('lot_number', 'like', "%{$request->search}%");
+            })
+            ->paginate(10);
+        return view('web.label.index', compact('labels'));
+    }
 
 
-    
+
     public function edit($label)
     {
         $label = Label::find($label);
@@ -160,7 +160,7 @@ class IndexController extends Controller
     public function exportExcel(Request $request)
     {
         $startDate = $request->start_date;
-        $endDate   = $request->end_date;
+        $endDate = $request->end_date;
 
         return Excel::download(
             new LabelExport($startDate, $endDate),
@@ -194,7 +194,7 @@ class IndexController extends Controller
     public function printView(Request $request)
     {
         $start = $request->input('start_date');
-        $end   = $request->input('end_date');
+        $end = $request->input('end_date');
 
         $query = Label::with('operator');
 

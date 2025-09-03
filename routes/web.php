@@ -25,16 +25,16 @@ Route::group(['prefix' => '/', 'namespace' => 'Web'], function () {
         Route::group(['prefix' => 'label'], function () {
             Route::get('/input', 'IndexController@index')->middleware('role:admin,operator')->name('web.dashboard.index');
             Route::post('/print', 'IndexController@print')->middleware('role:admin,operator')->name('web.dashboard.print');
-            
+
             Route::get('/{label}/edit', 'IndexController@edit')->name('web.label.edit');
-            Route::post('/{label}/update', 'IndexController@update')->name('web.label.update');            
+            Route::post('/{label}/update', 'IndexController@update')->name('web.label.update');
             Route::post('/{label}/update_only', 'IndexController@updateOnly')->name('web.label.update_only');
             Route::get('/{label}/delete', 'IndexController@delete')->name('web.label.delete');
 
             Route::get('/export/excel', 'IndexController@exportExcel')->middleware('role:admin,operator')->name('web.label.export.excel');
             Route::get('/export/pdf', 'IndexController@exportPDF')->middleware('role:admin,operator')->name('web.label.export.pdf');
             Route::get('/print', 'IndexController@printView')->middleware('role:admin,operator')
-            ->name('web.label.print');
+                ->name('web.label.print');
         });
 
         Route::group(['prefix' => 'user', 'middleware' => 'role:admin'], function () {
@@ -47,15 +47,15 @@ Route::group(['prefix' => '/', 'namespace' => 'Web'], function () {
             Route::get('/{user}/delete', 'UserController@delete')->name('web.user.delete');
             Route::get('/bulk/bulk-import', 'UserController@bulkImport')->name('web.user.bulk_import');
             Route::post('/bulk/bulk-import', 'UserController@import')->name('web.user.bulk_import_post');
-            
+
         });
 
         // Route untuk halaman Data Label
-Route::group(['prefix' => 'label', 'middleware' => 'role:admin,operator'], function () {
-    Route::get('/data', 'IndexController@dataLabel')->name('web.label.index');
-});
+        Route::group(['prefix' => 'label', 'middleware' => 'role:admin,operator'], function () {
+            Route::get('/data', 'IndexController@dataLabel')->name('web.label.index');
+        });
 
     });
 
-    
+
 });

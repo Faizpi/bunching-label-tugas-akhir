@@ -9,33 +9,33 @@ return [
     | MENU UNTUK ADMIN
     |--------------------------------------------------------------------------
     */
-    (object)[
+    (object) [
         'title' => 'Label', // Menu input/cetak label
         'route' => 'web.dashboard.index',
         'icon' => 'fa fa-dashboard',
-        'identifier' => (object)[
+        'identifier' => (object) [
             'route' => 'web.dashboard.index',
         ],
         'tree' => null,
         'query' => null,
         'allowed' => 'admin',
     ],
-    (object)[
+    (object) [
         'title' => 'Data Label', // Menu tabel label
         'route' => 'web.label.index',
         'icon' => 'fa fa-table',
-        'identifier' => (object)[
+        'identifier' => (object) [
             'route' => 'web.label.index',
         ],
         'tree' => null,
         'query' => null,
         'allowed' => 'admin',
     ],
-    (object)[
+    (object) [
         'title' => 'Operator', // Menu manajemen user/operator
         'route' => 'web.user.index',
         'icon' => 'fa fa-users',
-        'identifier' => (object)[
+        'identifier' => (object) [
             'route' => 'web.user.index',
         ],
         'tree' => null,
@@ -48,22 +48,22 @@ return [
     | MENU UNTUK OPERATOR
     |--------------------------------------------------------------------------
     */
-    (object)[
+    (object) [
         'title' => 'Input Label', // Menu input label
         'route' => 'web.dashboard.index',
         'icon' => 'fa fa-pencil',
-        'identifier' => (object)[
+        'identifier' => (object) [
             'route' => 'web.dashboard.index',
         ],
         'tree' => null,
         'query' => null,
         'allowed' => 'operator',
     ],
-    (object)[
+    (object) [
         'title' => 'Data Label', // Menu tabel label
         'route' => 'web.label.index',
         'icon' => 'fa fa-table',
-        'identifier' => (object)[
+        'identifier' => (object) [
             'route' => 'web.label.index',
         ],
         'tree' => null,
