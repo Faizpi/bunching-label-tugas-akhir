@@ -10,29 +10,144 @@
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label for="size">Type/Size</label>
-                            <select name="size" class="form-control" id="size" required>
-                                <option value="">-- Pilih Type/Size --</option>
-                                <option value="AV 800 SQ Outer">AV 800 SQ Outer</option>
-                                <option value="AV 1000 SQ Outer">AV 1000 SQ Outer</option>
-                                <option value="AV 1500 SQ Outer">AV 1500 SQ Outer</option>
-                                <option value="EB 500 SQ Outer">EB 500 SQ Outer</option>
-                                <option value="EB 900 SQ Outer">EB 900 SQ Outer</option>
-                                <option value="EB 1500 SQ Outer">EB 1500 SQ Outer</option>
-                                <option value="EB 2000 SQ Outer">EB 2000 SQ Outer</option>
-                                <option value="EB 3000 SQ Outer">EB 3000 SQ Outer</option>
-                                <option value="EB 4000 SQ Outer">EB 4000 SQ Outer</option>
-                                <option value="HDEB 900 SQ Outer">HDEB 900 SQ Outer</option>
-                                <option value="HDEB 1500 SQ Outer">HDEB 1500 SQ Outer</option>
-                                <option value="HDEB 2000 SQ Outer">HDEB 2000 SQ Outer</option>
-                                <option value="HDEB 3000 SQ Outer">HDEB 3000 SQ Outer</option>
-                                <option value="HDEB 4000 SQ Outer">HDEB 4000 SQ Outer</option>
-                            </select>
-                        </div>
-                        <div id="label_length" class="form-group">
-                            <label for="length">Length (meter)</label>
-                            <input type="number" name="length" class="form-control" id="length" placeholder="Length" required>
-                        </div>
+                            <div class="form-group">
+<div class="form-group">
+    <label for="type">Tipe</label>
+    <select id="type" class="form-control" required>
+        <option value="">-- Pilih Tipe --</option>
+        <option value="AV">AV</option>
+        <option value="EB">EB</option>
+        <option value="HDEB">HDEB</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="size">Size</label>
+    <select id="size" class="form-control" required>
+        <option value="">-- Pilih Size --</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="extra">Extra / No Extra</label>
+    <select id="extra" class="form-control" required>
+        <option value="">-- Pilih --</option>
+        <option value="Extra">Extra</option>
+        <option value="No Extra">No Extra</option>
+    </select>
+</div>
+
+{{-- hidden input gabungan semua --}}
+<input type="hidden" name="type_size" id="type_size">
+
+<div id="label_length" class="form-group">
+    <label for="length">Length (meter)</label>
+    <input type="number" name="length" class="form-control" id="length" readonly required>
+</div>
+
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const sizeOptions = {
+            "AV": ["800 SQ Outer", "1000 SQ Outer", "1500 SQ Outer"],
+            "EB": ["500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"],
+            "HDEB": ["900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"]
+        };
+
+        const stdLength = {
+            "AV 800 SQ Outer": 2000,
+            "AV 1000 SQ Outer": 1800,
+            "AV 1500 SQ Outer": 1400,
+            "EB 500 SQ Outer": 3000,
+            "EB 900 SQ Outer": 2000,
+            "EB 1500 SQ Outer": 1800,
+            "EB 2000 SQ Outer": 1400,
+            "EB 3000 SQ Outer": 900,
+            "EB 4000 SQ Outer": 700,
+            "HDEB 900 SQ Outer": 2000,
+            "HDEB 1500 SQ Outer": 1400,
+            "HDEB 2000 SQ Outer": 1000,
+            "HDEB 3000 SQ Outer": 700,
+            "HDEB 4000 SQ Outer": 500,
+        };
+
+        const cableSize = {
+            "AV 800 SQ Outer": "(50 x 0.45 mm)",
+            "AV 1000 SQ Outer": "7 x (9 x 0.45 mm)",
+            "AV 1500 SQ Outer": "7 x (12 x 0.45 mm)",
+            "EB 500 SQ Outer": "7 x (9 x 0.32 mm)",
+            "EB 900 SQ Outer": "7 x (16 x 0.32 mm)",
+            "EB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
+            "EB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
+            "EB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
+            "EB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+            "HDEB 900 SQ Outer": "7 x (16 x 0.32 mm)",
+            "HDEB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
+            "HDEB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
+            "HDEB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
+            "HDEB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+        };
+
+        function updateTypeSize() {
+            const size = document.getElementById("size").value;
+            const extra = document.getElementById("extra").value;
+            const typeSizeInput = document.getElementById("type_size");
+
+            if (size) {
+                let text = size;
+
+                if (cableSize[size]) {
+                    text += " " + cableSize[size];
+                }
+
+                if (extra) {
+                    text += " - " + extra;
+                }
+
+                typeSizeInput.value = text;
+            } else {
+                typeSizeInput.value = "";
+            }
+        }
+
+        document.getElementById("type").addEventListener("change", function() {
+            const type = this.value;
+            const sizeSelect = document.getElementById("size");
+            sizeSelect.innerHTML = '<option value="">-- Pilih Size --</option>';
+
+            if (sizeOptions[type]) {
+                sizeOptions[type].forEach(function(size) {
+                    let fullValue = type + " " + size;
+                    let opt = document.createElement("option");
+                    opt.value = fullValue;
+                    opt.textContent = fullValue;
+                    sizeSelect.appendChild(opt);
+                });
+            }
+
+            document.getElementById("length").value = "";
+            updateTypeSize();
+        });
+
+        document.getElementById("size").addEventListener("change", function() {
+            const selected = this.value;
+            const lengthInput = document.getElementById("length");
+
+            if (stdLength[selected]) {
+                lengthInput.value = stdLength[selected];
+            } else {
+                lengthInput.value = "";
+            }
+            updateTypeSize();
+        });
+
+        document.getElementById("extra").addEventListener("change", function() {
+            updateTypeSize();
+        });
+    });
+</script>
+@endpush
+</div>
                         <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
                             <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>

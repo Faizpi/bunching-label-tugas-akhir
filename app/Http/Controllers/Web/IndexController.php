@@ -19,11 +19,6 @@ class IndexController extends Controller
 
         $labels = Label::with('operator')->orderBy('id', 'desc');
 
-        // kalau mau filter khusus operator
-        // if(!$user->isAdmin()) {
-        //     $labels->where('operator_id', $user->id);
-        // }
-
         if ($req->filled('search') || $req->search === "0") {
             $labels->where('lot_number', 'like', '%' . $req->search . '%');
         }
@@ -38,13 +33,13 @@ class IndexController extends Controller
     {
         $last_number = $this->getIncrement($req->machine_number);
         $pharse = $req->lot_not;
-
         $user = auth()->user();
 
         $label = new Label;
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
-        $label->size = $req->size;
+        $label->type_size = $req->type_size; // ✅ gabungan
+        $label->size = $req->size;           // optional: simpan size asli
         $label->length = $req->length;
         $label->weight = $req->weight;
         $label->shift_date = $req->shift_date;
@@ -63,6 +58,7 @@ class IndexController extends Controller
         return view('export.label', ['label' => $label]);
     }
 
+    /** 🔹 DATA LABEL LIST */
     public function dataLabel(Request $request)
     {
         $labels = Label::with('operator')
@@ -73,8 +69,7 @@ class IndexController extends Controller
         return view('web.label.index', compact('labels'));
     }
 
-
-
+    /** 🔹 EDIT LABEL */
     public function edit($label)
     {
         $label = Label::find($label);
@@ -85,7 +80,7 @@ class IndexController extends Controller
         return view('web.dashboard.edit', compact("label"));
     }
 
-
+    /** 🔹 UPDATE LABEL */
     public function update(Request $req, $label)
     {
         $user = auth()->user();
@@ -98,7 +93,8 @@ class IndexController extends Controller
 
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
-        $label->size = $req->size;
+        $label->type_size = $req->type_size; // ✅ pakai gabungan
+        $label->size = $req->size;           // optional: simpan size asli
         $label->length = $req->length;
         $label->weight = $req->weight;
         $label->shift_date = $req->shift_date;
@@ -115,7 +111,7 @@ class IndexController extends Controller
         return view('export.label', ['label' => $label]);
     }
 
-
+    /** 🔹 UPDATE ONLY LABEL (lot_number baru) */
     public function updateOnly(Request $req, $label)
     {
         $user = auth()->user();
@@ -129,7 +125,8 @@ class IndexController extends Controller
 
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
-        $label->size = $req->size;
+        $label->type_size = $req->type_size; // ✅ pakai gabungan
+        $label->size = $req->size;           // optional: simpan size asli
         $label->length = $req->length;
         $label->weight = $req->weight;
         $label->shift_date = $req->shift_date;
@@ -146,7 +143,7 @@ class IndexController extends Controller
         return redirect()->route("web.dashboard.index");
     }
 
-
+    /** 🔹 DELETE */
     public function delete($label)
     {
         $label = Label::find($label);
@@ -157,6 +154,7 @@ class IndexController extends Controller
         return redirect()->route('web.dashboard.index');
     }
 
+    /** 🔹 EXPORT EXCEL */
     public function exportExcel(Request $request)
     {
         $startDate = $request->start_date;
@@ -168,6 +166,7 @@ class IndexController extends Controller
         );
     }
 
+    /** 🔹 EXPORT PDF */
     public function exportPDF(Request $request)
     {
         ini_set('max_execution_time', 120);
@@ -175,7 +174,6 @@ class IndexController extends Controller
 
         $query = Label::with('operator');
 
-        // 🔹 Kalau ada filter tanggal
         if ($request->has('start_date') && $request->has('end_date')) {
             $query->whereBetween('shift_date', [
                 $request->start_date,
@@ -191,6 +189,7 @@ class IndexController extends Controller
         return $pdf->download('data_label.pdf');
     }
 
+    /** 🔹 PRINT VIEW */
     public function printView(Request $request)
     {
         $start = $request->input('start_date');
@@ -207,7 +206,6 @@ class IndexController extends Controller
         return view('web.label.print', compact('labels', 'start', 'end'));
     }
 
-
     /** Helpers */
     private function getIncrement($machine_number)
     {
@@ -215,7 +213,6 @@ class IndexController extends Controller
         if (!$increment) {
             return 1;
         }
-
         return $increment->last_number >= 4 ? 1 : $increment->last_number + 1;
     }
 
@@ -225,7 +222,6 @@ class IndexController extends Controller
         if (!$increment) {
             $increment = new Increment;
         }
-
         $increment->last_number = $last;
         $increment->machine_number = $machine_number;
         $increment->save();
