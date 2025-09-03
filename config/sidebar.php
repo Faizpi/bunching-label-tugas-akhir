@@ -12,7 +12,7 @@ return [
     (object) [
         'title' => 'Input Label', // Menu input/cetak label
         'route' => 'web.dashboard.index',
-        'icon' => 'fa fa-pencil',
+        'icon' => 'fa fa-tags',
         'identifier' => (object) [
             'route' => 'web.dashboard.index',
         ],
@@ -51,7 +51,7 @@ return [
     (object) [
         'title' => 'Input Label', // Menu input label
         'route' => 'web.dashboard.index',
-        'icon' => 'fa fa-pencil',
+        'icon' => 'fa fa-tags',
         'identifier' => (object) [
             'route' => 'web.dashboard.index',
         ],
