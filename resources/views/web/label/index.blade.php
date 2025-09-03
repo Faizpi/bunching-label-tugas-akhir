@@ -121,6 +121,7 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Lot No.</th>
+                                            <th>Type/Size</th>
                                             <th>Length</th>
                                             <th>Weight</th>
                                             <th>Date</th>
@@ -137,6 +138,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $label->lot_number }}</td>
+                                            <td>{{ $label->type_size }}</td>
                                             <td>{{ $label->length }} M</td>
                                             <td>{{ $label->weight }} KG</td>
                                             <td>{{ $label->shift_date }}</td>

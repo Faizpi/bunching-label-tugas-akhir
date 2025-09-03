@@ -65,6 +65,7 @@ class IndexController extends Controller
             ->when($request->search, function ($q) use ($request) {
                 return $q->where('lot_number', 'like', "%{$request->search}%");
             })
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
         return view('web.label.index', compact('labels'));
     }

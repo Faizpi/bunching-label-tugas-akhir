@@ -65,7 +65,7 @@
                     <td>{{ $label->id }}</td>
                     <td>{{ $label->lot_number }}</td>
                     <td>{{ $label->formated_lot_number }}</td>
-                    <td>{{ $label->size }}</td>
+                    <td>{{ $label->type_size }}</td>
                     <td>{{ $label->length }} M</td>
                     <td>{{ $label->weight }} KG</td>
                     <td>{{ $label->shift_date }}</td>
