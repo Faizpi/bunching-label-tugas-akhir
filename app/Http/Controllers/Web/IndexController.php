@@ -63,7 +63,18 @@ class IndexController extends Controller
         return view('export.label', ['label' => $label]);
     }
 
+    public function dataLabel(Request $request)
+{
+    $labels = Label::with('operator')
+        ->when($request->search, function($q) use ($request) {
+            return $q->where('lot_number', 'like', "%{$request->search}%");
+        })
+        ->paginate(10);
+    return view('web.label.index', compact('labels'));
+}
 
+
+    
     public function edit($label)
     {
         $label = Label::find($label);

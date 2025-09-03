@@ -38,16 +38,17 @@ class User extends Authenticatable
     ];
 
     public function isAdmin() {
-        return $this->role == 0;
-    }
+    return $this->role === 0;
+}
 
-    public function isOperator() {
-        return $this->role == 0;
-    }
+public function isOperator() {
+    return $this->role === 1;
+}
 
-    public function isUser() {
-        return $this->role == 1;
-    }
+public function isUser() {
+    return $this->role === 2; // kalau ada role user biasa
+}
+
 
     public function votes() {
         return $this->hasMany(\App\Label::class, 'operator_id');

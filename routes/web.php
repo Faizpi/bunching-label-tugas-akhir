@@ -47,6 +47,15 @@ Route::group(['prefix' => '/', 'namespace' => 'Web'], function () {
             Route::get('/{user}/delete', 'UserController@delete')->name('web.user.delete');
             Route::get('/bulk/bulk-import', 'UserController@bulkImport')->name('web.user.bulk_import');
             Route::post('/bulk/bulk-import', 'UserController@import')->name('web.user.bulk_import_post');
+            
         });
+
+        // Route untuk halaman Data Label
+Route::group(['prefix' => 'label', 'middleware' => 'role:admin,operator'], function () {
+    Route::get('/data', 'IndexController@dataLabel')->name('web.label.index');
+});
+
     });
+
+    
 });
