@@ -145,7 +145,6 @@
                                             <td>{{ $label->shift }}</td>
                                             <td>{{ $label->machine_number }}</td>
                                             <td>{{ $label->pitch }}</td>
-                                            <td>{{ $label->direction }}</td>
                                             <td>{{ $label->operator->name }}</td>
                                             <td class="text-center" style="white-space: nowrap;">
                                                 <a href="{{ route('web.label.edit', $label->id) }}"

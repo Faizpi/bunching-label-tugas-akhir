@@ -96,7 +96,6 @@
             <tr><td>Machine No</td><td>:</td><td>{{$label->machine_number}}</td></tr>
             <tr><td>Lot No</td><td>:</td><td>{{$label->formated_lot_number}}</td></tr>
             <tr><td>Pitch</td><td>:</td><td>{{$label->pitch}} mm</td></tr>
-            <tr><td>Direction</td><td>:</td><td>{{$label->direction}}</td></tr>
             <tr><td>Visual</td><td>:</td><td>{{$label->visual}}</td></tr>
             <tr><td>Operator</td><td>:</td><td>{{$label->operator->name}}</td></tr>
             <tr><td>QC Test</td><td>:</td><td>{{$label->bobin_no}}</td></tr>

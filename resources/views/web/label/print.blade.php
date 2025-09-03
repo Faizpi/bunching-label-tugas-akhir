@@ -4,29 +4,36 @@
 <head>
     <title>Cetak Data Label</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <style>
-        body {
-            font-size: 12px;
-            margin: 20px;
-        }
+<style>
+    body {
+        font-size: 12px;
+        margin: 20px;
+    }
 
-        h4 {
-            margin-bottom: 20px;
-        }
+    h4 {
+        margin-bottom: 20px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
 
-        th,
-        td {
-            border: 1px solid #000;
-            padding: 5px;
-            text-align: center;
-        }
-    </style>
+    th,
+    td {
+        border: 1px solid #000;
+        padding: 5px;
+        text-align: center;
+    }
+
+    /* Tambahan untuk otomatis landscape */
+    @page {
+        size: A4 landscape;
+        margin: 10mm;
+    }
+</style>
+
 </head>
 
 <body onload="window.print()">
@@ -40,17 +47,15 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>ID</th>
                 <th>Lot Number</th>
                 <th>Formatted Lot Number</th>
-                <th>Size</th>
+                <th>Type/Size</th>
                 <th>Length</th>
                 <th>Weight</th>
                 <th>Shift Date</th>
                 <th>Shift</th>
                 <th>Machine Number</th>
                 <th>Pitch</th>
-                <th>Direction</th>
                 <th>Visual</th>
                 <th>Remark</th>
                 <th>Bobin No</th>
@@ -62,7 +67,6 @@
             @forelse($labels as $label)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $label->id }}</td>
                     <td>{{ $label->lot_number }}</td>
                     <td>{{ $label->formated_lot_number }}</td>
                     <td>{{ $label->type_size }}</td>
@@ -72,7 +76,6 @@
                     <td>{{ $label->shift }}</td>
                     <td>{{ $label->machine_number }}</td>
                     <td>{{ $label->pitch }}</td>
-                    <td>{{ $label->direction }}</td>
                     <td>{{ $label->visual }}</td>
                     <td>{{ $label->remark }}</td>
                     <td>{{ $label->bobin_no }}</td>
@@ -81,7 +84,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="17">Tidak ada data</td>
+                    <td colspan="16">Tidak ada data</td>
                 </tr>
             @endforelse
         </tbody>

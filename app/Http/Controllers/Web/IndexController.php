@@ -46,7 +46,6 @@ class IndexController extends Controller
         $label->shift = $req->shift;
         $label->machine_number = $req->machine_number;
         $label->pitch = $req->pitch;
-        $label->direction = $req->direction;
         $label->visual = $req->visual;
         $label->remark = $req->remark;
         $label->bobin_no = $req->bobin_no;
@@ -102,7 +101,6 @@ class IndexController extends Controller
         $label->shift = $req->shift;
         $label->machine_number = $req->machine_number;
         $label->pitch = $req->pitch;
-        $label->direction = $req->direction;
         $label->visual = $req->visual;
         $label->remark = $req->remark;
         $label->bobin_no = $req->bobin_no;
@@ -134,7 +132,6 @@ class IndexController extends Controller
         $label->shift = $req->shift;
         $label->machine_number = $req->machine_number;
         $label->pitch = $req->pitch;
-        $label->direction = $req->direction;
         $label->visual = $req->visual;
         $label->remark = $req->remark;
         $label->bobin_no = $req->bobin_no;

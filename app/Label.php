@@ -19,7 +19,6 @@ class Label extends Model
         'shift',
         'machine_number',
         'pitch',
-        'direction',
         'visual',
         'remark',
         'bobin_no',
