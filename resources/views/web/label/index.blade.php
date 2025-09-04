@@ -139,12 +139,12 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $label->lot_number }}</td>
                                             <td>{{ $label->type_size }}</td>
-                                            <td>{{ $label->length }} M</td>
-                                            <td>{{ $label->weight }} KG</td>
+                                            <td>{{ $label->length }} m</td>
+                                            <td>{{ $label->weight }} kg</td>
                                             <td>{{ $label->shift_date }}</td>
                                             <td>{{ $label->shift }}</td>
                                             <td>{{ $label->machine_number }}</td>
-                                            <td>{{ $label->pitch }}</td>
+                                            <td>{{ $label->pitch }} mm</td>
                                             <td>{{ $label->operator->name }}</td>
                                             <td class="text-center" style="white-space: nowrap;">
                                                 <a href="{{ route('web.label.edit', $label->id) }}"

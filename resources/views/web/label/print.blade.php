@@ -70,12 +70,12 @@
                     <td>{{ $label->lot_number }}</td>
                     <td>{{ $label->formated_lot_number }}</td>
                     <td>{{ $label->type_size }}</td>
-                    <td>{{ $label->length }} M</td>
-                    <td>{{ $label->weight }} KG</td>
+                    <td>{{ $label->length }} m</td>
+                    <td>{{ $label->weight }} kg</td>
                     <td>{{ $label->shift_date }}</td>
                     <td>{{ $label->shift }}</td>
                     <td>{{ $label->machine_number }}</td>
-                    <td>{{ $label->pitch }}</td>
+                    <td>{{ $label->pitch }} mm</td>
                     <td>{{ $label->visual }}</td>
                     <td>{{ $label->remark }}</td>
                     <td>{{ $label->bobin_no }}</td>
