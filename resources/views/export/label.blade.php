@@ -90,8 +90,8 @@
         <p>{{$label->lot_number}}</p>
         <table>
             <tr><td>Type/Size</td><td>:</td><td>{{$label->type_size}}</td></tr>
-            <tr><td>Length</td><td>:</td><td>{{$label->length}}</td></tr>
-            <tr><td>Weight</td><td>:</td><td>{{$label->weight}}</td></tr>
+            <tr><td>Length</td><td>:</td><td>{{$label->length}} m</td></tr>
+            <tr><td>Weight</td><td>:</td><td>{{$label->weight}} kg</td></tr>
             <tr><td>Date/Shift</td><td>:</td><td>{{$label->shift_date}} / {{$label->shift}}</td></tr>
             <tr><td>Machine No</td><td>:</td><td>{{$label->machine_number}}</td></tr>
             <tr><td>Lot No</td><td>:</td><td>{{$label->formated_lot_number}}</td></tr>

@@ -40,10 +40,21 @@
                         {{-- hidden input gabungan semua --}}
                         <input type="hidden" name="type_size" id="type_size">
 
-                        <div id="label_length" class="form-group">
-                            <label for="length">Length (meter)</label>
-                            <input type="number" name="length" class="form-control" id="length" readonly required>
-                        </div>
+<div id="label_length" class="form-group">
+    <label for="length">Length</label>
+    <input type="text" name="length" class="form-control" id="length" readonly required>
+</div>
+
+<div id="label_drum" class="form-group">
+    <label for="drum">Jumlah Drum</label>
+    <select id="drum" name="drum" class="form-control" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+</div>
+
 
                         <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
@@ -138,107 +149,113 @@
 @endpush
 
 @push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        const sizeOptions = {
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const sizeOptions = {
         "AV": ["800 SQ Outer", "1000 SQ Outer", "1500 SQ Outer"],
         "EB": ["500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"],
         "HDEB": ["900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"]
-        };
-        const stdLength = {
-            "AV 800 SQ Outer": 2000,
-            "AV 1000 SQ Outer": 1800,
-            "AV 1500 SQ Outer": 1400,
-            "EB 500 SQ Outer": 3000,
-            "EB 900 SQ Outer": 2000,
-            "EB 1500 SQ Outer": 1800,
-            "EB 2000 SQ Outer": 1400,
-            "EB 3000 SQ Outer": 900,
-            "EB 4000 SQ Outer": 700,
-            "HDEB 900 SQ Outer": 2000,
-            "HDEB 1500 SQ Outer": 1400,
-            "HDEB 2000 SQ Outer": 1000,
-            "HDEB 3000 SQ Outer": 700,
-            "HDEB 4000 SQ Outer": 500,
-        };
+    };
 
-        const cableSize = {
-            "AV 800 SQ Outer": "(50 x 0.45 mm)",
-            "AV 1000 SQ Outer": "7 x (9 x 0.45 mm)",
-            "AV 1500 SQ Outer": "7 x (12 x 0.45 mm)",
-            "EB 500 SQ Outer": "7 x (9 x 0.32 mm)",
-            "EB 900 SQ Outer": "7 x (16 x 0.32 mm)",
-            "EB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
-            "EB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
-            "EB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
-            "EB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
-            "HDEB 900 SQ Outer": "7 x (16 x 0.32 mm)",
-            "HDEB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
-            "HDEB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
-            "HDEB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
-            "HDEB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
-        };
+    const stdLength = {
+        "AV 800 SQ Outer": 2000,
+        "AV 1000 SQ Outer": 1800,
+        "AV 1500 SQ Outer": 1400,
+        "EB 500 SQ Outer": 3000,
+        "EB 900 SQ Outer": 2000,
+        "EB 1500 SQ Outer": 1800,
+        "EB 2000 SQ Outer": 1400,
+        "EB 3000 SQ Outer": 900,
+        "EB 4000 SQ Outer": 700,
+        "HDEB 900 SQ Outer": 2000,
+        "HDEB 1500 SQ Outer": 1400,
+        "HDEB 2000 SQ Outer": 1000,
+        "HDEB 3000 SQ Outer": 700,
+        "HDEB 4000 SQ Outer": 500,
+    };
 
-        function updateTypeSize() {
-            const size = document.getElementById("size").value;
-            const extra = document.getElementById("extra").value;
-            const typeSizeInput = document.getElementById("type_size");
+    const cableSize = {
+        "AV 800 SQ Outer": "(50 x 0.45 mm)",
+        "AV 1000 SQ Outer": "7 x (9 x 0.45 mm)",
+        "AV 1500 SQ Outer": "7 x (12 x 0.45 mm)",
+        "EB 500 SQ Outer": "7 x (9 x 0.32 mm)",
+        "EB 900 SQ Outer": "7 x (16 x 0.32 mm)",
+        "EB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
+        "EB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
+        "EB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
+        "EB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+        "HDEB 900 SQ Outer": "7 x (16 x 0.32 mm)",
+        "HDEB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
+        "HDEB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
+        "HDEB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
+        "HDEB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+    };
 
-            if (size) {
-                let text = size;
+    function updateTypeSize() {
+        const size = document.getElementById("size").value;
+        const extra = document.getElementById("extra").value;
+        const typeSizeInput = document.getElementById("type_size");
 
-                if (cableSize[size]) {
-                    text += " " + cableSize[size];
-                }
-
-                if (extra) {
-                    text += " - " + extra;
-                }
-
-                typeSizeInput.value = text;
-            } else {
-                typeSizeInput.value = "";
+        if (size) {
+            let text = size;
+            if (cableSize[size]) {
+                text += " " + cableSize[size];
             }
+            if (extra) {
+                text += " - " + extra;
+            }
+            typeSizeInput.value = text;
+        } else {
+            typeSizeInput.value = "";
+        }
+    }
+
+    function updateLength() {
+        const selected = document.getElementById("size").value;
+        const drum = parseInt(document.getElementById("drum").value) || 1;
+        const lengthInput = document.getElementById("length");
+
+        if (stdLength[selected]) {
+            lengthInput.value = drum + " x " + stdLength[selected];
+        } else {
+            lengthInput.value = "";
+        }
+    }
+
+    document.getElementById("type").addEventListener("change", function() {
+        const type = this.value;
+        const sizeSelect = document.getElementById("size");
+        sizeSelect.innerHTML = '<option value="">-- Pilih Size --</option>';
+
+        if (sizeOptions[type]) {
+            sizeOptions[type].forEach(function(size) {
+                let fullValue = type + " " + size;
+                let opt = document.createElement("option");
+                opt.value = fullValue;
+                opt.textContent = fullValue;
+                sizeSelect.appendChild(opt);
+            });
         }
 
-        document.getElementById("type").addEventListener("change", function() {
-            const type = this.value;
-            const sizeSelect = document.getElementById("size");
-            sizeSelect.innerHTML = '<option value="">-- Pilih Size --</option>';
-
-            if (sizeOptions[type]) {
-                sizeOptions[type].forEach(function(size) {
-                    let fullValue = type + " " + size;
-                    let opt = document.createElement("option");
-                    opt.value = fullValue;
-                    opt.textContent = fullValue;
-                    sizeSelect.appendChild(opt);
-                });
-            }
-
-            document.getElementById("length").value = "";
-            updateTypeSize();
-        });
-
-        document.getElementById("size").addEventListener("change", function() {
-            const selected = this.value;
-            const lengthInput = document.getElementById("length");
-
-            if (stdLength[selected]) {
-                lengthInput.value = stdLength[selected];
-            } else {
-                lengthInput.value = "";
-            }
-            updateTypeSize();
-        });
-
-        document.getElementById("extra").addEventListener("change", function() {
-            updateTypeSize();
-        });
+        document.getElementById("length").value = "";
+        updateTypeSize();
     });
-    </script>
-@endpush
 
+    document.getElementById("size").addEventListener("change", function() {
+        updateLength();
+        updateTypeSize();
+    });
+
+    document.getElementById("extra").addEventListener("change", function() {
+        updateTypeSize();
+    });
+
+    document.getElementById("drum").addEventListener("change", function() {
+        updateLength();
+    });
+});
+</script>
+@endpush
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
