@@ -32,7 +32,6 @@ class LabelExport implements FromCollection, WithHeadings, WithMapping
             'labels.shift',
             'labels.machine_number',
             'labels.pitch',
-            'labels.direction',
             'labels.visual',
             'labels.remark',
             'labels.bobin_no',
