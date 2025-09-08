@@ -198,7 +198,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (size) {
             let text = size;
             if (cableSize[size]) {
-                text += " " + cableSize[size];
+                // multiline: \n
+                text += "\n" + cableSize[size];
             }
             if (extra) {
                 text += " - " + extra;

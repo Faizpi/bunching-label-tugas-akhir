@@ -128,7 +128,6 @@
                                             <th>Shift</th>
                                             <th>Mesin No</th>
                                             <th>Pitch</th>
-                                            <th>Direction</th>
                                             <th>Operator</th>
                                             <th>Action</th>
                                         </tr>
