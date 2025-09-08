@@ -12,7 +12,7 @@ class Label extends Model
     protected $fillable = [
         'lot_number',
         'formated_lot_number',
-        'type_size',     // 👈 gabungan Tipe + Size + Kabel + Extra
+        'type_size',     
         'length',
         'weight',
         'shift_date',

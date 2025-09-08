@@ -93,8 +93,8 @@ class IndexController extends Controller
 
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
-        $label->type_size = $req->type_size; // ✅ pakai gabungan
-        $label->size = $req->size;           // optional: simpan size asli
+        $label->type_size = $req->type_size; 
+        $label->size = $req->size;           
         $label->length = $req->length;
         $label->weight = $req->weight;
         $label->shift_date = $req->shift_date;
