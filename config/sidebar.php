@@ -10,7 +10,7 @@ return [
     |--------------------------------------------------------------------------
     */
     (object) [
-        'title' => 'Input Label', // Menu input/cetak label
+        'title' => 'Input Label', 
         'route' => 'web.dashboard.index',
         'icon' => 'fa fa-tags',
         'identifier' => (object) [
@@ -21,7 +21,7 @@ return [
         'allowed' => 'admin',
     ],
     (object) [
-        'title' => 'Data Label', // Menu tabel label
+        'title' => 'Data Label', 
         'route' => 'web.label.index',
         'icon' => 'fa fa-table',
         'identifier' => (object) [
@@ -32,7 +32,7 @@ return [
         'allowed' => 'admin',
     ],
     (object) [
-        'title' => 'Operator', // Menu manajemen user/operator
+        'title' => 'Operator', 
         'route' => 'web.user.index',
         'icon' => 'fa fa-users',
         'identifier' => (object) [
@@ -49,7 +49,7 @@ return [
     |--------------------------------------------------------------------------
     */
     (object) [
-        'title' => 'Input Label', // Menu input label
+        'title' => 'Input Label',
         'route' => 'web.dashboard.index',
         'icon' => 'fa fa-tags',
         'identifier' => (object) [
@@ -60,7 +60,7 @@ return [
         'allowed' => 'operator',
     ],
     (object) [
-        'title' => 'Data Label', // Menu tabel label
+        'title' => 'Data Label',
         'route' => 'web.label.index',
         'icon' => 'fa fa-table',
         'identifier' => (object) [
