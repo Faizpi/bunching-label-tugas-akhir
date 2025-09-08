@@ -159,7 +159,7 @@
 
 				<div class="row">
 					<div class="col-xs-12">
-						<button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+						<button type="submit" class="btn btn-primary btn-block btn-flat" style="border-radius: 6px;">Login</button>
 					</div>
 				</div>
 			</form>
