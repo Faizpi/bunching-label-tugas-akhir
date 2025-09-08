@@ -137,7 +137,7 @@
 		<!-- Login Box -->
 		<div class="login-box-body">
 			@if($errors->any())
-			<div class="alert alert-danger" role="alert">
+			<div class="alert alert-danger" role="alert" style="text-align: center;">
 				{{ $errors->first() }}
 			</div>
 			@endif
