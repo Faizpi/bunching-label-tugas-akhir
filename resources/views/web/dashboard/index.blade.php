@@ -40,21 +40,20 @@
                         {{-- hidden input gabungan semua --}}
                         <input type="hidden" name="type_size" id="type_size">
 
-<div id="label_length" class="form-group">
-    <label for="length">Length</label>
-    <input type="text" name="length" class="form-control" id="length" readonly required>
-</div>
+                        <div id="label_length" class="form-group">
+                            <label for="length">Length</label>
+                            <input type="text" name="length" class="form-control" id="length" readonly required>
+                        </div>
 
-<div id="label_drum" class="form-group">
-    <label for="drum">Jumlah Drum</label>
-    <select id="drum" name="drum" class="form-control" required>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
-</div>
-
+                        <div id="label_drum" class="form-group">
+                            <label for="drum">Jumlah Drum</label>
+                            <select id="drum" name="drum" class="form-control" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
 
                         <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
@@ -65,11 +64,6 @@
                             <label for="date">Date</label>
                             <select id="date" name="shift_date" class="form-control" required></select>
                         </div>
-
-                        <div id="label_lot_not" class="form-group">
-                            <label for="lot_not">Lot No</label>
-                            <input type="number" name="lot_not" value="" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -78,6 +72,11 @@
             <div class="col-sm-4">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
+                        <div id="label_lot_not" class="form-group">
+                            <label for="lot_not">Lot No</label>
+                            <input type="number" name="lot_not" value="" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
+                        </div>
+                        
                         <div id="label_shift" class="form-group">
                             <label for="shift">Shift</label>
                             <select name="shift" id="shift" class="form-control" required>
