@@ -364,21 +364,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 $("#label_machine_no").removeClass("has-error");
             }
 
-            // Remark
-            if ($("input#remark").val() == "" || $("input#remark").val() == null) {
-                $("#label_remark").addClass("has-error");
-                fail = true;
-            } else {
-                $("#label_remark").removeClass("has-error");
-            }
+            // // Remark
+            // if ($("input#remark").val() == "" || $("input#remark").val() == null) {
+            //     $("#label_remark").addClass("has-error");
+            //     fail = true;
+            // } else {
+            //     $("#label_remark").removeClass("has-error");
+            // }
 
-            // Bobin No
-            if ($("input#bobin_no").val() == "" || $("input#bobin_no").val() == null) {
-                $("#label_bobin_no").addClass("has-error");
-                fail = true;
-            } else {
-                $("#label_bobin_no").removeClass("has-error");
-            }
+            // // Bobin No
+            // if ($("input#bobin_no").val() == "" || $("input#bobin_no").val() == null) {
+            //     $("#label_bobin_no").addClass("has-error");
+            //     fail = true;
+            // } else {
+            //     $("#label_bobin_no").removeClass("has-error");
+            // }
 
             if (!fail) {
                 $(this).unbind("submit");

@@ -10,58 +10,66 @@
             <div class="col-sm-4 col-sm-offset-2">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
+
                         <div class="form-group">
-                            <label for="size">Type/Size</label>
-                            <select name="size" class="form-control" id="size" required>
-                                <option value="">-- Pilih Type/Size --</option>
-                                <option value="AV 800 SQ Outer" {{ $label->size == "AV 800 SQ Outer" ? "selected":"" }}>AV 800 SQ Outer</option>
-                                <option value="AV 1000 SQ Outer" {{ $label->size == "AV 1000 SQ Outer" ? "selected":"" }}>AV 1000 SQ Outer</option>
-                                <option value="AV 1500 SQ Outer" {{ $label->size == "AV 1500 SQ Outer" ? "selected":"" }}>AV 1500 SQ Outer</option>
-                                <option value="EB 500 SQ Outer" {{ $label->size == "EB 500 SQ Outer" ? "selected":"" }}>EB 500 SQ Outer</option>
-                                <option value="EB 900 SQ Outer" {{ $label->size == "EB 900 SQ Outer" ? "selected":"" }}>EB 900 SQ Outer</option>
-                                <option value="EB 1500 SQ Outer" {{ $label->size == "EB 1500 SQ Outer" ? "selected":"" }}>EB 1500 SQ Outer</option>
-                                <option value="EB 2000 SQ Outer" {{ $label->size == "EB 2000 SQ Outer" ? "selected":"" }}>EB 2000 SQ Outer</option>
-                                <option value="EB 3000 SQ Outer" {{ $label->size == "EB 3000 SQ Outer" ? "selected":"" }}>EB 3000 SQ Outer</option>
-                                <option value="EB 4000 SQ Outer" {{ $label->size == "EB 4000 SQ Outer" ? "selected":"" }}>EB 4000 SQ Outer</option>
-                                <option value="HDEB 900 SQ Outer" {{ $label->size == "HDEB 900 SQ Outer" ? "selected":"" }}>HDEB 900 SQ Outer</option>
-                                <option value="HDEB 1500 SQ Outer" {{ $label->size == "HDEB 1500 SQ Outer" ? "selected":"" }}>HDEB 1500 SQ Outer</option>
-                                <option value="HDEB 2000 SQ Outer" {{ $label->size == "HDEB 2000 SQ Outer" ? "selected":"" }}>HDEB 2000 SQ Outer</option>
-                                <option value="HDEB 3000 SQ Outer" {{ $label->size == "HDEB 3000 SQ Outer" ? "selected":"" }}>HDEB 3000 SQ Outer</option>
-                                <option value="HDEB 4000 SQ Outer" {{ $label->size == "HDEB 4000 SQ Outer" ? "selected":"" }}>HDEB 4000 SQ Outer</option>
+                            <label for="type">Tipe</label>
+                            <select id="type" class="form-control" required>
+                                <option value="">-- Pilih Tipe --</option>
+                                <option value="AV" {{ Str::startsWith($label->size, 'AV') ? 'selected':'' }}>AV</option>
+                                <option value="EB" {{ Str::startsWith($label->size, 'EB') ? 'selected':'' }}>EB</option>
+                                <option value="HDEB" {{ Str::startsWith($label->size, 'HDEB') ? 'selected':'' }}>HDEB</option>
                             </select>
                         </div>
-                        <div id="label_length" class="form-group">
-                            <label for="length">Length (meter)</label>
-                            <input type="number" name="length" class="form-control" id="length" value="{{ $label->length }}" placeholder="Length" required>
+
+                        <div class="form-group">
+                            <label for="size">Size</label>
+                            <select id="size" class="form-control" required>
+                                <option value="{{ $label->size }}" selected>{{ $label->size }}</option>
+                            </select>
                         </div>
+
+                        <div class="form-group">
+                            <label for="extra">Extra / No Extra</label>
+                            <select id="extra" class="form-control" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="Extra" {{ Str::contains($label->type_size ?? '', 'Extra') ? 'selected':'' }}>Extra</option>
+                                <option value="No Extra" {{ Str::contains($label->type_size ?? '', 'No Extra') ? 'selected':'' }}>No Extra</option>
+                            </select>
+                        </div>
+
+                        {{-- hidden input gabungan semua --}}
+                        <input type="hidden" name="type_size" id="type_size" value="{{ $label->type_size }}">
+
+                        <div id="label_length" class="form-group">
+                            <label for="length">Length</label>
+                            <input type="text" name="length" class="form-control" id="length"
+                                value="{{ $label->length }}" readonly required>
+                        </div>
+
+                        @php
+                            $drumValue = 1;
+                            if (strpos($label->length, 'x') !== false) {
+                                $parts = explode('x', $label->length);
+                                $drumValue = (int) trim($parts[0]); // ambil angka depan sebelum "x"
+                            }
+                        @endphp
+
+                        <select id="drum" name="drum" class="form-control" required>
+                            @for($i=1;$i<=4;$i++)
+                                <option value="{{$i}}" {{ $drumValue == $i ? "selected":"" }}>{{$i}}</option>
+                            @endfor
+                        </select>
+
                         <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
-                            <input type="number" name="weight" class="form-control" id="weight" value="{{ $label->weight }}" placeholder="Weight" required>
+                            <input type="number" name="weight" class="form-control" id="weight"
+                                value="{{ $label->weight }}" required>
                         </div>
+
                         <div id="label_date" class="form-group">
                             <label for="date">Date</label>
                             <select id="date" name="shift_date" class="form-control" required>
-                                <option value="{{ $label->shift_date }}">{{ $label->shift_date }}</option>
-                            </select>
-                        </div>
-                        <div id="label_lot_not" class="form-group">
-                            <label for="lot_not">Lot No</label>
-                            <input type="number" name="lot_not" value="{{ $label->lot_not }}" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
-                        </div>
-                        <div id="label_shift" class="form-group">
-                            <label for="shift">Shift</label>
-                            <select name="shift" id="shift" class="form-control" required>
-                                <option value="1" {{ $label->shift == 1 ? "selected":"" }}>1</option>
-                                <option value="2" {{ $label->shift == 2 ? "selected":"" }}>2</option>
-                                <option value="3" {{ $label->shift == 3 ? "selected":"" }}>3</option>
-                            </select>
-                        </div>
-                        <div id="label_machine_no" class="form-group">
-                            <label for="machine_no">Machine No</label>
-                            <select name="machine_number" id="machine_no" class="form-control" required>
-                                <option value="118" {{ $label->machine_number == 118 ? "selected":"" }}>118</option>
-                                <option value="119" {{ $label->machine_number == 119 ? "selected":"" }}>119</option>
-                                <option value="120" {{ $label->machine_number == 120 ? "selected":"" }}>120</option>
+                                <option value="{{ $label->shift_date }}" selected>{{ $label->shift_date }}</option>
                             </select>
                         </div>
                     </div>
@@ -72,77 +80,71 @@
             <div class="col-sm-4">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
+
+                        <div id="label_lot_not" class="form-group">
+                            <label for="lot_not">Lot No</label>
+                            <input type="number" 
+                                name="lot_not" 
+                                value="{{ substr($label->lot_number, -3) }}" 
+                                class="form-control" 
+                                id="lot_not" 
+                                placeholder="Lot No (ex: 001)" 
+                                required>
+                        </div>
+
+                        <div id="label_shift" class="form-group">
+                            <label for="shift">Shift</label>
+                            <select name="shift" id="shift" class="form-control" required>
+                                <option value="1" {{ $label->shift == 1 ? "selected":"" }}>1</option>
+                                <option value="2" {{ $label->shift == 2 ? "selected":"" }}>2</option>
+                                <option value="3" {{ $label->shift == 3 ? "selected":"" }}>3</option>
+                            </select>
+                        </div>
+
+                        <div id="label_machine_no" class="form-group">
+                            <label for="machine_no">Machine No</label>
+                            <select name="machine_number" id="machine_no" class="form-control" required>
+                                <option value="118" {{ $label->machine_number == 118 ? "selected":"" }}>118</option>
+                                <option value="119" {{ $label->machine_number == 119 ? "selected":"" }}>119</option>
+                                <option value="120" {{ $label->machine_number == 120 ? "selected":"" }}>120</option>
+                            </select>
+                        </div>
+
                         <div id="label_pitch" class="form-group">
                             <label for="pitch">Pitch</label>
-                            <div class="radio">
-                                <label>
-                                    <input name="pitch" value="20.25" type="radio"
-                                        {{ $label->pitch == 20.25 ? "checked":"" }} required
-                                        style="accent-color:#0284c7 !important;">
-                                    20.25
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input name="pitch" value="22.50" type="radio"
-                                        {{ $label->pitch == 22.50 ? "checked":"" }}
-                                        style="accent-color:#0284c7 !important;">
-                                    22.50
-                                </label>
-                            </div>
+                            <input type="number" step="0.01" name="pitch" id="pitch"
+                                value="{{ $label->pitch }}" class="form-control" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="direction">Direction</label>
-                            <div class="radio">
-                                <label>
-                                    <input name="direction" value="S" type="radio"
-                                        {{ $label->direction == "S" ? "checked":"" }} required
-                                        style="accent-color:#0284c7 !important;">
-                                    S
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input name="direction" value="Z" type="radio"
-                                        {{ $label->direction == "Z" ? "checked":"" }}
-                                        style="accent-color:#0284c7 !important;">
-                                    Z
-                                </label>
-                            </div>
+                            <label for="visual">Visual</label><br>
+                            <label style="margin-right:15px;">
+                                <input name="visual" value="OK" type="radio"
+                                    {{ $label->visual == "OK" ? "checked":"" }} required
+                                    style="accent-color:green !important;"> OK
+                            </label>
+                            <label>
+                                <input name="visual" value="NG" type="radio"
+                                    {{ $label->visual == "NG" ? "checked":"" }}
+                                    style="accent-color:red !important;"> NG
+                            </label>
                         </div>
-                        <div class="form-group">
-                            <label for="visual">Visual</label>
-                            <div class="radio">
-                                <label>
-                                    <input name="visual" value="OK" type="radio"
-                                        {{ $label->visual == "OK" ? "checked":"" }} required
-                                        style="accent-color:#0284c7 !important;">
-                                    OK
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input name="visual" value="NG" type="radio"
-                                        {{ $label->visual == "NG" ? "checked":"" }}
-                                        style="accent-color:#0284c7 !important;">
-                                    NG
-                                </label>
-                            </div>
+
+                        <div id="label_bobin_no" class="form-group">
+                            <label for="bobin_no">QC Test</label>
+                            <input type="text" name="bobin_no" value="{{ $label->bobin_no }}"
+                                class="form-control" id="bobin_no" placeholder="QC Test">
                         </div>
+
                         <div id="label_remark" class="form-group">
                             <label for="remark">Remark</label>
-                            <input type="text" name="remark" value="{{ $label->remark }}"
-                                class="form-control" id="remark" placeholder="Remark" required>
-                        </div>
-                        <div id="label_bobin_no" class="form-group">
-                            <label for="bobin_no">No Bobin</label>
-                            <input type="text" name="bobin_no" value="{{ $label->bobin_no }}"
-                                class="form-control" id="bobin_no" placeholder="No Bobin" required>
+                            <input type="text" name="remark" class="form-control" id="remark"
+                                value="{{ $label->remark }}" placeholder="Remark">
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-8 col-md-offset-2">
@@ -175,6 +177,150 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    // === Ambil data lama dari DB ===
+    let oldSize = @json($label->type_size) || "";   // fallback biar ga null
+    let cleanOldSize = "";
+    let oldType = "";
+
+    if (oldSize) {
+        cleanOldSize = oldSize.split("\n")[0].split(" - ")[0].trim();
+        oldType = cleanOldSize.split(" ")[0];
+    }
+
+    console.log("DEBUG => oldSize:", oldSize);
+    console.log("DEBUG => cleanOldSize:", cleanOldSize);
+    console.log("DEBUG => oldType:", oldType);
+
+    const sizeOptions = {
+        "AV": ["800 SQ Outer", "1000 SQ Outer", "1500 SQ Outer"],
+        "EB": ["500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"],
+        "HDEB": ["900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"]
+    };
+
+    const stdLength = {
+        "AV 800 SQ Outer": 2000,
+        "AV 1000 SQ Outer": 1800,
+        "AV 1500 SQ Outer": 1400,
+        "EB 500 SQ Outer": 3000,
+        "EB 900 SQ Outer": 2000,
+        "EB 1500 SQ Outer": 1800,
+        "EB 2000 SQ Outer": 1400,
+        "EB 3000 SQ Outer": 900,
+        "EB 4000 SQ Outer": 700,
+        "HDEB 900 SQ Outer": 2000,
+        "HDEB 1500 SQ Outer": 1400,
+        "HDEB 2000 SQ Outer": 1000,
+        "HDEB 3000 SQ Outer": 700,
+        "HDEB 4000 SQ Outer": 500,
+    };
+
+    const cableSize = {
+        "AV 800 SQ Outer": "(50 x 0.45 mm)",
+        "AV 1000 SQ Outer": "7 x (9 x 0.45 mm)",
+        "AV 1500 SQ Outer": "7 x (12 x 0.45 mm)",
+        "EB 500 SQ Outer": "7 x (9 x 0.32 mm)",
+        "EB 900 SQ Outer": "7 x (16 x 0.32 mm)",
+        "EB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
+        "EB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
+        "EB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
+        "EB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+        "HDEB 900 SQ Outer": "7 x (16 x 0.32 mm)",
+        "HDEB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
+        "HDEB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
+        "HDEB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
+        "HDEB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+    };
+
+    function updateTypeSize() {
+        const size = document.getElementById("size").value;
+        const extra = document.getElementById("extra").value;
+        const typeSizeInput = document.getElementById("type_size");
+
+        if (size) {
+            let text = size;
+            if (cableSize[size]) {
+                text += "\n" + cableSize[size];
+            }
+            if (extra) {
+                text += " - " + extra;
+            }
+            typeSizeInput.value = text;
+        } else {
+            typeSizeInput.value = "";
+        }
+    }
+
+    function updateLength() {
+        const selected = document.getElementById("size").value;
+        const drum = parseInt(document.getElementById("drum").value) || 1;
+        const lengthInput = document.getElementById("length");
+
+        if (stdLength[selected]) {
+            lengthInput.value = drum + " x " + stdLength[selected];
+        } else {
+            lengthInput.value = "";
+        }
+    }
+
+    // === Auto-set dropdown dari DB ===
+    const typeSelect = document.getElementById("type");
+    const sizeSelect = document.getElementById("size");
+
+    if (oldType && sizeOptions[oldType]) {
+        typeSelect.value = oldType; // set type lama
+        sizeSelect.innerHTML = '<option value="">-- Pilih Size --</option>';
+
+        sizeOptions[oldType].forEach(function(size) {
+            let fullValue = oldType + " " + size;
+            let opt = document.createElement("option");
+            opt.value = fullValue;
+            opt.textContent = fullValue;
+
+            if (fullValue === cleanOldSize) {
+                opt.selected = true; // set sesuai DB
+            }
+            sizeSelect.appendChild(opt);
+        });
+    }
+
+    // === Event listeners ===
+    typeSelect.addEventListener("change", function() {
+        const type = this.value;
+        sizeSelect.innerHTML = '<option value="">-- Pilih Size --</option>';
+
+        if (sizeOptions[type]) {
+            sizeOptions[type].forEach(function(size) {
+                let fullValue = type + " " + size;
+                let opt = document.createElement("option");
+                opt.value = fullValue;
+                opt.textContent = fullValue;
+                sizeSelect.appendChild(opt);
+            });
+        }
+
+        document.getElementById("length").value = "";
+        updateTypeSize();
+    });
+
+    sizeSelect.addEventListener("change", function() {
+        updateLength();
+        updateTypeSize();
+    });
+
+    document.getElementById("extra").addEventListener("change", updateTypeSize);
+    document.getElementById("drum").addEventListener("change", updateLength);
+
+    // === Sinkronisasi awal ===
+    updateTypeSize();
+    updateLength();
+});
+</script>
+@endpush
 
 
 @push('styles')
@@ -272,19 +418,19 @@
                 $("#label_pitch").removeClass("has-error");
             }
 
-            if ($("input#remark").val() == "" || $("input#remark").val() == null) {
-                $("#label_remark").addClass("has-error");
-                fail = true;
-            } else {
-                $("#label_remark").removeClass("has-error");
-            }
+            // if ($("input#remark").val() == "" || $("input#remark").val() == null) {
+            //     $("#label_remark").addClass("has-error");
+            //     fail = true;
+            // } else {
+            //     $("#label_remark").removeClass("has-error");
+            // }
 
-            if ($("input#bobin_no").val() == "" || $("input#bobin_no").val() == null) {
-                $("#label_bobin_no").addClass("has-error");
-                fail = true;
-            } else {
-                $("#label_bobin_no").removeClass("has-error");
-            }
+            // if ($("input#bobin_no").val() == "" || $("input#bobin_no").val() == null) {
+            //     $("#label_bobin_no").addClass("has-error");
+            //     fail = true;
+            // } else {
+            //     $("#label_bobin_no").removeClass("has-error");
+            // }
 
             if (!fail) {
                 $(this).unbind("submit");
