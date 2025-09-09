@@ -125,8 +125,7 @@ class IndexController extends Controller
             return redirect()->route("web.dashboard.index");
         }
 
-        $last_number = intval(substr($label->lot_number, -3));
-        $pharse = $this->pharseLastNumber($last_number);
+        $pharse = $req->lot_not ?? $this->pharseLastNumber(intval(substr($label->lot_number, -3)));
 
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
