@@ -88,8 +88,8 @@
                 <th>Machine Number</th>
                 <th>Pitch (mm)</th>
                 <th>Visual</th>
+                <th>QC Test</th>
                 <th>Remark</th>
-                <th>Bobin No</th>
                 <th>Operator Name</th>
                 <th>Created At</th>
             </tr>
@@ -104,15 +104,17 @@
                     <td>{{ $label->type_size }}</td>
                     <td>{{ $label->length }}</td>
                     <td>{{ $label->weight }}</td>
-                    <td>{{ $label->shift_date }}</td>
+                    <!-- <td>{{ $label->shift_date }}</td> -->
+                    <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-m-Y') }}</td>
                     <td>{{ $label->shift }}</td>
                     <td>{{ $label->machine_number }}</td>
                     <td>{{ $label->pitch }}</td>
                     <td>{{ $label->visual }}</td>
-                    <td>{{ $label->remark }}</td>
                     <td>{{ $label->bobin_no }}</td>
+                    <td>{{ $label->remark }}</td>
                     <td>{{ $label->operator->name ?? '-' }}</td>
-                    <td>{{ $label->created_at }}</td>
+                    <!-- <td>{{ $label->created_at }}</td> -->
+                    <td>{{ \Carbon\Carbon::parse($label->created_at)->format('d-m-Y H:i') }}</td>
                 </tr>
             @empty
                 <tr>

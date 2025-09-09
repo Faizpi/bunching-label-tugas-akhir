@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Label;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -89,7 +90,8 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             $row->type_size,
             $row->length,
             $row->weight,
-            $row->shift_date,
+            // $row->shift_date,
+            Carbon::parse($row->shift_date)->format('d-m-Y'),
             $row->shift,
             $row->machine_number,
             $row->pitch,
@@ -97,7 +99,8 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             $row->bobin_no,
             $row->remark,
             $row->operator_name,
-            $row->created_at,
+            // $row->created_at,
+            Carbon::parse($row->created_at)->format('d-m-Y H:i'),
         ];
     }
 

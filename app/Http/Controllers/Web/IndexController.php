@@ -144,7 +144,7 @@ class IndexController extends Controller
         $label->operator_id = $user->id;
         $label->save();
 
-        return redirect()->route("web.dashboard.index");
+        return redirect()->route("web.label.index");
     }
 
     /** 🔹 DELETE */
