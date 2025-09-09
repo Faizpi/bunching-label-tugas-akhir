@@ -62,6 +62,7 @@
                                 </a>
                             </form>
                         </div>
+                        @if (auth()->user()->role == 0)
                         <div class="col-md-6 text-right">
                             <form action="" method="GET" class="form-inline pull-right" style="gap:0.5rem;">
                                 <label for="start_date" class="control-label" style="color:#475569;">Dari</label>
@@ -104,6 +105,7 @@
                             </form>
                         </div>
                     </div>
+                    @endif
                     <!-- Table -->
                     <div class="row">
                         <div class="col-md-12">
