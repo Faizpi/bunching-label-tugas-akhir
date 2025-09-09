@@ -109,7 +109,11 @@
                 <td>{{ $label->weight }} kg</td>
             </tr>
             <!-- format ymd
-            <tr><td>Date/Shift</td><td>:</td><td>{{ $label->shift_date }} / {{ $label->shift }}</td></tr> -->
+            <tr>
+                <td>Date/Shift</td>
+                <td>:</td>
+                <td>{{ $label->shift_date }} / {{ $label->shift }}</td>
+            </tr> -->
             <tr>
                 <td>Date/Shift</td>
                 <td>:</td>
