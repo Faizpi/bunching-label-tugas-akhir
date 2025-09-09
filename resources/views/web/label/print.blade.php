@@ -4,58 +4,89 @@
 <head>
     <title>Cetak Data Label</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-<style>
-    body {
-        font-size: 12px;
-        margin: 20px;
-    }
+    <style>
+        body {
+            font-size: 12px;
+            margin: 15px;
+        }
 
-    h4 {
-        margin-bottom: 20px;
-    }
+        h1 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-    }
+        .sub-title {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
 
-    th,
-    td {
-        border: 1px solid #000;
-        padding: 5px;
-        text-align: center;
-    }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
 
-    /* Tambahan untuk otomatis landscape */
-    @page {
-        size: A4 landscape;
-        margin: 10mm;
-    }
-</style>
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: center;
+        }
 
+        thead th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            border: 1.5px solid #000;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        /* Landscape */
+        @page {
+            size: A4 landscape;
+            margin: 10mm;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 11px;
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body onload="window.print()">
 
-    <h1 class="text-center">Laporan Data Label</h1>
-    @if($start && $end)
-        <p class="text-center">Periode: {{ $start }} s/d {{ $end }}</p>
-    @endif
+    {{-- Header --}}
+    <div class="text-center">
+        <h1>LAPORAN DATA LABEL</h1>
+        <div class="sub-title">
+            @if($start && $end)
+                Periode: {{ $start }} s/d {{ $end }}
+            @else
+                Semua Periode
+            @endif
+        </div>
+        <hr>
+    </div>
 
+    {{-- Tabel data --}}
     <table>
         <thead>
             <tr>
                 <th>No</th>
+                <th>ID</th>
                 <th>Lot Number</th>
                 <th>Formatted Lot Number</th>
                 <th>Type/Size</th>
-                <th>Length</th>
-                <th>Weight</th>
+                <th>Length (m)</th>
+                <th>Weight (kg)</th>
                 <th>Shift Date</th>
                 <th>Shift</th>
                 <th>Machine Number</th>
-                <th>Pitch</th>
+                <th>Pitch (mm)</th>
                 <th>Visual</th>
                 <th>Remark</th>
                 <th>Bobin No</th>
@@ -67,15 +98,16 @@
             @forelse($labels as $label)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $label->id }}</td>
                     <td>{{ $label->lot_number }}</td>
                     <td>{{ $label->formated_lot_number }}</td>
                     <td>{{ $label->type_size }}</td>
-                    <td>{{ $label->length }} m</td>
-                    <td>{{ $label->weight }} kg</td>
+                    <td>{{ $label->length }}</td>
+                    <td>{{ $label->weight }}</td>
                     <td>{{ $label->shift_date }}</td>
                     <td>{{ $label->shift }}</td>
                     <td>{{ $label->machine_number }}</td>
-                    <td>{{ $label->pitch }} mm</td>
+                    <td>{{ $label->pitch }}</td>
                     <td>{{ $label->visual }}</td>
                     <td>{{ $label->remark }}</td>
                     <td>{{ $label->bobin_no }}</td>
@@ -84,11 +116,18 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="16">Tidak ada data</td>
+                    <td colspan="15">Tidak ada data</td>
                 </tr>
             @endforelse
         </tbody>
     </table>
+
+    {{-- Footer --}}
+    <div class="footer">
+        Dicetak pada: {{ now()->format('d-m-Y H:i') }} <br>
+        Oleh: {{ auth()->user()->name ?? 'System' }}
+    </div>
+
 </body>
 
 </html>
