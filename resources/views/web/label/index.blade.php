@@ -146,6 +146,12 @@
                                             <td>{{ $label->pitch }} mm</td>
                                             <td>{{ $label->operator->name }}</td>
                                             <td class="text-center" style="white-space: nowrap;">
+                                                <a href="{{ route('web.label.print.single', $label->id) }}"
+                                                    target="_blank"
+                                                    class="btn btn-xs btn-info"
+                                                    style="background:#0ea5e9;border:none;border-radius:4px;color:#fff;">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
                                                 <a href="{{ route('web.label.edit', $label->id) }}"
                                                     class="btn btn-xs btn-warning"
                                                     style="background:#f59e0b;border:none;border-radius:4px;color:#fff;">

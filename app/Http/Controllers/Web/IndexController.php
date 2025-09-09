@@ -28,6 +28,12 @@ class IndexController extends Controller
         return view('web.dashboard.index', compact("labels"));
     }
 
+    public function printSingle($id)
+    {
+    $label = Label::with('operator')->findOrFail($id);
+    return view('export.label', compact('label'));
+    }
+
     /** 🔹 PRINT SATU LABEL */
     public function print(Request $req)
     {

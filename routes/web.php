@@ -35,6 +35,10 @@ Route::group(['prefix' => '/', 'namespace' => 'Web'], function () {
             Route::get('/export/pdf', 'IndexController@exportPDF')->middleware('role:admin,operator')->name('web.label.export.pdf');
             Route::get('/print', 'IndexController@printView')->middleware('role:admin,operator')
                 ->name('web.label.print');
+
+            Route::get('/{label}/print', 'IndexController@printSingle')
+                ->middleware('role:admin,operator')
+                ->name('web.label.print.single');
         });
 
         Route::group(['prefix' => 'user', 'middleware' => 'role:admin'], function () {
