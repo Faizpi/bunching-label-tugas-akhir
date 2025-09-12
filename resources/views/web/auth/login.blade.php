@@ -110,19 +110,19 @@
     }
 
     /* History Box */
-	.history-header {
-	display: inline-block;
-	background: #376bdc;
-	color: #fff;
-	padding: 10px 18px;
-	border-radius: 8px;
-	font-size: 15px;
-	font-weight: 600;
-	margin-bottom: 20px;
-	text-align: center;
-	width: 100%;
-	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-	}
+    .history-header {
+    display: inline-block;
+    background: #376bdc;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
 
     .history-list {
       list-style: none;
