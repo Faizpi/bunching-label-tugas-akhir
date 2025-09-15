@@ -54,11 +54,14 @@
                             }
                         @endphp
 
-                        <select id="drum" name="drum" class="form-control" required>
-                            @for($i=1;$i<=4;$i++)
-                                <option value="{{$i}}" {{ $drumValue == $i ? "selected":"" }}>{{$i}}</option>
-                            @endfor
-                        </select>
+                        <div id="label_drum" class="form-group">
+                            <label for="drum">Jumlah Drum</label>
+                            <select id="drum" name="drum" class="form-control" required>
+                                @for($i=1;$i<=4;$i++)
+                                    <option value="{{$i}}" {{ $drumValue == $i ? "selected":"" }}>{{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
 
                         <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
