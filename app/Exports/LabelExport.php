@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFormatting, ShouldAutoSize, WithStyles
 {
@@ -23,7 +24,7 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     public function __construct($startDate = null, $endDate = null)
     {
         $this->startDate = $startDate;
-        $this->endDate   = $endDate;
+        $this->endDate = $endDate;
     }
 
     public function query()
@@ -65,6 +66,7 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'Formatted Lot Number',
             'Size',
             'Length (m)',
+            'Length Total (m)',   //  kolom baru hasil perkalian
             'Weight (kg)',
             'Shift Date',
             'Shift',
@@ -82,16 +84,27 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     {
         $this->rowNumber++;
 
+        // Parsing length
+        $lengthTotal = null;
+        if (!empty($row->length)) {
+            // contoh format: "2 x 1800" atau "2x1800"
+            $parts = preg_split('/x/i', str_replace(' ', '', $row->length));
+            if (count($parts) == 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
+                $lengthTotal = $parts[0] * $parts[1];
+            }
+        }
+
         return [
             $this->rowNumber,
             $row->id,
-            "'" . $row->lot_number,          
-            "" . $row->formated_lot_number, 
+            "'" . $row->lot_number,
+            "" . $row->formated_lot_number,
             $row->type_size,
             $row->length,
+            $lengthTotal,
             $row->weight,
-            // $row->shift_date,
-            Carbon::parse($row->shift_date)->format('d-m-Y'),
+            // jangan format manual jadi string
+            Date::PHPToExcel(Carbon::parse($row->shift_date)),
             $row->shift,
             $row->machine_number,
             $row->pitch,
@@ -99,21 +112,21 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             $row->bobin_no,
             $row->remark,
             $row->operator_name,
-            // $row->created_at,
-            Carbon::parse($row->created_at)->format('d-m-Y H:i'),
+            Date::PHPToExcel(Carbon::parse($row->created_at))
         ];
     }
 
     public function columnFormats(): array
     {
         return [
-            'C' => NumberFormat::FORMAT_TEXT,           // Lot Number
-            'D' => NumberFormat::FORMAT_TEXT,           // Formatted Lot Number
-            'F' => NumberFormat::FORMAT_NUMBER_00,      // Length (2 decimal)
-            'G' => NumberFormat::FORMAT_NUMBER,         // Weight (integer)
-            'H' => NumberFormat::FORMAT_DATE_YYYYMMDD,  // Shift Date
-            'K' => NumberFormat::FORMAT_NUMBER_00,      // Pitch (2 decimal)
-            'P' => NumberFormat::FORMAT_DATE_DATETIME,  // Created At
+            'C' => NumberFormat::FORMAT_TEXT,
+            'D' => NumberFormat::FORMAT_TEXT,
+            'F' => NumberFormat::FORMAT_TEXT,
+            'G' => NumberFormat::FORMAT_NUMBER_00, 
+            'H' => NumberFormat::FORMAT_NUMBER_00,
+            'I' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'L' => NumberFormat::FORMAT_NUMBER_00,
+            'Q' => NumberFormat::FORMAT_DATE_DDMMYYYY . ' hh:mm', 
         ];
     }
 
