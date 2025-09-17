@@ -8,7 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LabelExport;
 use App\Label;
-use App\Increment;
+use App\IncrementNew;
 
 class IndexController extends Controller
 {
@@ -28,24 +28,41 @@ class IndexController extends Controller
         return view('web.dashboard.index', compact("labels"));
     }
 
+    public function getNextLot(Request $req)
+    {
+        $machine = $req->machine;
+        $date = $req->date;
+
+        if (!$machine || !$date) {
+            return response()->json(['next_lot' => null]);
+        }
+
+        $next = $this->getIncrement($machine, $date); // pakai helper yang sudah ada
+        $pharse = str_pad($next, 3, '0', STR_PAD_LEFT);
+
+        return response()->json(['next_lot' => $pharse]);
+    }
+
     public function printSingle($id)
     {
-    $label = Label::with('operator')->findOrFail($id);
-    return view('export.label', compact('label'));
+        $label = Label::with('operator')->findOrFail($id);
+        return view('export.label', compact('label'));
     }
 
     /** 🔹 PRINT SATU LABEL */
     public function print(Request $req)
     {
-        $last_number = $this->getIncrement($req->machine_number);
-        $pharse = $req->lot_not;
+        // Ambil nomor increment terakhir (per mesin + per tanggal)
+        $last_number = $this->getIncrement($req->machine_number, $req->shift_date);
+        $pharse = $this->pharseLastNumber($last_number);
+
         $user = auth()->user();
 
         $label = new Label;
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
-        $label->type_size = $req->type_size; 
-        $label->size = $req->size;           
+        $label->type_size = $req->type_size;
+        $label->size = $req->size;
         $label->length = $req->length;
         $label->weight = $req->weight;
         $label->shift_date = $req->shift_date;
@@ -60,7 +77,8 @@ class IndexController extends Controller
         $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
         $label->save();
 
-        $this->updateIncrement($last_number, $req->machine_number);
+        // Update increment terakhir
+        $this->updateIncrement($last_number, $req->machine_number, $req->shift_date);
 
         return view('export.label', ['label' => $label]);
     }
@@ -74,6 +92,7 @@ class IndexController extends Controller
             })
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+
         return view('web.label.index', compact('labels'));
     }
 
@@ -97,12 +116,12 @@ class IndexController extends Controller
             return redirect()->route("web.dashboard.index");
         }
 
-        $pharse = $req->lot_not;
+        $pharse = $req->lot_not ?? $this->pharseLastNumber(intval(substr($label->lot_number, -3)));
 
         $label->lot_number = $req->machine_number . date('ymd', strtotime($req->shift_date)) . $pharse;
         $label->formated_lot_number = $req->machine_number . "-" . date('y-m-d', strtotime($req->shift_date)) . "-" . $pharse;
-        $label->type_size = $req->type_size; 
-        $label->size = $req->size;           
+        $label->type_size = $req->type_size;
+        $label->size = $req->size;
         $label->length = $req->length;
         $label->weight = $req->weight;
         $label->shift_date = $req->shift_date;
@@ -215,34 +234,31 @@ class IndexController extends Controller
         return view('web.label.print', compact('labels', 'start', 'end'));
     }
 
-    /** Helpers */
-    private function getIncrement($machine_number)
+    /** 🔹 Helpers */
+    private function getIncrement($machine_number, $shift_date)
     {
-        $increment = Increment::where("machine_number", $machine_number)->first();
+        $increment = IncrementNew::where('machine_number', $machine_number)
+            ->where('shift_date', $shift_date)
+            ->first();
+
         if (!$increment) {
             return 1;
         }
-        return $increment->last_number >= 4 ? 1 : $increment->last_number + 1;
+        return $increment->last_number + 1;
     }
 
-    private function updateIncrement($last, $machine_number)
+    private function updateIncrement($number, $machine_number, $shift_date)
     {
-        $increment = Increment::where("machine_number", $machine_number)->first();
-        if (!$increment) {
-            $increment = new Increment;
-        }
-        $increment->last_number = $last;
-        $increment->machine_number = $machine_number;
+        $increment = IncrementNew::firstOrNew([
+            'machine_number' => $machine_number,
+            'shift_date' => $shift_date,
+        ]);
+        $increment->last_number = $number;
         $increment->save();
     }
 
     private function pharseLastNumber($number)
     {
-        if ($number < 10) {
-            return '00' . $number;
-        } elseif ($number < 100) {
-            return '0' . $number;
-        }
-        return $number;
+        return str_pad($number, 3, '0', STR_PAD_LEFT); // otomatis jadi 001, 002, dst
     }
 }

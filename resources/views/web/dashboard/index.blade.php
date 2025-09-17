@@ -1,13 +1,11 @@
 @extends('web.layout.main')
 @section('content')
-<!-- Info boxes -->
-<!-- Info boxes -->
 <div class="row" style="padding:40px 30px;">
     <form id="form_print" method="post" action="{{route('web.dashboard.print')}}" target="_blank">
         {{csrf_field()}}
         <div class="row">
-            <!-- Kolom kiri -->
-            <div class="col-sm-4 col-sm-offset-2">
+            <!-- Kolom 1: Data Produk -->
+            <div class="col-sm-3 col-sm-offset-1">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
 
@@ -37,7 +35,6 @@
                             </select>
                         </div>
 
-                        {{-- hidden input gabungan semua --}}
                         <input type="hidden" name="type_size" id="type_size">
 
                         <div id="label_length" class="form-group">
@@ -59,44 +56,28 @@
                             <label for="weight">Weight (Kg)</label>
                             <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
                         </div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Kolom 2: Data Produksi -->
+            <div class="col-sm-3">
+                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+                    <div class="panel-body">
                         <div id="extra_fields" style="display:none;">
-                            <div class="form-group">
-                                <label for="extra_weight">Extra Weight (Kg)</label>
-                                <input type="number" name="extra_weight" id="extra_weight" class="form-control" placeholder="Masukkan Extra Weight">
-                            </div>
-
                             <div class="form-group">
                                 <label for="extra_length">Extra Length (m)</label>
                                 <input type="number" name="extra_length" id="extra_length" class="form-control" placeholder="Masukkan Extra Length">
                             </div>
+                            <!-- <div class="form-group">
+                                <label for="extra_weight">Extra Weight (Kg)</label>
+                                <input type="number" name="extra_weight" id="extra_weight" class="form-control" placeholder="Masukkan Extra Weight">
+                            </div> -->
                         </div>
 
                         <div id="label_date" class="form-group">
                             <label for="date">Date</label>
                             <select id="date" name="shift_date" class="form-control" required></select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kolom kanan -->
-            <div class="col-sm-4">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                    <div class="panel-body">
-                        <div id="label_lot_not" class="form-group">
-                            <label for="lot_not">Lot No</label>
-                            <input type="number" name="lot_not" value="" class="form-control" id="lot_not" placeholder="Lot No (ex: 001)" required>
-                        </div>
-                        
-                        <div id="label_shift" class="form-group">
-                            <label for="shift">Shift</label>
-                            <select name="shift" id="shift" class="form-control" required>
-                                <option value="">-- Pilih Shift --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
                         </div>
 
                         <div id="label_machine_no" class="form-group">
@@ -109,6 +90,30 @@
                             </select>
                         </div>
 
+                        <div id="label_shift" class="form-group">
+                            <label for="shift">Shift</label>
+                            <select name="shift" id="shift" class="form-control" required>
+                                <option value="">-- Pilih Shift --</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+
+                        <div id="label_lot_not" class="form-group">
+                            <label for="lot_not">Lot No (Auto)</label>
+                            <input type="text" name="lot_not" id="lot_not"
+                                class="form-control" placeholder="Pilih mesin & tanggal dulu"
+                                readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom 3: Data QC / Final -->
+            <div class="col-sm-3">
+                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+                    <div class="panel-body">
                         <div id="label_pitch" class="form-group">
                             <label for="pitch">Pitch</label>
                             <input type="number" step="0.01" name="pitch" id="pitch" 
@@ -127,11 +132,6 @@
                             </label>
                         </div>
 
-                        <!-- <div id="label_bobin_no" class="form-group">
-                            <label for="bobin_no">QC Test</label>
-                            <input type="text" name="bobin_no" value="" class="form-control" id="bobin_no" placeholder="QC Test">
-                        </div> -->
-
                         <div id="label_remark" class="form-group">
                             <label for="remark">Remark</label>
                             <input type="text" name="remark" class="form-control" id="remark" placeholder="Remark">
@@ -141,15 +141,16 @@
             </div>
         </div>
 
-        <!-- Tombol submit -->
-        <div class="row" style="margin-top:20px;">
-            <div class="col-sm-6 col-sm-offset-3">
-                <button type="submit" class="btn btn-primary btn-block"
-                    style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;">
-                    Print
-                </button>
-            </div>
+    <!-- Tombol submit full panjang -->
+    <div class="row" style="margin-top:20px;">
+        <div style="width:1100px; margin:0 auto;"> <!-- gabungan lebar 3 kolom -->
+            <button type="submit" class="btn btn-primary btn-block"
+                style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;">
+                Print
+            </button>
         </div>
+    </div>
+
     </form>
 </div>
 @endsection
@@ -264,6 +265,20 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
 
+    $('#machine_no, #date').change(function() {
+    let machine = $('#machine_no').val();
+    let date = $('#date').val();
+
+    if(machine && date) {
+        $.get('{{ route("web.dashboard.getNextLot") }}', {machine: machine, date: date}, function(res) {
+            if(res.next_lot) {
+                $('#lot_not').val(res.next_lot);
+            } else {
+                $('#lot_not').val('');
+            }
+        });
+    }
+});
         document.getElementById("length").value = "";
         updateTypeSize();
     });
@@ -367,13 +382,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 $("#label_date").removeClass("has-error");
             }
 
-            // Lot No
-            if ($("input#lot_not").val() == "" || $("input#lot_not").val() == null) {
-                $("#label_lot_not").addClass("has-error");
-                fail = true;
-            } else {
-                $("#label_lot_not").removeClass("has-error");
-            }
+            // // Lot No
+            // if ($("input#lot_not").val() == "" || $("input#lot_not").val() == null) {
+            //     $("#label_lot_not").addClass("has-error");
+            //     fail = true;
+            // } else {
+            //     $("#label_lot_not").removeClass("has-error");
+            // }
 
             // Shift
             if ($("select#shift").val() == "" || $("select#shift").val() == null) {

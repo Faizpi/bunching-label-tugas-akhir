@@ -26,6 +26,10 @@ Route::group(['prefix' => '/', 'namespace' => 'Web'], function () {
             Route::get('/input', 'IndexController@index')->middleware('role:admin,operator')->name('web.dashboard.index');
             Route::post('/print', 'IndexController@print')->middleware('role:admin,operator')->name('web.dashboard.print');
 
+            Route::get('/get-next-lot', 'IndexController@getNextLot')
+                ->middleware('role:admin,operator')
+                ->name('web.dashboard.getNextLot');
+
             Route::get('/{label}/edit', 'IndexController@edit')->name('web.label.edit');
             Route::post('/{label}/update', 'IndexController@update')->name('web.label.update');
             Route::post('/{label}/update_only', 'IndexController@updateOnly')->name('web.label.update_only');
