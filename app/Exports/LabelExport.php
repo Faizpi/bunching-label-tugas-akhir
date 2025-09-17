@@ -36,7 +36,9 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
                 'labels.formated_lot_number',
                 'labels.type_size',
                 'labels.length',
+                'labels.extra_length',
                 'labels.weight',
+                'labels.extra_weight',
                 'labels.shift_date',
                 'labels.shift',
                 'labels.machine_number',
@@ -66,8 +68,10 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'Formatted Lot Number',
             'Size',
             'Length (m)',
-            'Length Total (m)',   //  kolom baru hasil perkalian
+            'Length Total (m)',
+            'Extra Length (m)',   
             'Weight (kg)',
+            'Extra Weight (kg)',
             'Shift Date',
             'Shift',
             'Machine Number',
@@ -102,8 +106,9 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             $row->type_size,
             $row->length,
             $lengthTotal,
+            $row->extra_length,
             $row->weight,
-            // jangan format manual jadi string
+            $row->extra_weight,
             Date::PHPToExcel(Carbon::parse($row->shift_date)),
             $row->shift,
             $row->machine_number,
@@ -124,9 +129,12 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'F' => NumberFormat::FORMAT_TEXT,
             'G' => NumberFormat::FORMAT_NUMBER_00, 
             'H' => NumberFormat::FORMAT_NUMBER_00,
-            'I' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-            'L' => NumberFormat::FORMAT_NUMBER_00,
-            'Q' => NumberFormat::FORMAT_DATE_DDMMYYYY . ' hh:mm', 
+            'I' => NumberFormat::FORMAT_NUMBER_00,
+            'J' => NumberFormat::FORMAT_NUMBER_00,
+            'K' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'L' => NumberFormat::FORMAT_NUMBER,
+            'N' => NumberFormat::FORMAT_NUMBER_00,
+            'S' => NumberFormat::FORMAT_DATE_DDMMYYYY . ' hh:mm', 
         ];
     }
 

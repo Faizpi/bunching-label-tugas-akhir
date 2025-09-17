@@ -82,7 +82,9 @@
                 <th>Formatted Lot Number</th>
                 <th>Type/Size</th>
                 <th>Length (m)</th>
+                <th>Extra Length (m)</th>
                 <th>Weight (kg)</th>
+                <th>Extra Weight (kg)</th>
                 <th>Shift Date</th>
                 <th>Shift</th>
                 <th>Machine Number</th>
@@ -103,7 +105,9 @@
                     <td>{{ $label->formated_lot_number }}</td>
                     <td>{{ $label->type_size }}</td>
                     <td>{{ $label->length }}</td>
+                    <td>{{ $label->extra_length }}</td>
                     <td>{{ $label->weight }}</td>
+                    <td>{{ $label->extra_weight }}</td>
                     <!-- <td>{{ $label->shift_date }}</td> -->
                     <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-m-Y') }}</td>
                     <td>{{ $label->shift }}</td>
