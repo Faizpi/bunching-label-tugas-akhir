@@ -117,7 +117,7 @@
             <tr>
                 <td>Date/Shift</td>
                 <td>:</td>
-                <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-m-Y') }} / {{ $label->shift }}</td>
+                <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-M-Y') }} / {{ $label->shift }}</td>
             </tr>
             <tr>
                 <td>Machine No</td>
