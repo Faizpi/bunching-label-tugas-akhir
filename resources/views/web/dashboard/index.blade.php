@@ -30,7 +30,7 @@
 
                         <div class="form-group">
                             <label for="extra">Extra / No Extra</label>
-                            <select id="extra" class="form-control" required>
+                            <select id="extra" name="extra" class="form-control" required>
                                 <option value="">-- Pilih --</option>
                                 <option value="Extra">Extra</option>
                                 <option value="No Extra">No Extra</option>
@@ -58,6 +58,18 @@
                         <div id="label_weight" class="form-group">
                             <label for="weight">Weight (Kg)</label>
                             <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
+                        </div>
+
+                        <div id="extra_fields" style="display:none;">
+                            <div class="form-group">
+                                <label for="extra_weight">Extra Weight (Kg)</label>
+                                <input type="number" name="extra_weight" id="extra_weight" class="form-control" placeholder="Masukkan Extra Weight">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="extra_length">Extra Length (m)</label>
+                                <input type="number" name="extra_length" id="extra_length" class="form-control" placeholder="Masukkan Extra Length">
+                            </div>
                         </div>
 
                         <div id="label_date" class="form-group">
@@ -221,6 +233,21 @@ document.addEventListener("DOMContentLoaded", function() {
             lengthInput.value = "";
         }
     }
+
+    document.getElementById("extra").addEventListener("change", function() {
+    updateTypeSize();
+
+    const extraFields = document.getElementById("extra_fields");
+    if (this.value === "Extra") {
+        extraFields.style.display = "block";
+        document.getElementById("extra_weight").required = true;
+        document.getElementById("extra_length").required = true;
+    } else {
+        extraFields.style.display = "none";
+        document.getElementById("extra_weight").required = false;
+        document.getElementById("extra_length").required = false;
+    }
+});
 
     document.getElementById("type").addEventListener("change", function() {
         const type = this.value;

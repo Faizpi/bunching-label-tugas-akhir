@@ -30,10 +30,10 @@
 
                         <div class="form-group">
                             <label for="extra">Extra / No Extra</label>
-                            <select id="extra" class="form-control" required>
+                            <select id="extra" name="extra" class="form-control" required>
                                 <option value="">-- Pilih --</option>
-                                <option value="Extra" {{ Str::contains($label->type_size ?? '', 'Extra') ? 'selected':'' }}>Extra</option>
-                                <option value="No Extra" {{ Str::contains($label->type_size ?? '', 'No Extra') ? 'selected':'' }}>No Extra</option>
+                                <option value="Extra" {{ $label->extra_weight || $label->extra_length ? 'selected':'' }}>Extra</option>
+                                <option value="No Extra" {{ !$label->extra_weight && !$label->extra_length ? 'selected':'' }}>No Extra</option>
                             </select>
                         </div>
 
@@ -67,6 +67,19 @@
                             <label for="weight">Weight (Kg)</label>
                             <input type="number" name="weight" class="form-control" id="weight"
                                 value="{{ $label->weight }}" required>
+                        </div>
+
+                        <div id="extra_fields" style="{{ $label->extra_weight || $label->extra_length ? '' : 'display:none;' }}">
+                            <div class="form-group">
+                                <label for="extra_weight">Extra Weight (Kg)</label>
+                                <input type="number" name="extra_weight" id="extra_weight" class="form-control"
+                                    value="{{ $label->extra_weight }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="extra_length">Extra Length (m)</label>
+                                <input type="number" name="extra_length" id="extra_length" class="form-control"
+                                    value="{{ $label->extra_length }}">
+                            </div>
                         </div>
 
                         <div id="label_date" class="form-group">
@@ -308,6 +321,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.getElementById("length").value = "";
         updateTypeSize();
+    });
+
+    const extraSelect = document.getElementById("extra");
+    const extraFields = document.getElementById("extra_fields");
+
+    extraSelect.addEventListener("change", function() {
+        if (this.value === "Extra") {
+            extraFields.style.display = "block";
+        } else {
+            extraFields.style.display = "none";
+            document.getElementById("extra_weight").value = "";
+            document.getElementById("extra_length").value = "";
+        }
     });
 
     sizeSelect.addEventListener("change", function() {

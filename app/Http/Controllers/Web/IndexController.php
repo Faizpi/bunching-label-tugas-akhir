@@ -56,6 +56,8 @@ class IndexController extends Controller
         $label->remark = $req->remark;
         $label->bobin_no = $req->bobin_no;
         $label->operator_id = $user->id;
+        $label->extra_weight = $req->extra === "Extra" ? $req->extra_weight : null;
+        $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
         $label->save();
 
         $this->updateIncrement($last_number, $req->machine_number);
@@ -111,6 +113,8 @@ class IndexController extends Controller
         $label->remark = $req->remark;
         $label->bobin_no = $req->bobin_no;
         $label->operator_id = $user->id;
+        $label->extra_weight = $req->extra === "Extra" ? $req->extra_weight : null;
+        $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
         $label->save();
 
         return view('export.label', ['label' => $label]);
@@ -141,6 +145,8 @@ class IndexController extends Controller
         $label->remark = $req->remark;
         $label->bobin_no = $req->bobin_no;
         $label->operator_id = $user->id;
+        $label->extra_weight = $req->extra === "Extra" ? $req->extra_weight : null;
+        $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
         $label->save();
 
         return redirect()->route("web.label.index");
