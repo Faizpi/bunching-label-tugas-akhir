@@ -133,11 +133,11 @@
                             </label>
                         </div>
 
-                        <div id="label_bobin_no" class="form-group">
+                        <!-- <div id="label_bobin_no" class="form-group">
                             <label for="bobin_no">QC Test</label>
                             <input type="text" name="bobin_no" value="{{ $label->bobin_no }}"
                                 class="form-control" id="bobin_no" placeholder="QC Test">
-                        </div>
+                        </div> -->
 
                         <div id="label_remark" class="form-group">
                             <label for="remark">Remark</label>
