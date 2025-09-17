@@ -10,9 +10,9 @@
                     <div class="panel-body">
 
                         <div class="form-group">
-                            <label for="type">Tipe</label>
+                            <label for="type">Type/Size</label>
                             <select id="type" class="form-control" required>
-                                <option value="">-- Pilih Tipe --</option>
+                                <option value="">-- Pilih AV/EB/HDEB --</option>
                                 <option value="AV">AV</option>
                                 <option value="EB">EB</option>
                                 <option value="HDEB">HDEB</option>
@@ -20,9 +20,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="size">Size</label>
+                            <label for="size">Type/Size</label>
                             <select id="size" class="form-control" required>
-                                <option value="">-- Pilih Size --</option>
+                                <option value="">-- Pilih Type/Size --</option>
                             </select>
                         </div>
 
@@ -105,6 +105,7 @@
                             <input type="text" name="lot_not" id="lot_not"
                                 class="form-control" placeholder="Pilih mesin & tanggal dulu"
                                 readonly>
+                            <small style="color:#777;">*(Lot Number akan terisi otomatis setelah memilih mesin & tanggal)</small>
                         </div>
                     </div>
                 </div>
