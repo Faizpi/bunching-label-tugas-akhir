@@ -127,7 +127,7 @@
                                             <th>Length</th>
                                             <th>Extra Length</th>
                                             <th>Weight</th>
-                                            <th>Extra Weight</th>
+                                            <!-- <th>Extra Weight</th> -->
                                             <th>Date</th>
                                             <th>Shift</th>
                                             <th>Mesin No</th>
@@ -146,7 +146,7 @@
                                             <td>{{ $label->length }} m</td>
                                             <td>{{ $label->extra_length }} m</td>
                                             <td>{{ $label->weight }} kg</td>
-                                            <td>{{ $label->extra_weight }} kg</td>
+                                            <!-- <td>{{ $label->extra_weight }} kg</td> -->
                                             <td>{{ $label->shift_date }}</td>
                                             <td>{{ $label->shift }}</td>
                                             <td>{{ $label->machine_number }}</td>
