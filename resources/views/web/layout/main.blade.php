@@ -74,7 +74,7 @@
 	<script>
 		setTimeout(function() {
 			window.location.assign("{{route('web.auth.signout')}}");
-		}, (1000 * 60 * 5));
+		}, (1000 * 60 * 120));
 	</script>
 	@if(session('type') && session('message'))
 	<script>
