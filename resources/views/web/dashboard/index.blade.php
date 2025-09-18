@@ -1,5 +1,6 @@
 @extends('web.layout.main')
 @section('content')
+<div class="countainer-form">
 <div class="row" style="padding:40px 30px;">
     <form id="form_print" method="post" action="{{route('web.dashboard.print')}}" target="_blank">
         {{csrf_field()}}
@@ -142,20 +143,43 @@
             </div>
         </div>
 
-    <!-- Tombol submit full panjang -->
-    <div class="row" style="margin-top:20px;">
-        <div style="width:1100px; margin:0 auto;"> <!-- gabungan lebar 3 kolom -->
+        <div class="row" style="margin-top:20px;">
+        <div style="max-width:1100px; width:100%; margin:0 auto;"> <!-- responsif -->
             <button type="submit" class="btn btn-primary btn-block"
                 style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;"
                 onclick="setTimeout(()=>location.reload(), 1000)">
                 Print
             </button>
         </div>
-    </div>
+        </div>
 
     </form>
 </div>
+</div>
 @endsection
+
+@push('styles')
+<style>
+@media (min-width: 768px) and (max-width: 1024px) {
+  .row .col-sm-3,
+  .row .col-sm-3.col-sm-offset-1 {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .panel {
+    margin-bottom: 20px;
+  }
+
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+</style>
+@endpush
 
 @push('styles')
 <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
