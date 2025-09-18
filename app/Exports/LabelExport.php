@@ -47,7 +47,8 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
                 'labels.bobin_no',
                 'labels.remark',
                 'users.name as operator_name',
-                'labels.created_at'
+                'labels.created_at',
+                'labels.print_count'
             )
             ->leftJoin('users', 'labels.operator_id', '=', 'users.id')
             ->orderBy('labels.id', 'desc');
@@ -72,15 +73,14 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'Extra Length (m)',   
             'Weight (kg)',
             // 'Extra Weight (kg)',
-            'Shift Date',
+            'Date',
             'Shift',
             'Machine Number',
             'Pitch (mm)',
             'Visual',
-            'QC Test',
             'Remark',
             'Operator Name',
-            'Created At'
+            'Print Count',
         ];
     }
 
@@ -114,10 +114,9 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             $row->machine_number,
             $row->pitch,
             $row->visual,
-            $row->bobin_no,
             $row->remark,
             $row->operator_name,
-            Date::PHPToExcel(Carbon::parse($row->created_at))
+            $row->print_count,
         ];
     }
 
@@ -134,7 +133,7 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'J' => NumberFormat::FORMAT_DATE_DDMMYYYY,
             'K' => NumberFormat::FORMAT_NUMBER,
             'M' => NumberFormat::FORMAT_NUMBER_00,
-            'R' => NumberFormat::FORMAT_DATE_DDMMYYYY . ' hh:mm', 
+            'Q' => NumberFormat::FORMAT_NUMBER,
         ];
     }
 
