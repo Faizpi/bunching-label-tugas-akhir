@@ -8,7 +8,6 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LabelExport;
 use App\Label;
-use App\IncrementNew;
 
 class IndexController extends Controller
 {
@@ -28,6 +27,7 @@ class IndexController extends Controller
         return view('web.dashboard.index', compact("labels"));
     }
 
+    /** 🔹 Ambil next lot (AJAX hint) */
     public function getNextLot(Request $req)
     {
         $machine = $req->machine;
@@ -37,7 +37,7 @@ class IndexController extends Controller
             return response()->json(['next_lot' => null]);
         }
 
-        $next = $this->getIncrement($machine, $date); // pakai helper yang sudah ada
+        $next = $this->getIncrement($machine, $date);
         $pharse = str_pad($next, 3, '0', STR_PAD_LEFT);
 
         return response()->json(['next_lot' => $pharse]);
@@ -52,7 +52,6 @@ class IndexController extends Controller
     /** 🔹 PRINT SATU LABEL */
     public function print(Request $req)
     {
-        // Ambil nomor increment terakhir (per mesin + per tanggal)
         $last_number = $this->getIncrement($req->machine_number, $req->shift_date);
         $pharse = $this->pharseLastNumber($last_number);
 
@@ -76,9 +75,6 @@ class IndexController extends Controller
         $label->extra_weight = $req->extra === "Extra" ? $req->extra_weight : null;
         $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
         $label->save();
-
-        // Update increment terakhir
-        $this->updateIncrement($last_number, $req->machine_number, $req->shift_date);
 
         return view('export.label', ['label' => $label]);
     }
@@ -237,28 +233,21 @@ class IndexController extends Controller
     /** 🔹 Helpers */
     private function getIncrement($machine_number, $shift_date)
     {
-        $increment = IncrementNew::where('machine_number', $machine_number)
-            ->where('shift_date', $shift_date)
+        $lastLabel = Label::where('machine_number', $machine_number)
+            ->whereDate('shift_date', $shift_date)
+            ->orderBy('lot_number', 'desc')
             ->first();
 
-        if (!$increment) {
+        if (!$lastLabel) {
             return 1;
         }
-        return $increment->last_number + 1;
-    }
 
-    private function updateIncrement($number, $machine_number, $shift_date)
-    {
-        $increment = IncrementNew::firstOrNew([
-            'machine_number' => $machine_number,
-            'shift_date' => $shift_date,
-        ]);
-        $increment->last_number = $number;
-        $increment->save();
+        $lastNumber = intval(substr($lastLabel->lot_number, -3));
+        return $lastNumber + 1;
     }
 
     private function pharseLastNumber($number)
     {
-        return str_pad($number, 3, '0', STR_PAD_LEFT); // otomatis jadi 001, 002, dst
+        return str_pad($number, 3, '0', STR_PAD_LEFT);
     }
 }
