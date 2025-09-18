@@ -199,13 +199,49 @@
                         </div>
                     </div>
 
+                    {{-- HISTORY FEATURE --}}
+                    <div class="panel panel-default" style="margin-bottom:10px;border-radius:8px;overflow:hidden;">
+                        <div class="panel-heading" style="background:#f8fafc;">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseHistory">
+                                    <span class="glyphicon glyphicon-time" style="margin-right:8px;"></span> 9. Fitur Lot History
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseHistory" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <b>Apa itu Lot History?</b><br><br>
+                                - Pada halaman login, bagian kanan terdapat daftar <b>Lot History</b>.<br>
+                                - Fitur ini menampilkan 3 (tiga) nomor lot terbaru yang sudah dicetak/disimpan.<br><br>
+
+                                <b>Informasi yang ditampilkan:</b>
+                                <ul>
+                                    <li><b>Nomor Lot</b> – identitas unik dari label (misal <code>118250918001</code>)</li>
+                                    <li><b>Operator</b> – nama user yang membuat label tersebut</li>
+                                    <li><b>Waktu</b> – tanggal & jam kapan label dibuat</li>
+                                </ul><br>
+
+                                <b>Manfaat untuk user:</b>
+                                <ul>
+                                    <li>Mengecek apakah label terbaru sudah tercatat di sistem</li>
+                                    <li>Memastikan urutan nomor lot sesuai auto increment</li>
+                                    <li>Melacak siapa operator terakhir yang mencetak label</li>
+                                    <li>Mempermudah troubleshooting jika ada duplikasi atau gap nomor</li>
+                                </ul><br>
+
+                                <b>Catatan:</b><br>
+                                - Jika tidak ada data, sistem akan menampilkan pesan <i>"No lot history available"</i><br>
+                                - Daftar ini hanya bersifat <b>informasi cepat</b>, detail lengkap bisa dilihat di menu Data Label.
+                            </div>
+                        </div>
+                    </div>
 
                     {{-- GUIDE --}}
                     <div class="panel panel-default" style="margin-bottom:10px;border-radius:8px;overflow:hidden;">
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseGuide">
-                                    <span class="glyphicon glyphicon-question-sign" style="margin-right:8px;"></span> 9.
+                                    <span class="glyphicon glyphicon-question-sign" style="margin-right:8px;"></span> 10.
                                     Panduan / Help
                                 </a>
                             </h4>
