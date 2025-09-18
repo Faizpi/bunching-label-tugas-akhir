@@ -24,8 +24,8 @@
                         <div id="collapseAuth" class="panel-collapse collapse">
                             <div class="panel-body">
                                 <b>Login</b><br>
-                                1. Buka halaman <code>/admin/login</code>.<br>
-                                2. Masukkan <b>username</b> dan <b>password</b> dengan benar.<br>
+                                1. Buka halaman Website.<br>
+                                2. Masukkan <b>nsk</b> dan <b>password</b> dengan benar.<br>
                                 3. Klik tombol <b>Login</b> untuk masuk.<br><br>
                                 <b>Logout</b><br>
                                 - Klik menu <b>Sign Out</b> di pojok kanan atas.<br>
