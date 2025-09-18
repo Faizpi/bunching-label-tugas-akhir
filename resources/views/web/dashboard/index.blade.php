@@ -138,6 +138,11 @@
                             <label for="remark">Remark</label>
                             <input type="text" name="remark" class="form-control" id="remark" placeholder="Remark">
                         </div>
+
+                        <!-- <div id="label_bobin_no" class="form-group">
+                            <label for="bobin_no">Bobin No</label>
+                            <input type="text" name="bobin_no" class="form-control" id="bobin_no" placeholder="Bobin No">
+                        </div> -->
                     </div>
                 </div>
             </div>
