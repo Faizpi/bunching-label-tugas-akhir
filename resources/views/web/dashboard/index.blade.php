@@ -146,7 +146,8 @@
     <div class="row" style="margin-top:20px;">
         <div style="width:1100px; margin:0 auto;"> <!-- gabungan lebar 3 kolom -->
             <button type="submit" class="btn btn-primary btn-block"
-                style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;">
+                style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;"
+                onclick="setTimeout(()=>location.reload(), 1000)">
                 Print
             </button>
         </div>

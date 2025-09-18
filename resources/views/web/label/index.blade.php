@@ -157,6 +157,7 @@
                                             <td class="text-center" style="white-space: nowrap;">
                                                 <a href="{{ route('web.label.print.single', $label->id) }}"
                                                     target="_blank"
+                                                    onclick="setTimeout(()=>location.reload(), 1000)"
                                                     class="btn btn-xs btn-info"
                                                     style="background:#0ea5e9;border:none;border-radius:4px;color:#fff;">
                                                     <i class="fa fa-print"></i>
