@@ -190,6 +190,83 @@
 </div>
 @endsection
 
+@push('styles')
+<style>
+    /* Tablet & HP */
+@media (max-width: 1024px) {
+  /* Box biar nggak terlalu mepet */
+  .box {
+    border-radius: 8px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Form search & filter stack ke bawah */
+  .row.mb-3 .col-sm-12,
+  .row.mb-3 .col-md-3,
+  .row.mb-3 .col-md-9 {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Input & button biar full width */
+  .form-inline input,
+  .form-inline select,
+  .form-inline button,
+  .form-inline a {
+    width: 100% !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Table biar enak dibaca */
+  table.table {
+    font-size: 14px !important;
+  }
+
+  table.table th,
+  table.table td {
+    white-space: nowrap; /* tetap rapi */
+  }
+
+  /* Tombol aksi agak besar di mobile */
+  .btn-group .btn {
+    padding: 0.3rem 0.6rem !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Tablet & HP */
+@media (max-width: 1024px) {
+  .btn-group[role="group"] {
+    display: flex !important;
+    gap: 8px; /* kasih jarak antar tombol */
+  }
+
+  .btn-group .btn {
+    flex: 1; /* tombol isi ruang sama rata */
+    min-width: 40px;
+    padding: 0.35rem 0.5rem !important;
+    border-radius: 6px !important;
+  }
+}
+
+
+/* HP kecil (maks 576px) */
+@media (max-width: 576px) {
+  /* Kolom biar lebih kecil fontnya */
+  table.table {
+    font-size: 13px !important;
+  }
+
+  /* Role badge */
+  td span[style*="border-radius:12px"] {
+    font-size: 11px !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+}
+</style>
+@endpush
+
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script>
