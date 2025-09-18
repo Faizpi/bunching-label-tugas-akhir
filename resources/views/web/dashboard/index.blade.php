@@ -1,186 +1,220 @@
 @extends('web.layout.main')
 @section('content')
 <div class="countainer-form">
-<div class="row" style="padding:40px 30px;">
-    <form id="form_print" method="post" action="{{route('web.dashboard.print')}}" target="_blank">
-        {{csrf_field()}}
-        <div class="row">
-            <!-- Kolom 1: Data Produk -->
-            <div class="col-sm-3 col-sm-offset-1">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                    <div class="panel-body">
+    <div class="row" style="padding:40px 45px;">
+<form id="form_print" method="post" action="{{route('web.dashboard.print')}}" target="_blank">
+    {{csrf_field()}}
 
-                        <div class="form-group">
-                            <label for="type">Type/Size</label>
-                            <select id="type" class="form-control" required>
-                                <option value="">-- Pilih AV/EB/HDEB --</option>
-                                <option value="AV">AV</option>
-                                <option value="EB">EB</option>
-                                <option value="HDEB">HDEB</option>
-                            </select>
-                        </div>
+    <div class="row">
+        <!-- Kolom 1 -->
+        <div class="col-sm-6">
+            <div class="panel panel-default"
+                style="background: rgba(255, 255, 255, 0.15); 
+                       border-radius: 15px; 
+                       border: 1px solid rgba(255,255,255,0.3); 
+                       box-shadow: 0 8px 32px rgba(31,38,135,0.37); 
+                       backdrop-filter: blur(8px); 
+                       -webkit-backdrop-filter: blur(8px);">
+                <div class="panel-body">
 
-                        <div class="form-group">
-                            <label for="size">Type/Size</label>
-                            <select id="size" class="form-control" required>
-                                <option value="">-- Pilih Type/Size --</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="extra">Extra / No Extra</label>
-                            <select id="extra" name="extra" class="form-control" required>
-                                <option value="">-- Pilih --</option>
-                                <option value="Extra">Extra</option>
-                                <option value="No Extra">No Extra</option>
-                            </select>
-                        </div>
-
-                        <input type="hidden" name="type_size" id="type_size">
-
-                        <div id="label_length" class="form-group">
-                            <label for="length">Length</label>
-                            <input type="text" name="length" class="form-control" id="length" readonly required>
-                        </div>
-
-                        <div id="label_drum" class="form-group">
-                            <label for="drum">Jumlah Drum</label>
-                            <select id="drum" name="drum" class="form-control" required>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-
-                        <div id="label_weight" class="form-group">
-                            <label for="weight">Weight (Kg)</label>
-                            <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
-                        </div>
+                    <!-- Form Produk -->
+                    <div id="label_lot_not" class="form-group">
+                        <label for="lot_not">Lot No (Auto)</label>
+                        <input type="text" name="lot_not" id="lot_not"
+                               class="form-control" placeholder="Pilih mesin & tanggal dulu"
+                               readonly>
+                        <small style="color:#777;">
+                            *(Lot Number akan terisi otomatis setelah memilih mesin & tanggal)
+                        </small>
                     </div>
-                </div>
-            </div>
-
-            <!-- Kolom 2: Data Produksi -->
-            <div class="col-sm-3">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                    <div class="panel-body">
-                        <div id="extra_fields" style="display:none;">
-                            <div class="form-group">
-                                <label for="extra_length">Extra Length (m)</label>
-                                <input type="number" name="extra_length" id="extra_length" class="form-control" placeholder="Masukkan Extra Length">
-                            </div>
-                            <!-- <div class="form-group">
-                                <label for="extra_weight">Extra Weight (Kg)</label>
-                                <input type="number" name="extra_weight" id="extra_weight" class="form-control" placeholder="Masukkan Extra Weight">
-                            </div> -->
-                        </div>
-
-                        <div id="label_date" class="form-group">
-                            <label for="date">Date</label>
-                            <select id="date" name="shift_date" class="form-control" required></select>
-                        </div>
-
-                        <div id="label_machine_no" class="form-group">
-                            <label for="machine_no">Machine No</label>
-                            <select name="machine_number" id="machine_no" class="form-control" required>
-                                <option value="">-- Pilih Machine --</option>
-                                <option value="118">118</option>
-                                <option value="119">119</option>
-                                <option value="120">120</option>
-                            </select>
-                        </div>
-
-                        <div id="label_shift" class="form-group">
-                            <label for="shift">Shift</label>
-                            <select name="shift" id="shift" class="form-control" required>
-                                <option value="">-- Pilih Shift --</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-
-                        <div id="label_lot_not" class="form-group">
-                            <label for="lot_not">Lot No (Auto)</label>
-                            <input type="text" name="lot_not" id="lot_not"
-                                class="form-control" placeholder="Pilih mesin & tanggal dulu"
-                                readonly>
-                            <small style="color:#777;">*(Lot Number akan terisi otomatis setelah memilih mesin & tanggal)</small>
-                        </div>
+                    <div class="form-group">
+                        <label for="type">Type/Size</label>
+                        <select id="type" class="form-control" required>
+                            <option value="">-- Pilih AV/EB/HDEB --</option>
+                            <option value="AV">AV</option>
+                            <option value="EB">EB</option>
+                            <option value="HDEB">HDEB</option>
+                        </select>
                     </div>
-                </div>
-            </div>
 
-            <!-- Kolom 3: Data QC / Final -->
-            <div class="col-sm-3">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
-                    <div class="panel-body">
-                        <div id="label_pitch" class="form-group">
-                            <label for="pitch">Pitch</label>
-                            <input type="number" step="0.01" name="pitch" id="pitch" 
-                                class="form-control" placeholder="Masukkan pitch (contoh: 20.25)" required>
-                        </div>
+                    <div class="form-group">
+                        <label for="size">Type/Size</label>
+                        <select id="size" class="form-control" required>
+                            <option value="">-- Pilih Type/Size --</option>
+                        </select>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="extra">Extra / No Extra</label>
+                        <select id="extra" name="extra" class="form-control" required>
+                            <option value="">-- Pilih --</option>
+                            <option value="Extra">Extra</option>
+                            <option value="No Extra">No Extra</option>
+                        </select>
+                    </div>
+
+                    <!-- Extra fields -->
+                    <div id="extra_fields" style="display:none;">
                         <div class="form-group">
-                            <label for="visual">Visual</label><br>
-                            <label style="display:inline-block; margin-right:15px;">
-                                <input name="visual" value="OK" type="radio" checked required 
-                                    style="accent-color:green !important;"> OK
-                            </label>
-                            <label style="display:inline-block;">
-                                <input name="visual" value="NG" type="radio" 
-                                    style="accent-color:red !important;"> NG
-                            </label>
+                            <label for="extra_length">Extra Length (m)</label>
+                            <input type="number" name="extra_length" id="extra_length" 
+                                   class="form-control" placeholder="Masukkan Extra Length">
                         </div>
-
-                        <div id="label_remark" class="form-group">
-                            <label for="remark">Remark</label>
-                            <input type="text" name="remark" class="form-control" id="remark" placeholder="Remark">
-                        </div>
-
-                        <!-- <div id="label_bobin_no" class="form-group">
-                            <label for="bobin_no">Bobin No</label>
-                            <input type="text" name="bobin_no" class="form-control" id="bobin_no" placeholder="Bobin No">
-                        </div> -->
+                        <!-- 
+                        <div class="form-group">
+                            <label for="extra_weight">Extra Weight (Kg)</label>
+                            <input type="number" name="extra_weight" id="extra_weight" 
+                                   class="form-control" placeholder="Masukkan Extra Weight">
+                        </div> 
+                        -->
                     </div>
+
+                    <input type="hidden" name="type_size" id="type_size">
+
+                    <div id="label_length" class="form-group">
+                        <label for="length">Length</label>
+                        <input type="text" name="length" class="form-control" id="length" readonly required>
+                    </div>
+
+                    <div id="label_drum" class="form-group">
+                        <label for="drum">Jumlah Drum</label>
+                        <select id="drum" name="drum" class="form-control" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+                    <div id="label_weight" class="form-group">
+                        <label for="weight">Weight (Kg)</label>
+                        <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <div class="row" style="margin-top:20px;">
+        <!-- Kolom 2 -->
+        <div class="col-sm-6">
+            <div class="panel panel-default"
+                style="background: rgba(255, 255, 255, 0.15); 
+                       border-radius: 15px; 
+                       border: 1px solid rgba(255,255,255,0.3); 
+                       box-shadow: 0 8px 32px rgba(31,38,135,0.37); 
+                       backdrop-filter: blur(8px); 
+                       -webkit-backdrop-filter: blur(8px);">
+                <div class="panel-body">
+
+                    <!-- Data Produksi -->
+                    <div id="label_date" class="form-group">
+                        <label for="date">Date</label>
+                        <select id="date" name="shift_date" class="form-control" required></select>
+                    </div>
+
+                    <div id="label_machine_no" class="form-group">
+                        <label for="machine_no">Machine No</label>
+                        <select name="machine_number" id="machine_no" class="form-control" required>
+                            <option value="">-- Pilih Machine --</option>
+                            <option value="118">118</option>
+                            <option value="119">119</option>
+                            <option value="120">120</option>
+                        </select>
+                    </div>
+
+                    <div id="label_shift" class="form-group">
+                        <label for="shift">Shift</label>
+                        <select name="shift" id="shift" class="form-control" required>
+                            <option value="">-- Pilih Shift --</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+
+                    <div id="label_pitch" class="form-group">
+                        <label for="pitch">Pitch</label>
+                        <input type="number" step="0.01" name="pitch" id="pitch" 
+                               class="form-control" placeholder="Masukkan pitch (contoh: 20.25)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="visual">Visual</label><br>
+                        
+                        <label style="display:block; margin-bottom:8px;">
+                            <input name="visual" value="OK" type="radio" checked required 
+                                style="accent-color:green !important;"> OK
+                        </label>
+                        
+                        <label style="display:block;">
+                            <input name="visual" value="NG" type="radio" 
+                                style="accent-color:red !important;"> NG
+                        </label>
+                    </div>
+
+                    <div id="label_remark" class="form-group">
+                        <label for="remark">Remark</label>
+                        <input type="text" name="remark" class="form-control" id="remark" placeholder="Remark">
+                    </div>
+
+                    <!-- 
+                    <div id="label_bobin_no" class="form-group">
+                        <label for="bobin_no">Bobin No</label>
+                        <input type="text" name="bobin_no" class="form-control" id="bobin_no" placeholder="Bobin No">
+                    </div> 
+                    -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Print -->
+    <div class="row" style="margin-top:20px;">
         <div style="max-width:1100px; width:100%; margin:0 auto;"> <!-- responsif -->
             <button type="submit" class="btn btn-primary btn-block"
-                style="background:#0284c7 !important; border:none !important; color:#fff !important; font-weight:600; border-radius:8px;"
+                style="background:#0284c7 !important; 
+                       border:none !important; 
+                       color:#fff !important; 
+                       font-weight:600; 
+                       border-radius:8px;"
                 onclick="setTimeout(()=>location.reload(), 1000)">
                 Print
             </button>
         </div>
-        </div>
-
-    </form>
+    </div>
+</form>
 </div>
 </div>
 @endsection
 
 @push('styles')
 <style>
-@media (min-width: 768px) and (max-width: 1024px) {
-  .row .col-sm-3,
-  .row .col-sm-3.col-sm-offset-1 {
+/* Tablet & Mobile Stack Layout */
+@media (max-width: 1024px) {
+  /* Semua col numpuk full width */
+  .row [class*="col-"] {
     float: none !important;
     width: 100% !important;
     max-width: 100% !important;
     margin-left: 0 !important;
   }
 
+  /* Panel biar rapi full width + jarak bawah */
   .panel {
-    margin-bottom: 20px;
+    width: 100% !important;
+    margin: 0 0 20px 0 !important;
   }
 
+  /* Row tanpa margin samping */
   .row {
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+
+  /* Isi panel tetap ada padding */
+  .panel-body {
+    padding: 15px !important;
   }
 }
 </style>
