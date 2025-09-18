@@ -135,6 +135,7 @@
                                             <th>Visual</th>
                                             <th>Operator</th>
                                             <th>Action</th>
+                                            <th>Print Count</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -173,6 +174,7 @@
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </td>
+                                            <td class="text-center">{{ $label->print_count }}</td>
                                         </tr>
                                         @empty
                                         <tr>

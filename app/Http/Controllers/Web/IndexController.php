@@ -46,6 +46,8 @@ class IndexController extends Controller
     public function printSingle($id)
     {
         $label = Label::with('operator')->findOrFail($id);
+        // 🔹 Tambahkan counter print
+        $label->increment('print_count');
         return view('export.label', compact('label'));
     }
 
@@ -74,6 +76,7 @@ class IndexController extends Controller
         $label->operator_id = $user->id;
         $label->extra_weight = $req->extra === "Extra" ? $req->extra_weight : null;
         $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
+        $label->print_count = 1; // karena pertama kali langsung di print
         $label->save();
 
         return view('export.label', ['label' => $label]);
@@ -131,6 +134,8 @@ class IndexController extends Controller
         $label->extra_weight = $req->extra === "Extra" ? $req->extra_weight : null;
         $label->extra_length = $req->extra === "Extra" ? $req->extra_length : null;
         $label->save();
+
+        $label->increment('print_count');
 
         return view('export.label', ['label' => $label]);
     }
