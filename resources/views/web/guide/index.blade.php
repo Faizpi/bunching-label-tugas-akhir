@@ -22,9 +22,14 @@
                     </div>
                     <div id="collapseAuth" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - <b>Login</b>: akses <code>/admin/login</code>, masukkan username & password.<br>
-                            - <b>Logout</b>: klik menu <b>Sign Out</b> (role <code>admin</code> atau <code>operator</code>).<br>
-                            - Jika login gagal, periksa kembali kredensial Anda.
+                            ⬛ <b>Login</b><br>
+                            1. Buka halaman <code>/admin/login</code>.<br>
+                            2. Masukkan <b>username</b> dan <b>password</b> dengan benar.<br>
+                            3. Klik tombol <b>Login</b> untuk masuk.<br><br>
+                            ⬛ <b>Logout</b><br>
+                            - Klik menu <b>Sign Out</b> di pojok kanan atas.<br>
+                            - Setelah logout, Anda akan kembali ke halaman login.<br><br>
+                            ⚠️ Jika login gagal, periksa kembali username dan password Anda.
                         </div>
                     </div>
                 </div>
@@ -40,10 +45,10 @@
                     </div>
                     <div id="collapseDashboard" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - Menu <b>Input Label</b> terbuka otomatis sebagai dashboard.<br>
-                            - Gunakan tombol <b>Tambah Label</b> untuk input data baru.<br>
-                            - Sistem otomatis membuat <code>lot_number</code> dari mesin & tanggal shift.<br>
-                            - Label pertama kali tersimpan langsung tercetak (<b>print_count = 1</b>).
+                            - Setelah login, sistem otomatis membuka menu <b>Input Label</b> sebagai dashboard.<br>
+                            - Klik tombol <b>Tambah Label</b> untuk membuat label baru.<br>
+                            - Sistem akan membuat <code>lot_number</code> secara otomatis berdasarkan mesin dan tanggal shift.<br>
+                            - Label pertama kali disimpan akan langsung tercetak, dengan <code>print_count = 1</code>.
                         </div>
                     </div>
                 </div>
@@ -59,9 +64,9 @@
                     </div>
                     <div id="collapseDataLabel" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - Menu <b>Data Label</b> menampilkan daftar label.<br>
-                            - Gunakan kolom <b>search</b> untuk mencari berdasarkan <code>lot_number</code>.<br>
-                            - Data ditampilkan per halaman (10 item).
+                            - Menu <b>Data Label</b> menampilkan semua label yang sudah dibuat.<br>
+                            - Gunakan kolom <b>Search</b> untuk mencari label berdasarkan <code>lot_number</code>.<br>
+                            - Data label ditampilkan per halaman (10 item).
                         </div>
                     </div>
                 </div>
@@ -77,9 +82,10 @@
                     </div>
                     <div id="collapseEdit" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - Klik tombol <b>Edit</b> untuk memperbarui data label.<br>
-                            - Setelah disimpan, label mendapat nomor urut baru bila perlu & <code>print_count</code> bertambah.<br>
-                            - Klik <b>Delete</b> untuk menghapus data label permanen.
+                            - Klik tombol <b>Edit</b> pada label yang ingin diperbarui.<br>
+                            - Perbarui data lalu simpan agar perubahan tersimpan di sistem.<br>
+                            - Jika label dicetak ulang, <code>print_count</code> akan bertambah.<br>
+                            - Klik tombol <b>Delete</b> untuk menghapus label secara permanen.
                         </div>
                     </div>
                 </div>
@@ -95,9 +101,9 @@
                     </div>
                     <div id="collapsePrint" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - <b>Print Satu Label</b>: klik tombol <b>Print</b> di tabel Data Label.<br>
-                            - <b>Print Banyak Label</b>: buka menu <b>Print View</b>, filter berdasarkan tanggal, lalu cetak sekaligus.<br>
-                            - Fitur ini tersedia untuk role <code>admin</code> dan <code>operator</code>.
+                            - <b>Cetak satu label</b>: klik tombol <b>Print</b> pada tabel Data Label.<br>
+                            - <b>Cetak banyak label</b>: buka menu <b>Print View</b>, pilih tanggal yang diinginkan, lalu cetak sekaligus.<br>
+                            - Fitur print bisa digunakan oleh <code>admin</code> maupun <code>operator</code>.
                         </div>
                     </div>
                 </div>
@@ -113,10 +119,10 @@
                     </div>
                     <div id="collapseExport" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - Hanya bisa diakses oleh <b>Admin</b>.<br>
-                            - Pilih rentang <b>Start Date</b> & <b>End Date</b> sebelum export.<br>
-                            - Klik <b>Export Excel</b> untuk file <code>.xlsx</code>.<br>
-                            - Klik <b>Export PDF</b> untuk file <code>.pdf</code> (A4 Landscape).
+                            - Menu export hanya tersedia untuk <b>Admin</b>.<br>
+                            - Pilih <b>Start Date</b> dan <b>End Date</b> sebelum melakukan export.<br>
+                            - Klik <b>Export Excel</b> untuk mengunduh file <code>.xlsx</code>.<br>
+                            - Klik <b>Export PDF</b> untuk mengunduh file <code>.pdf</code> (format A4 landscape).
                         </div>
                     </div>
                 </div>
@@ -132,10 +138,10 @@
                     </div>
                     <div id="collapseUser" class="panel-collapse collapse">
                         <div class="panel-body">
-                            - Menu ini hanya tersedia untuk <b>Admin</b>.<br>
-                            - Tambah, edit, hapus akun user sesuai kebutuhan.<br>
-                            - Tersedia fitur <b>Bulk Import</b> untuk menambahkan banyak user sekaligus via Excel.<br>
-                            - Setiap user diberi role <code>admin</code> atau <code>operator</code>.
+                            - Menu ini hanya bisa diakses oleh <b>Admin</b>.<br>
+                            - Admin dapat menambah, mengedit, atau menghapus akun user.<br>
+                            - Tersedia fitur <b>Bulk Import</b> untuk menambahkan banyak user sekaligus melalui file Excel.<br>
+                            - Setiap user harus diberi role <code>admin</code> atau <code>operator</code>.
                         </div>
                     </div>
                 </div>
@@ -152,7 +158,7 @@
                     <div id="collapseGuide" class="panel-collapse collapse">
                         <div class="panel-body">
                             - Halaman ini berisi petunjuk penggunaan seluruh fitur sistem.<br>
-                            - Jika ada kendala, hubungi administrator sistem untuk bantuan lebih lanjut.
+                            - Jika mengalami kendala teknis, silakan hubungi administrator untuk bantuan lebih lanjut.
                         </div>
                     </div>
                 </div>
