@@ -27,6 +27,7 @@
                             *(Lot Number akan terisi otomatis setelah memilih mesin & tanggal)
                         </small>
                     </div>
+                    
                     <div class="form-group">
                         <label for="type">Type/Size</label>
                         <select id="type" class="form-control" required>

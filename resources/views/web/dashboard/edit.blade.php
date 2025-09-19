@@ -2,14 +2,26 @@
 
 @section('content')
 <!-- Info boxes -->
-<div class="row" style="margin-top: 3rem">
+<div class="countainer-form">
+<div class="row" style="padding:40px 45px;">
     <form id="form_print" method="post" action="{{route('web.label.update', $label->id)}}" target="_blank">
         {{csrf_field()}}
         <div class="row">
             <!-- Panel kiri -->
-            <div class="col-sm-4 col-sm-offset-2">
+            <div class="col-sm-6">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
+
+                        <div id="label_lot_not" class="form-group">
+                            <label for="lot_not">Lot No</label>
+                            <input type="number" 
+                                name="lot_not" 
+                                value="{{ substr($label->lot_number, -3) }}" 
+                                class="form-control" 
+                                id="lot_not" 
+                                placeholder="Lot No (ex: 001)" 
+                                required>
+                        </div>
 
                         <div class="form-group">
                             <label for="type">Tipe</label>
@@ -35,6 +47,19 @@
                                 <option value="Extra" {{ $label->extra_weight || $label->extra_length ? 'selected':'' }}>Extra</option>
                                 <option value="No Extra" {{ !$label->extra_weight && !$label->extra_length ? 'selected':'' }}>No Extra</option>
                             </select>
+                        </div>
+
+                        <div id="extra_fields" style="{{ $label->extra_weight || $label->extra_length ? '' : 'display:none;' }}">
+                            <!-- <div class="form-group">
+                                <label for="extra_weight">Extra Weight (Kg)</label>
+                                <input type="number" name="extra_weight" id="extra_weight" class="form-control"
+                                    value="{{ $label->extra_weight }}">
+                            </div> -->
+                            <div class="form-group">
+                                <label for="extra_length">Extra Length (m)</label>
+                                <input type="number" name="extra_length" id="extra_length" class="form-control"
+                                    value="{{ $label->extra_length }}">
+                            </div>
                         </div>
 
                         {{-- hidden input gabungan semua --}}
@@ -69,51 +94,19 @@
                                 value="{{ $label->weight }}" required>
                         </div>
 
-                        <div id="extra_fields" style="{{ $label->extra_weight || $label->extra_length ? '' : 'display:none;' }}">
-                            <div class="form-group">
-                                <label for="extra_weight">Extra Weight (Kg)</label>
-                                <input type="number" name="extra_weight" id="extra_weight" class="form-control"
-                                    value="{{ $label->extra_weight }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="extra_length">Extra Length (m)</label>
-                                <input type="number" name="extra_length" id="extra_length" class="form-control"
-                                    value="{{ $label->extra_length }}">
-                            </div>
-                        </div>
-
-                        <div id="label_date" class="form-group">
-                            <label for="date">Date</label>
-                            <select id="date" name="shift_date" class="form-control" required>
-                                <option value="{{ $label->shift_date }}" selected>{{ $label->shift_date }}</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Panel kanan -->
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
                     <div class="panel-body">
 
-                        <div id="label_lot_not" class="form-group">
-                            <label for="lot_not">Lot No</label>
-                            <input type="number" 
-                                name="lot_not" 
-                                value="{{ substr($label->lot_number, -3) }}" 
-                                class="form-control" 
-                                id="lot_not" 
-                                placeholder="Lot No (ex: 001)" 
-                                required>
-                        </div>
-
-                        <div id="label_shift" class="form-group">
-                            <label for="shift">Shift</label>
-                            <select name="shift" id="shift" class="form-control" required>
-                                <option value="1" {{ $label->shift == 1 ? "selected":"" }}>1</option>
-                                <option value="2" {{ $label->shift == 2 ? "selected":"" }}>2</option>
-                                <option value="3" {{ $label->shift == 3 ? "selected":"" }}>3</option>
+                        <div id="label_date" class="form-group">
+                            <label for="date">Date</label>
+                            <select id="date" name="shift_date" class="form-control" required>
+                                <option value="{{ $label->shift_date }}" selected>{{ $label->shift_date }}</option>
                             </select>
                         </div>
 
@@ -125,6 +118,15 @@
                                 <option value="120" {{ $label->machine_number == 120 ? "selected":"" }}>120</option>
                             </select>
                         </div>
+                       
+                        <div id="label_shift" class="form-group">
+                            <label for="shift">Shift</label>
+                            <select name="shift" id="shift" class="form-control" required>
+                                <option value="1" {{ $label->shift == 1 ? "selected":"" }}>1</option>
+                                <option value="2" {{ $label->shift == 2 ? "selected":"" }}>2</option>
+                                <option value="3" {{ $label->shift == 3 ? "selected":"" }}>3</option>
+                            </select>
+                        </div>
 
                         <div id="label_pitch" class="form-group">
                             <label for="pitch">Pitch</label>
@@ -134,12 +136,12 @@
 
                         <div class="form-group">
                             <label for="visual">Visual</label><br>
-                            <label style="margin-right:15px;">
+                            <label style="display: block;">
                                 <input name="visual" value="OK" type="radio"
                                     {{ $label->visual == "OK" ? "checked":"" }} required
                                     style="accent-color:green !important;"> OK
                             </label>
-                            <label>
+                            <label style="display: block;">
                                 <input name="visual" value="NG" type="radio"
                                     {{ $label->visual == "NG" ? "checked":"" }}
                                     style="accent-color:red !important;"> NG
@@ -163,20 +165,21 @@
         </div>
 
             <div class="row">
-                <div class="col-sm-12 col-md-8 col-md-offset-2">
+                <div class="col-sm-12 col-md-12 col-md-offset-2">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-8">
                             <button id="save_and_print" type="button" class="btn btn-success btn-block"
                                 style="background:rgba(240, 183, 13, 1) !important;
                                 border:none !important;
                                 color:#fff !important;
                                 font-weight:600;
                                 border-radius:8px;
+                                margin-bottom:10px;
                                 ">
                                 Save & Print
                             </button>
                         </div>
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-8">
                             <button id="just_save" type="button" class="btn btn-warning btn-block"
                                 style="background:#02c36e !important;
                                 border:none !important;
@@ -192,7 +195,40 @@
             </div>
     </form>
 </div>
+</div>
 @endsection
+
+@push('styles')
+<style>
+/* Tablet & Mobile Stack Layout */
+@media (max-width: 1024px) {
+  /* Semua col numpuk full width */
+  .row [class*="col-"] {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Panel biar rapi full width + jarak bawah */
+  .panel {
+    width: 100% !important;
+    margin: 0 0 20px 0 !important;
+  }
+
+  /* Row tanpa margin samping */
+  .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Isi panel tetap ada padding */
+  .panel-body {
+    padding: 15px !important;
+  }
+}
+</style>
+@endpush
 
 @push('scripts')
 <script>
