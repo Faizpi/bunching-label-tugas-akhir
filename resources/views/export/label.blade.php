@@ -103,6 +103,13 @@
                 <td>:</td>
                 <td>{{ $label->length }} m</td>
             </tr>
+            @if($label->extra_length)
+            <tr>
+                <td>Extra Length</td>
+                <td>:</td>
+                <td>{{ $label->extra_length }} m</td>
+            </tr>
+            @endif
             <tr>
                 <td>Weight</td>
                 <td>:</td>
