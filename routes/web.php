@@ -64,7 +64,7 @@ Route::group(['prefix' => '/', 'namespace' => 'Web'], function () {
         });
 
         Route::get('/guide', [App\Http\Controllers\Web\GuideController::class, 'index'])
-    ->name('web.guide.index');
+            ->name('web.guide.index');
 
 
     });
