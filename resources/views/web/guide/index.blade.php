@@ -199,12 +199,47 @@
                         </div>
                     </div>
 
+                    {{-- LABEL PRINT --}}
+                    <div class="panel panel-default" style="margin-bottom:10px;border-radius:8px;overflow:hidden;">
+                        <div class="panel-heading" style="background:#f8fafc;">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseLabelPrint">
+                                    <span class="glyphicon glyphicon-barcode" style="margin-right:8px;"></span> 9. Format
+                                    Label & Cara Print
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseLabelPrint" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <b>Format Label:</b><br><br>
+                                - Label berukuran 8cm x 5cm (sesuai kertas label standar 80mm x 50mm).<br>
+                               - Terdiri dari informasi: <code>Lot number</code>, <code>Type/Size</code>, <code>Length</code>, <code>Weight</code>, <code>Date/Shift</code>, <code>Machine no</code>, <code>Pitch</code>, <code>Visual</code>, <code>Operator</code>, <code>QC Test</code>, dan <code>Remark</code>.<br>
+                                - kalau <code>extra_length</code> kosong/null/0 → barisnya gak akan ikut dicetak.<br>
+                                - Barcode menggunakan format <b>Code 128</b> untuk kemudahan scan.<br><br>
+
+                                <b>Cara Print Label:</b><br><br>
+                                1. Pastikan kertas label terpasang dengan benar di printer.<br>
+                                2. Gunakan browser Google Chrome untuk hasil terbaik.<br>
+                                3. Setelah input data di form, klik tombol <b>Print</b>.<br>
+                                4. Jendela print akan terbuka, atur pengaturan sebagai berikut:
+                                <ul>
+                                    <li>Destination: pilih printer thermal Anda</li>
+                                    <li>Paper size: atur ke ukuran custom 80mm x 50mm</li>
+                                    <li>Margins: pilih None</li>
+                                    <li>Scale: atur ke 100%</li>
+                                    <li>Options: hilangkan centang pada Headers and footers serta Background graphics</li>
+                                </ul>
+                                6. Klik tombol <b>Print</b> untuk mencetak label.<br><br>
+                            </div>
+                        </div>
+                    </div>
+
                     {{-- HISTORY FEATURE --}}
                     <div class="panel panel-default" style="margin-bottom:10px;border-radius:8px;overflow:hidden;">
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseHistory">
-                                    <span class="glyphicon glyphicon-time" style="margin-right:8px;"></span> 9. Fitur Lot History
+                                    <span class="glyphicon glyphicon-time" style="margin-right:8px;"></span> 10. Fitur Lot History
                                 </a>
                             </h4>
                         </div>
@@ -241,7 +276,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseGuide">
-                                    <span class="glyphicon glyphicon-question-sign" style="margin-right:8px;"></span> 10.
+                                    <span class="glyphicon glyphicon-question-sign" style="margin-right:8px;"></span> 11.
                                     Panduan / Help
                                 </a>
                             </h4>
