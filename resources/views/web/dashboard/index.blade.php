@@ -191,32 +191,27 @@
 
 @push('styles')
 <style>
-/* Tablet & Mobile Stack Layout */
 @media (max-width: 1024px) {
-  /* Semua col numpuk full width */
-  .row [class*="col-"] {
-    float: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: 0 !important;
-  }
+    .row [class*="col-"] {
+        float: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+    }
 
-  /* Panel biar rapi full width + jarak bawah */
-  .panel {
-    width: 100% !important;
-    margin: 0 0 20px 0 !important;
-  }
+    .panel {
+        width: 100% !important;
+        margin: 0 0 20px 0 !important;
+    }
 
-  /* Row tanpa margin samping */
-  .row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
 
-  /* Isi panel tetap ada padding */
-  .panel-body {
-    padding: 15px !important;
-  }
+    .panel-body {
+        padding: 15px !important;
+    }
 }
 </style>
 @endpush
