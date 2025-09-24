@@ -124,14 +124,14 @@
                                             <th>No</th>
                                             <th>Lot No.</th>
                                             <th>Type/Size</th>
-                                            <th>Length</th>
-                                            <th>Extra Length</th>
-                                            <th>Weight</th>
+                                            <th>Length (m)</th>
+                                            <th>Extra (m)</th>
+                                            <th>Weight (kg)</th>
                                             <!-- <th>Extra Weight</th> -->
                                             <th>Date</th>
                                             <th>Shift</th>
                                             <th>Mesin No</th>
-                                            <th>Pitch</th>
+                                            <th>Pitch (mm)</th>
                                             <th>Visual</th>
                                             <th>Operator</th>
                                             <th>Action</th>
@@ -144,14 +144,14 @@
                                             <td>{{ $labels->firstItem() + $index }}</td>
                                             <td>{{ $label->lot_number }}</td>
                                             <td>{{ $label->type_size }}</td>
-                                            <td>{{ $label->length }} m</td>
-                                            <td>{{ $label->extra_length }} m</td>
-                                            <td>{{ $label->weight }} kg</td>
+                                            <td>{{ $label->length }}</td>
+                                            <td>{{ $label->extra_length }}</td>
+                                            <td>{{ $label->weight }}</td>
                                             <!-- <td>{{ $label->extra_weight }} kg</td> -->
-                                            <td>{{ $label->shift_date }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-m-y') }}</td>
                                             <td>{{ $label->shift }}</td>
                                             <td>{{ $label->machine_number }}</td>
-                                            <td>{{ $label->pitch }} mm</td>
+                                            <td>{{ $label->pitch }}</td>
                                             <td>{{ $label->visual }}</td>
                                             <td>{{ $label->operator->name }}</td>
                                             <td class="text-center" style="white-space: nowrap;">
