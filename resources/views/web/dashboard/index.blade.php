@@ -73,7 +73,7 @@
                     <input type="hidden" name="type_size" id="type_size">
 
                     <div id="label_length" class="form-group">
-                        <label for="length">Length</label>
+                        <label for="length">Length (m)</label>
                         <input type="text" name="length" class="form-control" id="length" readonly required>
                     </div>
 
@@ -134,7 +134,7 @@
                     </div>
 
                     <div id="label_pitch" class="form-group">
-                        <label for="pitch">Pitch</label>
+                        <label for="pitch">Pitch (mm)</label>
                         <input type="number" step="0.01" name="pitch" id="pitch" 
                                class="form-control" placeholder="Masukkan pitch (contoh: 20.25)" required>
                     </div>

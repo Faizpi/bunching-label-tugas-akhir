@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="type">Tipe</label>
+                            <label for="type">Type/Size</label>
                             <select id="type" class="form-control" required>
                                 <option value="">-- Pilih Tipe --</option>
                                 <option value="AV" {{ Str::startsWith($label->size, 'AV') ? 'selected':'' }}>AV</option>
@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="size">Size</label>
+                            <label for="size">Type/Size</label>
                             <select id="size" class="form-control" required>
                                 <option value="{{ $label->size }}" selected>{{ $label->size }}</option>
                             </select>
@@ -66,7 +66,7 @@
                         <input type="hidden" name="type_size" id="type_size" value="{{ $label->type_size }}">
 
                         <div id="label_length" class="form-group">
-                            <label for="length">Length</label>
+                            <label for="length">Length (m)</label>
                             <input type="text" name="length" class="form-control" id="length"
                                 value="{{ $label->length }}" readonly required>
                         </div>
@@ -129,7 +129,7 @@
                         </div>
 
                         <div id="label_pitch" class="form-group">
-                            <label for="pitch">Pitch</label>
+                            <label for="pitch">Pitch (mm)</label>
                             <input type="number" step="0.01" name="pitch" id="pitch"
                                 value="{{ $label->pitch }}" class="form-control" required>
                         </div>
