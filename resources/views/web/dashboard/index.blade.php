@@ -136,7 +136,7 @@
                     <div id="label_pitch" class="form-group">
                         <label for="pitch">Pitch (mm)</label>
                         <input type="number" step="0.01" name="pitch" id="pitch" 
-                               class="form-control" placeholder="Masukkan pitch (contoh: 20.25)" required>
+                               class="form-control" placeholder="Masukkan pitch (contoh: 20.25)">
                     </div>
 
                     <div class="form-group">

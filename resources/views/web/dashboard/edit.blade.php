@@ -131,7 +131,7 @@
                         <div id="label_pitch" class="form-group">
                             <label for="pitch">Pitch (mm)</label>
                             <input type="number" step="0.01" name="pitch" id="pitch"
-                                value="{{ $label->pitch }}" class="form-control" required>
+                                value="{{ $label->pitch }}" class="form-control">
                         </div>
 
                         <div class="form-group">
