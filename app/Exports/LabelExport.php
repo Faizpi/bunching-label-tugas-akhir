@@ -65,10 +65,12 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'Lot Number',
             'Formatted Lot Number',
             'Type/Size',
-            'Length (m)',
-            'Base Length (m)',     // hasil perkalian
+            'Drum/Coil',          // angka pertama dari Length
+            'Std Length (m)',     // angka kedua dari Length
+            'Length (m)',         // string aslinya
+            'Base Length (m)',    // hasil perkalian
             'Extra Length (m)',
-            'Total Length (m)',    // hasil perkalian + extra_length
+            'Total Length (m)',   // base + extra
             'Weight (kg)',
             'Date',
             'Shift',
@@ -85,13 +87,17 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     {
         $this->rowNumber++;
 
-        // Hitung hasil perkalian dari kolom length
+        $drumCoil = null;
+        $stdLength = null;
         $baseLength = null;
+
         if (!empty($row->length)) {
-            // contoh format: "2 x 1800" atau "2x1800"
+            // contoh format: "3 x 2000" atau "3x2000"
             $parts = preg_split('/x/i', str_replace(' ', '', $row->length));
             if (count($parts) == 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
-                $baseLength = $parts[0] * $parts[1];
+                $drumCoil = $parts[0];
+                $stdLength = $parts[1];
+                $baseLength = $drumCoil * $stdLength;
             }
         }
 
@@ -103,10 +109,12 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             "'" . $row->lot_number,
             "" . $row->formated_lot_number,
             $row->type_size,
+            $drumCoil,
+            $stdLength,
             $row->length,
-            $baseLength,       // Base Length
+            $baseLength,
             $row->extra_length,
-            $totalLength,      // Total Length
+            $totalLength,
             $row->weight,
             Date::PHPToExcel(Carbon::parse($row->shift_date)),
             $row->shift,
@@ -124,15 +132,18 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
         return [
             'B' => NumberFormat::FORMAT_TEXT,           // Lot Number
             'C' => NumberFormat::FORMAT_TEXT,           // Formatted Lot
-            'E' => NumberFormat::FORMAT_TEXT,           // Length (string)
-            'F' => NumberFormat::FORMAT_NUMBER_00,      // Base Length
-            'G' => NumberFormat::FORMAT_NUMBER_00,      // Extra Length
-            'H' => NumberFormat::FORMAT_NUMBER_00,      // Total Length
-            'I' => NumberFormat::FORMAT_NUMBER_00,      // Weight
-            'J' => NumberFormat::FORMAT_DATE_DDMMYYYY,  // Date
-            'K' => NumberFormat::FORMAT_NUMBER,         // Shift
-            'M' => NumberFormat::FORMAT_NUMBER_00,      // Pitch
-            'Q' => NumberFormat::FORMAT_NUMBER,         // Print Count
+            'D' => NumberFormat::FORMAT_TEXT,           // Type/Size
+            'E' => NumberFormat::FORMAT_NUMBER,         // Drum/Coil
+            'F' => NumberFormat::FORMAT_NUMBER_00,      // Std Length
+            'G' => NumberFormat::FORMAT_TEXT,           // Length (asli)
+            'H' => NumberFormat::FORMAT_NUMBER_00,      // Base Length
+            'I' => NumberFormat::FORMAT_NUMBER_00,      // Extra Length
+            'J' => NumberFormat::FORMAT_NUMBER_00,      // Total Length
+            'K' => NumberFormat::FORMAT_NUMBER_00,      // Weight
+            'L' => NumberFormat::FORMAT_DATE_DDMMYYYY,  // Date
+            'M' => NumberFormat::FORMAT_NUMBER,         // Shift
+            'O' => NumberFormat::FORMAT_NUMBER_00,      // Pitch
+            'S' => NumberFormat::FORMAT_NUMBER,         // Print Count
         ];
     }
 
