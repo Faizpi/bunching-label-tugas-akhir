@@ -79,6 +79,8 @@
                 <th>Lot Number</th>
                 <th>Formatted Lot Number</th>
                 <th>Type/Size</th>
+                <th>Drum/Coil</th>
+                <th>Std Length (m)</th>
                 <th>Length (m)</th>
                 <th>Base Length (m)</th>
                 <th>Extra Length (m)</th>
@@ -97,16 +99,20 @@
         <tbody>
             @forelse($labels as $label)
                 @php
-                    // Hitung Base Length
+                    $drumCoil = null;
+                    $stdLength = null;
                     $baseLength = null;
+
                     if (!empty($label->length)) {
+                        // contoh: "3 x 2000" atau "3x2000"
                         $parts = preg_split('/x/i', str_replace(' ', '', $label->length));
                         if (count($parts) == 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
-                            $baseLength = $parts[0] * $parts[1];
+                            $drumCoil = $parts[0];
+                            $stdLength = $parts[1];
+                            $baseLength = $drumCoil * $stdLength;
                         }
                     }
 
-                    // Total Length = Base Length + Extra Length
                     $totalLength = ($baseLength ?? 0) + ($label->extra_length ?? 0);
                 @endphp
                 <tr>
@@ -114,6 +120,8 @@
                     <td>{{ $label->lot_number }}</td>
                     <td>{{ $label->formated_lot_number }}</td>
                     <td>{{ $label->type_size }}</td>
+                    <td>{{ $drumCoil }}</td>
+                    <td>{{ $stdLength }}</td>
                     <td>{{ $label->length }}</td>
                     <td>{{ $baseLength }}</td>
                     <td>{{ $label->extra_length }}</td>
@@ -130,7 +138,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="17">Tidak ada data</td>
+                    <td colspan="19">Tidak ada data</td>
                 </tr>
             @endforelse
         </tbody>
@@ -143,5 +151,4 @@
     </div>
 
 </body>
-
 </html>
