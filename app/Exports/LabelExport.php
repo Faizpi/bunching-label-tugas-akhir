@@ -31,14 +31,12 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     {
         $query = Label::query()
             ->select(
-                'labels.id',
                 'labels.lot_number',
                 'labels.formated_lot_number',
                 'labels.type_size',
                 'labels.length',
                 'labels.extra_length',
                 'labels.weight',
-                // 'labels.extra_weight',
                 'labels.shift_date',
                 'labels.shift',
                 'labels.machine_number',
@@ -64,15 +62,14 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     {
         return [
             'No',
-            'ID',
             'Lot Number',
             'Formatted Lot Number',
             'Type/Size',
             'Length (m)',
-            'Total Length (m)',
-            'Extra Length (m)',   
+            'Base Length (m)',     // hasil perkalian
+            'Extra Length (m)',
+            'Total Length (m)',    // hasil perkalian + extra_length
             'Weight (kg)',
-            // 'Extra Weight (kg)',
             'Date',
             'Shift',
             'Machine Number',
@@ -88,27 +85,29 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     {
         $this->rowNumber++;
 
-        // Parsing length
-        $lengthTotal = null;
+        // Hitung hasil perkalian dari kolom length
+        $baseLength = null;
         if (!empty($row->length)) {
             // contoh format: "2 x 1800" atau "2x1800"
             $parts = preg_split('/x/i', str_replace(' ', '', $row->length));
             if (count($parts) == 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
-                $lengthTotal = $parts[0] * $parts[1];
+                $baseLength = $parts[0] * $parts[1];
             }
         }
 
+        // Total Length = hasil perkalian + extra_length
+        $totalLength = ($baseLength ?? 0) + ($row->extra_length ?? 0);
+
         return [
             $this->rowNumber,
-            $row->id,
             "'" . $row->lot_number,
             "" . $row->formated_lot_number,
             $row->type_size,
             $row->length,
-            $lengthTotal,
+            $baseLength,       // Base Length
             $row->extra_length,
+            $totalLength,      // Total Length
             $row->weight,
-            // $row->extra_weight,
             Date::PHPToExcel(Carbon::parse($row->shift_date)),
             $row->shift,
             $row->machine_number,
@@ -123,28 +122,27 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
     public function columnFormats(): array
     {
         return [
-            'C' => NumberFormat::FORMAT_TEXT,
-            'D' => NumberFormat::FORMAT_TEXT,
-            'F' => NumberFormat::FORMAT_TEXT,
-            'G' => NumberFormat::FORMAT_NUMBER_00, 
-            'H' => NumberFormat::FORMAT_NUMBER_00,
-            'I' => NumberFormat::FORMAT_NUMBER_00,
-            // 'J' => NumberFormat::FORMAT_NUMBER_00,
-            'J' => NumberFormat::FORMAT_DATE_DDMMYYYY,
-            'K' => NumberFormat::FORMAT_NUMBER,
-            'M' => NumberFormat::FORMAT_NUMBER_00,
-            'Q' => NumberFormat::FORMAT_NUMBER,
+            'B' => NumberFormat::FORMAT_TEXT,           // Lot Number
+            'C' => NumberFormat::FORMAT_TEXT,           // Formatted Lot
+            'E' => NumberFormat::FORMAT_TEXT,           // Length (string)
+            'F' => NumberFormat::FORMAT_NUMBER_00,      // Base Length
+            'G' => NumberFormat::FORMAT_NUMBER_00,      // Extra Length
+            'H' => NumberFormat::FORMAT_NUMBER_00,      // Total Length
+            'I' => NumberFormat::FORMAT_NUMBER_00,      // Weight
+            'J' => NumberFormat::FORMAT_DATE_DDMMYYYY,  // Date
+            'K' => NumberFormat::FORMAT_NUMBER,         // Shift
+            'M' => NumberFormat::FORMAT_NUMBER_00,      // Pitch
+            'Q' => NumberFormat::FORMAT_NUMBER,         // Print Count
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        // Hitung jumlah baris terakhir
         $highestRow = $sheet->getHighestRow();
         $highestColumn = $sheet->getHighestColumn();
         $range = "A1:" . $highestColumn . $highestRow;
 
-        // Tambahkan border di seluruh tabel
+        // Border di seluruh tabel
         $sheet->getStyle($range)->applyFromArray([
             'borders' => [
                 'allBorders' => [
@@ -154,7 +152,7 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             ],
         ]);
 
-        // Styling header
+        // Header bold dan rata tengah
         return [
             1 => [
                 'font' => ['bold' => true],
