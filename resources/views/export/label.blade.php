@@ -89,6 +89,20 @@
 </head>
 
 <body>
+    @php
+        // Hitung base length (perkalian dari field length)
+        $baseLength = null;
+        if (!empty($label->length)) {
+            $parts = preg_split('/x/i', str_replace(' ', '', $label->length));
+            if (count($parts) == 2 && is_numeric($parts[0]) && is_numeric($parts[1])) {
+                $baseLength = $parts[0] * $parts[1];
+            }
+        }
+
+        // Total Length = base length + extra length
+        $totalLength = ($baseLength ?? 0) + ($label->extra_length ?? 0);
+    @endphp
+
     <div id="section-to-print">
         <img src="data:image/png;base64,{{ \DNS1D::getBarcodePNG($label->lot_number, 'C128') }}" alt="barcode" />
         <p>{{ $label->lot_number }}</p>
@@ -111,16 +125,15 @@
             </tr>
             @endif
             <tr>
+                <td>Total Length</td>
+                <td>:</td>
+                <td>{{ $totalLength }} m</td>
+            </tr>
+            <tr>
                 <td>Weight</td>
                 <td>:</td>
                 <td>{{ $label->weight }} kg</td>
             </tr>
-            <!-- format ymd
-            <tr>
-                <td>Date/Shift</td>
-                <td>:</td>
-                <td>{{ $label->shift_date }} / {{ $label->shift }}</td>
-            </tr> -->
             <tr>
                 <td>Date/Shift</td>
                 <td>:</td>
@@ -149,7 +162,7 @@
             <tr>
                 <td>Operator</td>
                 <td>:</td>
-                <td>{{ $label->operator->name }}</td>
+                <td>{{ $label->operator->name ?? '-' }}</td>
             </tr>
             <tr>
                 <td>QC Test</td>
@@ -160,6 +173,11 @@
                 <td>Remark</td>
                 <td>:</td>
                 <td>{{ $label->remark }}</td>
+            </tr>
+            <tr>
+                <td>Extruder</td>
+                <td>:</td>
+                <td></td>
             </tr>
         </table>
     </div>
