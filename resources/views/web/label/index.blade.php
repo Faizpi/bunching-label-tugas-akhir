@@ -167,6 +167,7 @@
                                                     style="background:#f59e0b;border:none;border-radius:4px;color:#fff;">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
+                                                @if (auth()->user()->role == 0)
                                                 <button title="Hapus"
                                                     data-action="delete"
                                                     data-href="{{ route('web.label.delete', $label->id) }}"
@@ -174,6 +175,7 @@
                                                     style="background:#dc2626;border:none;border-radius:4px;color:#fff;">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
+                                                @endif
                                             </td>
                                             <td class="text-center">{{ $label->print_count }}</td>
                                         </tr>
