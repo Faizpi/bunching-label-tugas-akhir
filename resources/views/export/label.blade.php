@@ -77,8 +77,11 @@
 
             #section-to-print {
                 position: absolute;
-                left: 200;
-                top: -10;
+                top: 0;
+                left: 50%;               /* geser ke tengah */
+                transform: translateX(-50%) scale(0.9); /* kecilin 90% dan center */
+                transform-origin: top center; /* biar ngecil dari tengah */
+                max-width: 260px;        /* batasi lebar */
             }
 
             button {
