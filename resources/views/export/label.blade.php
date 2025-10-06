@@ -78,10 +78,10 @@
             #section-to-print {
                 position: absolute;
                 top: 0;
-                left: 50%;               /* geser ke tengah */
-                transform: translateX(-50%) scale(0.9); /* kecilin 90% dan center */
-                transform-origin: top center; /* biar ngecil dari tengah */
-                max-width: 260px;        /* batasi lebar */
+                left: 50%;               
+                transform: translateX(-50%) scale(0.9); 
+                transform-origin: top center; 
+                max-width: 260px;        
             }
 
             button {
@@ -155,7 +155,13 @@
             <tr>
                 <td>Pitch</td>
                 <td>:</td>
-                <td>{{ $label->pitch }} mm</td>
+                <td>
+                    @if(!empty($label->pitch))
+                        {{ $label->pitch }} mm
+                    @else
+                        <span style="display:inline-block; width:30px; margin-right:2px;"></span> mm
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td>Visual</td>
