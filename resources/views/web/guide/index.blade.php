@@ -71,8 +71,8 @@
                                 - Menu <b>Data Label</b> menampilkan semua label yang sudah dibuat.<br>
                                 - Gunakan kolom <b>Search</b> untuk mencari label berdasarkan <code>lot_number</code>.<br>
                                 - Data label ditampilkan per halaman (10 item).<br>
-                                - Semua user dapat mengakses kolom Action untuk mengedit, menghapus, atau mencetak ulang
-                                label.
+                                - Admin dapat mengakses kolom Action untuk mengedit, menghapus, atau mencetak ulang
+                                label, sedangkan Operator hanya dapat mengakses kolom Action untuk mengedit dan mencetak ulang saja.
                             </div>
                         </div>
                     </div>
