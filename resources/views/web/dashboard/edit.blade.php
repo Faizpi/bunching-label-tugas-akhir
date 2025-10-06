@@ -9,7 +9,11 @@
         <div class="row">
             <!-- Panel kiri -->
             <div class="col-sm-6">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+                <div class="panel panel-default" style="background:#ffffff;
+                    border-radius:10px;
+                    border:1px solid #e5e7eb;
+                    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+                    overflow:hidden;">
                     <div class="panel-body">
 
                         <div id="label_lot_not" class="form-group">
@@ -100,7 +104,11 @@
 
             <!-- Panel kanan -->
             <div class="col-sm-6">
-                <div class="panel panel-default" style="background: rgba(255, 255, 255, 0.15); border-radius: 15px; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(31,38,135,0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+                <div class="panel panel-default" style="background:#ffffff;
+                    border-radius:10px;
+                    border:1px solid #e5e7eb;
+                    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+                    overflow:hidden;">
                     <div class="panel-body">
 
                         <div id="label_date" class="form-group">
