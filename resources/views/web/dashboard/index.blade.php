@@ -86,11 +86,6 @@
                         </select>
                     </div>
 
-                    <div id="label_weight" class="form-group">
-                        <label for="weight">Weight (Kg)</label>
-                        <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -106,6 +101,11 @@
                 <div class="panel-body">
 
                     <!-- Data Produksi -->
+                    <div id="label_weight" class="form-group">
+                        <label for="weight">Weight (Kg)</label>
+                        <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
+                    </div>
+
                     <div id="label_date" class="form-group">
                         <label for="date">Date</label>
                         <select id="date" name="shift_date" class="form-control" required></select>
@@ -131,11 +131,11 @@
                         </select>
                     </div>
 
-                    <div id="label_pitch" class="form-group">
+                    <!-- <div id="label_pitch" class="form-group">
                         <label for="pitch">Pitch (mm)</label>
                         <input type="number" step="0.01" name="pitch" id="pitch" 
                                class="form-control" placeholder="Masukkan pitch (contoh: 20.25)">
-                    </div>
+                    </div> -->
 
                     <div class="form-group">
                         <label for="visual">Visual</label><br>
@@ -406,7 +406,6 @@ document.addEventListener("DOMContentLoaded", function() {
         $("select#date").val(null);
         $("select#shift").val(null);
         $("select#machine_no").val(null);
-        $("input[name=pitch]").prop('checked', false);
         $("input#remark").val(null);
         $("input#bobin_no").val(null);
         $("input#lot_not").val(null);

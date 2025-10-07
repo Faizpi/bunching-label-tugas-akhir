@@ -91,13 +91,6 @@
                                 @endfor
                             </select>
                         </div>
-
-                        <div id="label_weight" class="form-group">
-                            <label for="weight">Weight (Kg)</label>
-                            <input type="number" name="weight" class="form-control" id="weight"
-                                value="{{ $label->weight }}" required>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -110,6 +103,12 @@
                     box-shadow:0 4px 12px rgba(0,0,0,0.1);
                     overflow:hidden;">
                     <div class="panel-body">
+
+                        <div id="label_weight" class="form-group">
+                            <label for="weight">Weight (Kg)</label>
+                            <input type="number" name="weight" class="form-control" id="weight"
+                                value="{{ $label->weight }}" required>
+                        </div>
 
                         <div id="label_date" class="form-group">
                             <label for="date">Date</label>
@@ -136,11 +135,11 @@
                             </select>
                         </div>
 
-                        <div id="label_pitch" class="form-group">
+                        <!-- <div id="label_pitch" class="form-group">
                             <label for="pitch">Pitch (mm)</label>
                             <input type="number" step="0.01" name="pitch" id="pitch"
                                 value="{{ $label->pitch }}" class="form-control">
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label for="visual">Visual</label><br>
@@ -447,7 +446,6 @@ document.addEventListener("DOMContentLoaded", function() {
         $("select#date").val(null);
         $("select#shift").val(null);
         $("select#machine_no").val(null);
-        $("input[name=pitch]").val(null);
         $("input#remark").val(null);
         $("input#bobin_no").val(null);
     }
@@ -484,12 +482,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 $("#label_machine_no").removeClass("has-error");
             }
 
-            if ($("input[name=pitch]").val() == "" || $("input[name=pitch]").val() == null) {
-                $("#label_pitch").addClass("has-error");
-                fail = true;
-            } else {
-                $("#label_pitch").removeClass("has-error");
-            }
+            // if ($("input[name=pitch]").val() == "" || $("input[name=pitch]").val() == null) {
+            //     $("#label_pitch").addClass("has-error");
+            //     fail = true;
+            // } else {
+            //     $("#label_pitch").removeClass("has-error");
+            // }
 
             // if ($("input#remark").val() == "" || $("input#remark").val() == null) {
             //     $("#label_remark").addClass("has-error");
