@@ -28,7 +28,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseAuth">
-                                    <span class="glyphicon glyphicon-log-in" style="margin-right:8px;"></span> 1. Login &
+                                    <span class="fa fa-sign-in" style="margin-right:8px;"></span> 1. Login &
                                     Logout
                                 </a>
                             </h4>
@@ -52,7 +52,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseDashboard">
-                                    <span class="glyphicon glyphicon-dashboard" style="margin-right:8px;"></span> 2.
+                                    <span class="fa fa-dashboard" style="margin-right:8px;"></span> 2.
                                     Dashboard / Input Label
                                 </a>
                             </h4>
@@ -73,7 +73,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseDataLabel">
-                                    <span class="glyphicon glyphicon-list-alt" style="margin-right:8px;"></span> 3. Data
+                                    <span class="fa fa-list-alt" style="margin-right:8px;"></span> 3. Data
                                     Label
                                 </a>
                             </h4>
@@ -94,7 +94,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseEdit">
-                                    <span class="glyphicon glyphicon-pencil" style="margin-right:8px;"></span> 4. Edit &
+                                    <span class="fa fa-pencil" style="margin-right:8px;"></span> 4. Edit &
                                     Hapus Label
                                 </a>
                             </h4>
@@ -114,7 +114,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapsePrint">
-                                    <span class="glyphicon glyphicon-print" style="margin-right:8px;"></span> 5. Print Ulang
+                                    <span class="fa fa-print" style="margin-right:8px;"></span> 5. Print Ulang
                                     Label
                                 </a>
                             </h4>
@@ -131,7 +131,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseExport">
-                                    <span class="glyphicon glyphicon-export" style="margin-right:8px;"></span> 6. Export
+                                    <span class="fa fa-file-excel-o" style="margin-right:8px;"></span> 6. Export
                                     Data (Excel / Print View / PDF)
                                 </a>
                             </h4>
@@ -152,7 +152,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseUser">
-                                    <span class="glyphicon glyphicon-user" style="margin-right:8px;"></span> 7. Manajemen
+                                    <span class="fa fa-user" style="margin-right:8px;"></span> 7. Manajemen
                                     User (Admin)
                                 </a>
                             </h4>
@@ -171,7 +171,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseIncrement">
-                                    <span class="glyphicon glyphicon-sort" style="margin-right:8px;"></span> 8.
+                                    <span class="fa fa-sort" style="margin-right:8px;"></span> 8.
                                     Logika Auto Increment
                                 </a>
                             </h4>
@@ -216,7 +216,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseLabelPrint">
-                                    <span class="glyphicon glyphicon-barcode" style="margin-right:8px;"></span> 9. Format
+                                    <span class="fa fa-barcode" style="margin-right:8px;"></span> 9. Format
                                     Label & Cara Print
                                 </a>
                             </h4>
@@ -251,7 +251,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseHistory">
-                                    <span class="glyphicon glyphicon-time" style="margin-right:8px;"></span> 10. Fitur Lot History
+                                    <span class="fa fa-history" style="margin-right:8px;"></span> 10. Fitur Lot History
                                 </a>
                             </h4>
                         </div>
@@ -288,7 +288,7 @@
                         <div class="panel-heading" style="background:#f8fafc;">
                             <h4 class="panel-title">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseGuide">
-                                    <span class="glyphicon glyphicon-question-sign" style="margin-right:8px;"></span> 11.
+                                    <span class="fa fa-question-circle" style="margin-right:8px;"></span> 11.
                                     Panduan / Help
                                 </a>
                             </h4>
