@@ -17,7 +17,7 @@
                         padding:1rem 1.5rem;
                         border-bottom:1px solid #e5e7eb;">
                 <h2 class="box-title v-align-middle"
-                    style="margin:0;font-weight:600;font-size:17px;letter-spacing:0.3px;color:black;">
+                    style="margin:0;font-weight:600;font-size:17px;letter-spacing:0.3px;color:black;margin-top:2px;margin-bottom:8px">
                     Data Label
                 </h2>
             </div>

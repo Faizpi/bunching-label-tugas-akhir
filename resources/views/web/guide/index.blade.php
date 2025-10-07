@@ -2,15 +2,27 @@
 
 @section('content')
     <div class="row" style="padding:40px 30px;">
-        <div class="col-md-12">
-            <div class="box" style="background:#fff;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.1);padding:25px;">
-                <h3 style="color:#0284c7;font-weight:bold;margin-bottom:20px;margin-top:-10px;">
-                    <span class="glyphicon glyphicon-book" style="margin-right:8px;"></span> Panduan Penggunaan Sistem
-                </h3>
-                <p style="margin-bottom:25px;">Klik setiap topik di bawah untuk melihat panduan detail:</p>
+        <div class="col-sm-12">
+            <div class="box"
+            style="background:#ffffff;
+                    border-radius:10px;
+                    border:1px solid #e5e7eb;
+                    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+                    overflow:hidden;">
+
+                <!-- Header -->
+                <div class="box-header with-border"
+                    style="background:white;
+                            color:#fff;
+                            padding:1rem 1.5rem;
+                            border-bottom:1px solid #e5e7eb;">
+                    <h2 class="box-title v-align-middle"
+                        style="margin:0;font-weight:600;font-size:17px;letter-spacing:0.3px;color:black;margin-bottom:8px;margin-top:2px">
+                        Guide
+                    </h2>
+                </div>
 
                 <div class="panel-group" id="accordion">
-
                     {{-- AUTH --}}
                     <div class="panel panel-default" style="margin-bottom:10px;border-radius:8px;overflow:hidden;">
                         <div class="panel-heading" style="background:#f8fafc;">
