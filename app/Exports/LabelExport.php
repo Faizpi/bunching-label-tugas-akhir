@@ -75,7 +75,7 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'Date',
             'Shift',
             'Machine Number',
-            'Pitch (mm)',
+            // 'Pitch (mm)',
             'Visual',
             'Remark',
             'Operator Name',
@@ -119,7 +119,7 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             Date::PHPToExcel(Carbon::parse($row->shift_date)),
             $row->shift,
             $row->machine_number,
-            $row->pitch,
+            // $row->pitch,
             $row->visual,
             $row->remark,
             $row->operator_name,
@@ -142,8 +142,8 @@ class LabelExport implements FromQuery, WithHeadings, WithMapping, WithColumnFor
             'K' => NumberFormat::FORMAT_NUMBER_00,      // Weight
             'L' => NumberFormat::FORMAT_DATE_DDMMYYYY,  // Date
             'M' => NumberFormat::FORMAT_NUMBER,         // Shift
-            'O' => NumberFormat::FORMAT_NUMBER_00,      // Pitch
-            'S' => NumberFormat::FORMAT_NUMBER,         // Print Count
+            // 'O' => NumberFormat::FORMAT_NUMBER_00,      // Pitch
+            'R' => NumberFormat::FORMAT_NUMBER,         // Print Count
         ];
     }
 
