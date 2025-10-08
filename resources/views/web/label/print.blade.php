@@ -89,7 +89,7 @@
                 <th>Date</th>
                 <th>Shift</th>
                 <th>Machine Number</th>
-                <th>Pitch (mm)</th>
+                <!-- <th>Pitch (mm)</th> -->
                 <th>Visual</th>
                 <th>Remark</th>
                 <th>Operator Name</th>
@@ -130,7 +130,7 @@
                     <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-M-Y') }}</td>
                     <td>{{ $label->shift }}</td>
                     <td>{{ $label->machine_number }}</td>
-                    <td>{{ $label->pitch }}</td>
+                    <!-- <td>{{ $label->pitch }}</td> -->
                     <td>{{ $label->visual }}</td>
                     <td>{{ $label->remark }}</td>
                     <td>{{ $label->operator->name ?? '-' }}</td>
@@ -138,7 +138,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="19">Tidak ada data</td>
+                    <td colspan="18">Tidak ada data</td>
                 </tr>
             @endforelse
         </tbody>
