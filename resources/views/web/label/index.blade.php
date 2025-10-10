@@ -131,7 +131,7 @@
                                             <th>Date</th>
                                             <th>Shift</th>
                                             <th>Mesin No</th>
-                                            <th>Pitch (mm)</th>
+                                            <!-- <th>Pitch (mm)</th> -->
                                             <th>Visual</th>
                                             <th>Operator</th>
                                             <th>Action</th>
@@ -151,7 +151,7 @@
                                             <td>{{ \Carbon\Carbon::parse($label->shift_date)->format('d-m-y') }}</td>
                                             <td>{{ $label->shift }}</td>
                                             <td>{{ $label->machine_number }}</td>
-                                            <td>{{ $label->pitch }}</td>
+                                            <!-- <td>{{ $label->pitch }}</td> -->
                                             <td>{{ $label->visual }}</td>
                                             <td>{{ $label->operator->name }}</td>
                                             <td class="text-center" style="white-space: nowrap;">
@@ -181,7 +181,7 @@
                                         </tr>
                                         @empty
                                         <tr>
-                                            <td colspan="11" class="text-center" style="color:#475569;">Tidak ada label</td>
+                                            <td colspan="10" class="text-center" style="color:#475569;">Tidak ada label</td>
                                         </tr>
                                         @endforelse
                                     </tbody>
