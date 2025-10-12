@@ -216,20 +216,17 @@
     max-width: 100% !important;
     margin-left: 0 !important;
   }
-
-  /* Panel biar rapi full width + jarak bawah */
+  
   .panel {
     width: 100% !important;
     margin: 0 0 20px 0 !important;
   }
 
-  /* Row tanpa margin samping */
   .row {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
 
-  /* Isi panel tetap ada padding */
   .panel-body {
     padding: 15px !important;
   }

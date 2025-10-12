@@ -209,9 +209,7 @@
 
 @push('styles')
 <style>
-/* Tablet (768px – 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* Kolom biar stack rapi */
   .row .col-sm-3,
   .row .col-sm-3.col-sm-offset-1 {
     float: none !important;
@@ -220,21 +218,17 @@
     margin-left: 0 !important;
   }
 
-  /* Panel kasih jarak antar elemen */
   .panel {
     margin-bottom: 20px;
   }
 
-  /* Wrapper tombol print */
   .row > div[style*="width:1100px"] {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 auto !important;
   }
 
-  /* Tablet dan HP (maks 1024px) */
 @media (max-width: 1024px) {
-  /* Form pencarian & filter stack */
   .box-body .form-inline {
     display: flex !important;
     flex-direction: column !important;
@@ -243,7 +237,6 @@
     width: 100% !important;
   }
 
-  /* Input & tombol jadi full width */
   .box-body .form-inline input,
   .box-body .form-inline select,
   .box-body .form-inline button,
@@ -254,13 +247,11 @@
     text-align: left !important;
   }
 
-  /* Label "Dari" dan "Sampai" biar sejajar */
   .box-body .form-inline label {
     font-weight: 600;
     margin-bottom: 4px !important;
   }
 
-  /* Kolom biar full width */
   .box-body .col-md-6 {
     width: 100% !important;
     max-width: 100% !important;
@@ -268,7 +259,6 @@
     margin-bottom: 15px !important;
   }
 
-  /* Tombol export/print berjajar rapih */
   .box-body .form-inline button {
     display: inline-block;
     width: 100% !important;

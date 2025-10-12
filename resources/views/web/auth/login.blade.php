@@ -23,6 +23,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .login-container {
@@ -33,12 +35,14 @@
       overflow: hidden;
       max-width: 960px;
       width: 100%;
+      min-height: 480px;
     }
 
     .login-left,
     .login-right {
       flex: 1;
       padding: 40px 30px;
+      box-sizing: border-box;
     }
 
     .login-left {
@@ -111,17 +115,17 @@
 
     /* History Box */
     .history-header {
-    display: inline-block;
-    background: #376bdc;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
-    width: 100%;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      display: inline-block;
+      background: #376bdc;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
 
     .history-list {
@@ -149,14 +153,60 @@
     }
 
     /* Responsive */
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
+      body {
+        padding: 30px 15px;
+      }
+
       .login-container {
         flex-direction: column;
+        border-radius: 16px;
+      }
+
+      .login-left,
+      .login-right {
+        padding: 25px 20px;
+        width: 100%;
       }
 
       .login-right {
         border-left: none;
         border-top: 1px solid #e5e7eb;
+      }
+
+      .login-logo img {
+        width: 55px;
+      }
+
+      .login-logo span {
+        font-size: 20px;
+      }
+
+      .btn-primary {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .login-container {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .login-left,
+      .login-right {
+        padding: 20px 15px;
+      }
+
+      .login-logo img {
+        width: 50px;
+      }
+
+      .login-logo span {
+        font-size: 18px;
       }
     }
   </style>
@@ -189,29 +239,29 @@
     </div>
 
     <!-- Kanan: History -->
-	<div class="login-right">
-	<div style="text-align:center;">
-		<div class="history-header">Latest Lot History</div>
-	</div>
-	<ul class="history-list">
-		@forelse($latestLots as $lot)
-		<li>
-			<strong>Lot: {{ $lot->lot_number }}</strong>
-			<small>
-			<i class="fa fa-user"></i> {{ $lot->operator->name ?? 'Unknown' }} <br>
-			<i class="fa fa-clock-o"></i> {{ $lot->created_at->format('d M Y H:i') }}
-			</small>
-		</li>
-		@empty
-		<li style="text-align:center; color:#666;">No lot history available.</li>
-		@endforelse
-	</ul>
-	</div>
+    <div class="login-right">
+      <div style="text-align:center;">
+        <div class="history-header">Latest Lot History</div>
+      </div>
+      <ul class="history-list">
+        @forelse($latestLots as $lot)
+        <li>
+          <strong>Lot: {{ $lot->lot_number }}</strong>
+          <small>
+            <i class="fa fa-user"></i> {{ $lot->operator->name ?? 'Unknown' }} <br>
+            <i class="fa fa-clock-o"></i> {{ $lot->created_at->format('d M Y H:i') }}
+          </small>
+        </li>
+        @empty
+        <li style="text-align:center; color:#666;">No lot history available.</li>
+        @endforelse
+      </ul>
+    </div>
+  </div>
 
   <!-- jQuery -->
   <script src="{{ asset('bundle/jquery/dist/jquery.min.js') }}"></script>
   <!-- Bootstrap -->
   <script src="{{ asset('bundle/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 </body>
-
 </html>

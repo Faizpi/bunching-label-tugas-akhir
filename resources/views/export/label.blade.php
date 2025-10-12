@@ -93,7 +93,6 @@
 
 <body>
     @php
-        // Hitung base length (perkalian dari field length)
         $baseLength = null;
         if (!empty($label->length)) {
             $parts = preg_split('/x/i', str_replace(' ', '', $label->length));
@@ -155,13 +154,7 @@
             <tr>
                 <td>Pitch</td>
                 <td>:</td>
-                <td>
-                    @if(!empty($label->pitch))
-                        {{ $label->pitch }} mm
-                    @else
-                        <span style="display:inline-block; width:30px; margin-right:2px;"></span> mm
-                    @endif
-                </td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>Visual</td>

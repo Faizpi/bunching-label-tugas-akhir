@@ -97,14 +97,12 @@
         transition: color 0.2s ease, background-color 0.2s ease;
     }
 
-    /* Hover: teks & ikon biru, background putih */
     .main-sidebar .sidebar-menu>li>a:hover,
     .main-sidebar .treeview-menu>li>a:hover {
         color: #0284c7 !important;
         background-color: #fff !important;
     }
 
-    /* Aktif: teks & ikon biru, background putih */
     .main-sidebar .sidebar-menu>li.active>a,
     .main-sidebar .treeview-menu>li.active>a {
         color: #0284c7 !important;
