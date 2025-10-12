@@ -152,11 +152,6 @@
                 <td>{{ $label->formated_lot_number }}</td>
             </tr>
             <tr>
-                <td>Pitch</td>
-                <td>:</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
                 <td>Visual</td>
                 <td>:</td>
                 <td>{{ $label->visual }}</td>
@@ -165,6 +160,11 @@
                 <td>Operator</td>
                 <td>:</td>
                 <td>{{ $label->operator->name ?? '-' }}</td>
+            </tr>
+            <tr>
+                <td>Pitch</td>
+                <td>:</td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>QC Test</td>
