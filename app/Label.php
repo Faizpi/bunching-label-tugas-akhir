@@ -23,7 +23,7 @@ class Label extends Model
         'remark',
         'bobin_no',
         'operator_id',
-        'extra_weight',   // <= baru
+        'extra_weight',   
         'extra_length',
     ];
 

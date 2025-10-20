@@ -219,7 +219,7 @@
       <div class="login-logo">
         <img src="{{ asset('img/SIK.png') }}" alt="Logo">
         <span>PT. SUMI INDO KABEL Tbk.</span>
-        <small>Bunching Label Automobile - Cable Plant 1</small>
+        <small>STB Label Automobile - Cable Plant 1</small>
       </div>
 
       @if($errors->any())
