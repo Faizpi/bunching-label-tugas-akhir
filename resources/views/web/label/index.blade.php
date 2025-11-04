@@ -162,12 +162,13 @@
                                                     style="background:#0ea5e9;border:none;border-radius:4px;color:#fff;">
                                                     <i class="fa fa-print"></i>
                                                 </a>
+                                                 @if (auth()->user()->role == 0)
                                                 <a href="{{ route('web.label.edit', $label->id) }}"
                                                     class="btn btn-xs btn-warning"
                                                     style="background:#f59e0b;border:none;border-radius:4px;color:#fff;">
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                @if (auth()->user()->role == 0)
+                                               
                                                 <button title="Hapus"
                                                     data-action="delete"
                                                     data-href="{{ route('web.label.delete', $label->id) }}"
