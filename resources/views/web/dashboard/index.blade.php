@@ -57,8 +57,8 @@
                     <div id="extra_fields" style="display:none;">
                         <div class="form-group">
                             <label for="extra_length">Extra Length (m)</label>
-                            <input type="number" name="extra_length" id="extra_length" 
-                                   class="form-control" placeholder="Masukkan Extra Length">
+                            <input type="text" name="extra_length" id="extra_length" 
+                            class="form-control numeric-input" placeholder="Masukkan Extra Length" inputmode="decimal">
                         </div>
                         <!-- 
                         <div class="form-group">
@@ -103,7 +103,7 @@
                     <!-- Data Produksi -->
                     <div id="label_weight" class="form-group">
                         <label for="weight">Weight (Kg)</label>
-                        <input type="number" name="weight" class="form-control" id="weight" placeholder="Weight" required>
+                        <input type="text" name="weight" class="form-control numeric-input" id="weight" placeholder="Weight" required inputmode="decimal">
                     </div>
 
                     <div id="label_date" class="form-group">
@@ -353,6 +353,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("drum").addEventListener("change", function() {
         updateLength();
+    });
+});
+    document.querySelectorAll('.numeric-input').forEach(function(input) {
+    input.addEventListener('input', function() {
+        // ubah koma jadi titik
+        this.value = this.value.replace(',', '.');
+
+        // hanya izinkan angka, satu titik desimal
+        this.value = this.value.replace(/[^0-9.]/g, '');
+        if ((this.value.match(/\./g) || []).length > 1) {
+            this.value = this.value.substring(0, this.value.length - 1);
+        }
     });
 });
 </script>
