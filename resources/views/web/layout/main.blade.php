@@ -2,6 +2,7 @@
 <html lang="ID">
 
 <head>
+	<link rel="icon" type="image/png" href="{{ asset('SIK.png') }}">
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{ config('app')['name'] }}</title>
