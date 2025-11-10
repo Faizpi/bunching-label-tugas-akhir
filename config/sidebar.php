@@ -42,17 +42,6 @@ return [
         'query' => null,
         'allowed' => 'admin',
     ],
-    (object) [
-        'title' => 'Guide',
-        'route' => 'web.guide.index',
-        'icon' => 'fa fa-book',
-        'identifier' => (object) [
-            'route' => 'web.guide.index',
-        ],
-        'tree' => null,
-        'query' => null,
-        'allowed' => 'admin',
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -76,17 +65,6 @@ return [
         'icon' => 'fa fa-table',
         'identifier' => (object) [
             'route' => 'web.label.index',
-        ],
-        'tree' => null,
-        'query' => null,
-        'allowed' => 'operator',
-    ],
-    (object) [
-        'title' => 'Guide',
-        'route' => 'web.guide.index',
-        'icon' => 'fa fa-book',
-        'identifier' => (object) [
-            'route' => 'web.guide.index',
         ],
         'tree' => null,
         'query' => null,
