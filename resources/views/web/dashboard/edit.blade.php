@@ -254,42 +254,76 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const sizeOptions = {
         "AV": ["800 SQ Outer", "1000 SQ Outer", "1500 SQ Outer"],
-        "EB": ["500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"],
-        "HDEB": ["900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer"]
+        "EB": [
+            "500 SQ Outer", "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer",
+            "1500 SQ Inner", "2000 SQ Inner", "3000 SQ Inner", "4000 SQ Inner"
+        ],
+        "HDEB": [
+            "900 SQ Outer", "1500 SQ Outer", "2000 SQ Outer", "3000 SQ Outer", "4000 SQ Outer",
+            "1500 SQ Inner", "2000 SQ Inner", "3000 SQ Inner", "4000 SQ Inner"
+        ]
     };
 
     const stdLength = {
+        // ==== OUTER ====
         "AV 800 SQ Outer": 2000,
         "AV 1000 SQ Outer": 1800,
         "AV 1500 SQ Outer": 1400,
+
         "EB 500 SQ Outer": 3000,
         "EB 900 SQ Outer": 2000,
         "EB 1500 SQ Outer": 1800,
         "EB 2000 SQ Outer": 1400,
         "EB 3000 SQ Outer": 900,
         "EB 4000 SQ Outer": 700,
+
         "HDEB 900 SQ Outer": 2000,
         "HDEB 1500 SQ Outer": 1400,
         "HDEB 2000 SQ Outer": 1000,
         "HDEB 3000 SQ Outer": 700,
         "HDEB 4000 SQ Outer": 500,
+
+        // ==== INNER ====
+        "EB 1500 SQ Inner": 1800,
+        "EB 2000 SQ Inner": 1400,
+        "EB 3000 SQ Inner": 900,
+        "EB 4000 SQ Inner": 700,
+
+        "HDEB 1500 SQ Inner": 1400,
+        "HDEB 2000 SQ Inner": 1000,
+        "HDEB 3000 SQ Inner": 700,
+        "HDEB 4000 SQ Inner": 500,
     };
 
-    const cableSize = {
+const cableSize = {
+        // ==== OUTER ====
         "AV 800 SQ Outer": "(50 x 0.45 mm)",
         "AV 1000 SQ Outer": "7 x (9 x 0.45 mm)",
         "AV 1500 SQ Outer": "7 x (12 x 0.45 mm)",
+
         "EB 500 SQ Outer": "7 x (9 x 0.32 mm)",
         "EB 900 SQ Outer": "7 x (16 x 0.32 mm)",
         "EB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
         "EB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
         "EB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
         "EB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+
         "HDEB 900 SQ Outer": "7 x (16 x 0.32 mm)",
         "HDEB 1500 SQ Outer": "19 x (9 x 0.32 mm)",
         "HDEB 2000 SQ Outer": "19 x (13 x 0.32 mm)",
         "HDEB 3000 SQ Outer": "19 x (19 x 0.32 mm)",
         "HDEB 4000 SQ Outer": "19 x (26 x 0.32 mm)",
+
+        // ==== INNER ====
+        "EB 1500 SQ Inner": "7 x (9 x 0.32 mm)",
+        "EB 2000 SQ Inner": "7 x (13 x 0.32 mm)",
+        "EB 3000 SQ Inner": "7 x (19 x 0.32 mm)",
+        "EB 4000 SQ Inner": "7 x (26 x 0.32 mm)",
+
+        "HDEB 1500 SQ Inner": "7 x (9 x 0.32 mm)",
+        "HDEB 2000 SQ Inner": "7 x (13 x 0.32 mm)",
+        "HDEB 3000 SQ Inner": "7 x (19 x 0.32 mm)",
+        "HDEB 4000 SQ Inner": "7 x (26 x 0.32 mm)",
     };
 
     function updateTypeSize() {
